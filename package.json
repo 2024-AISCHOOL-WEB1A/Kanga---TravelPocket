@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "express": "^4.19.2"
+    "csv-writer": "^1.6.0",
+    "express": "^4.19.2",
+    "puppeteer": "^22.13.1"
   }
 }
