@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>로그인</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../css/login_style.css">
+</head>
+
+<body>
+    
+    <!-- 가입 폼 시작 -->
+    <!-- <div class="container"> -->
+    <div class="form" id="loginform">
+        <h1>로그인</h1>
+        <form novalidate>
+            <div class="form-group">
+                <label for="email">이메일 로그인: <span>*</span></label>
+                <input type="email" class="form-control" required id="email" name="email"  pattern="@" >
+                <span class="validation error"> Please enter a valid email</span>
+                <span class="validation req"> This field is required</span>
+            </div>
+        
+            <!-- 아이디 비번 안적었을때 나오는 문구 -->
+        
+        </form>
+
+        <div class="form-group">
+            <label for="pwd">비밀번호: <span>*</span></label>
+            <input type="password" class="form-control" required id="pwd">
+            <span class="validation req"> This field is required</span>
+        </div>
+
+        <button type="button" class="btn btn-default login">로그인</button>
+        <button type="button" class="btn for signup" onclick="location.href='../../accounts/templates/signin.html'">회원가입</button>
+    </div>
+    <!-- 가입 폼 끝 -->
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="../login.js">s
+      
+    </script>
+
+
+</body>
+
+</html>
