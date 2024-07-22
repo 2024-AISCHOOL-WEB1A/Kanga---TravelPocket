@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div data-include-path="../../static/templates/header.html" class="header"></div>
+    <hr>
+    <div class="contents" style="height: 600px;">
+        <p>인원</p>
+        <input type="text">
+        <input type="submit">
+        <br>
+        <p>인원</p>
+        <input type="checkbox" name = "companion" value = "kid">아이
+        <input type="checkbox" name = "companion" value = "teenager">청소년
+        <input type="checkbox" name = "companion" value = "adult">성인
+        <input type="checkbox" name = "companion" value = "pet">반려동물
+        <input type="checkbox" name = "companion" value = "disabled">장애인
+        <br>
+        <button type="submit" onclick = "location.href ='../templates/main.html'">다음</button>
+    </div>
+    
+    <hr>
+    <div  data-include-path="../../static/templates/footer.html" class="footer"></div>
+
+    <script src="../../static/include.js"></script>
+</body>
+</html>
