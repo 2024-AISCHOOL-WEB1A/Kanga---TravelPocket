@@ -1,31 +1,19 @@
-import React, {useState} from 'react';
-import * as S from './templates/mypage.html'
+document.addEventListener("DOMContentLoaded", function() {
+    const profileImg = document.getElementById("profileImg");
+    const imageInput = document.getElementById("imageInput");
 
-const mypage = () =>{
-    const[uploadedImage, setUploadedImage] = useState(null);
+    profileImg.addEventListener("click", function() {
+    imageInput.click();
+    });
 
-    const onChangeImage = e => {
-        const file = e.target.files[0]
-        const imageurl = URL.createObjectURL(file);
-        setUploadedImage(imageurl)
+    imageInput.addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+        profileImg.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
     }
-    return (
-        <S.MypageWhole>
-        <div>
-            <div>
-            <p>My Page</p>
-            <img src="./images/logout.png" alt="로그아웃" />
-            </div>
-            <div>
-            {uploadedImage ? (
-                <S.MyProfileImg src={uploadedImage} alt="프로필 없을때" />
-            ) : (
-                <S.MyProfileImg src="./images/profile.png" alt="프로필사진" />
-            )}
-            <input type="file" onChange={onChangeImage} />
-            </div>
-        </div>
-        </S.MypageWhole>
-    );
-    };
-    export default Mypage;
+    });
+});
