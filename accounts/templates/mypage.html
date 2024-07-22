@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/mypage.css" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <div data-include-path="../accounts/templates/mypage.html" class="header"></div>
+        <hr>
+        <div id="content">
+            <h1>프로필</h1>
+            <div class="mypage-whole">
+                <div class="profile-img-container">
+                    <img id="profileImg" src="./images/profile.png" alt="프로필 사진" />
+                    <input type="file" id="imageInput" style="display: none;" />
+                </div>
+            </div>
+            <div class="acc_check">
+                <h3>회원정보 확인</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="nickname">닉네임</label>
+                        <input type="text" id="nickname" name="txt" placeholder="Nickname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="email" id="id" name="email" placeholder="Email" required>
+                    </div>
+                    <div>
+                        <button name="btn">회원정보수정</button>
+                    </div>
+                </form>
+            </div>
+            <div class="account-actions">
+                <a href="#" class="delete-account">회원탈퇴</a>
+            </div>
+            <a href="../../static/templates/index.html" class="test-button">테스트</a>
+        </div>
+        <hr>
+        <div data-include-path="../../static/templates/footer.html" class="footer"></div>
+    </div>
+
+    <script src="../../static/include.js"></script>
+    <script src="../mypage.js"></script>
+</body>
+</html>
+
