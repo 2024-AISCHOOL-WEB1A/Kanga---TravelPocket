@@ -1,12 +1,31 @@
-<div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div data-include-path="../../static/templates/header.html" class="header"></div>
+    <hr>
+    <link rel="stylesheet" href="../css/user_country.css">
+
+    <h1 style='display: flex;justify-content: center;align-items: center;'>여행할 국가</h1>
+    <br>
     <div style='display: flex;justify-content: center;align-items: center;'>
-        <select name="model_select" id="model_select">
-          <option value="" disabled selected>여행국 선택</option>
-          <option value="usa" >미국</option>
-          <option value="swiss">스위스</option>
-          <option value="spain">스페인</option>
-          <option value="singapole">싱가포르</option>
-          <option value="british">영국</option>
-        </select>
+        
+        <div id="country-list"></div>
+        
     </div>
-</div>
+    <div style='display: flex;justify-content: center;align-items: center;'>
+        <input type="submit" value=">" >
+    </div>
+    <hr>
+    <div  data-include-path="../../static/templates/footer.html" class="footer"></div>
+
+    <script src="../../static/include.js"></script>
+    <script src="../user_country.js"></script>
+    
+</body>
+</html>

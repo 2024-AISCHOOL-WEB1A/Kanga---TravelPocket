@@ -1,0 +1,15 @@
+.country-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.country-item img {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.country-item label {
+    margin-left: 5px;
+}
