@@ -1,13 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const app = express();
 const path = require('path') // 경로를 수정하는 모듈
 const file_path = path.join(__dirname, "../../Kanga---TravelPocket")
 
-
-// app.use(express.static(path.join(__dirname, '/main/templates')));
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/main/templates/main.html'));
-// });
 
 
 router.get('/', (req, res)=>{
