@@ -1,72 +1,80 @@
-const schedule = require('node-schedule');
-const crawlData = require('./crawling');
-const insertData = require('./insert');
-// backend/server.js
-const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const pool = require('../config/db');  // db.js의 경로가 config 폴더에 있음
+const express = require('express');
+const cors = require('cors');
+const schedule = require('node-schedule');
+const crypto = require('crypto'); // SHA2 해싱에 사용
+const pool = require('../config/db'); // 데이터베이스 연결 모듈
+const crawlData = require('./crawling'); // 크롤링 모듈
+const insertData = require('./insert'); // 데이터 삽입 모듈
+
+
+
+
+
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../frontend')));  // 프론트 폴더 경로
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../frontend'))); // 프론트엔드 폴더 경로
+app.use(cors());
 
-//npm install node-schedule < 실행전에 설치
+// 1000분 간격으로 crawlData와 insertData 함수를 실행
+// schedule.scheduleJob('*/1000 * * * *', async () => {
+//     console.log('크롤링 작업을 시작합니다.');
+//     try {
+//         await crawlData();
+//         console.log('크롤링 작업이 완료되었습니다.');
+//     } catch (error) {
+//         console.error('크롤링 작업 중 오류 발생:', error);
+//     }
 
-// 10분 간격으로 crawlData와 insertData 함수를 실행
-schedule.scheduleJob('*/10 * * * *', async () => {
-    console.log('크롤링 작업을 시작합니다.');
-    try {
-        await crawlData();
-        console.log('크롤링 작업이 완료되었습니다.');
-    } catch (error) {
-        console.error('크롤링 작업 중 오류 발생:', error);
-    }
+//     console.log('데이터 삽입 작업을 시작합니다.');
+//     try {
+//         await insertData();
+//         console.log('데이터 삽입 작업이 완료되었습니다.');
+//     } catch (error) {
+//         console.error('데이터 삽입 작업 중 오류 발생:', error);
+//     }
+// });
 
-    console.log('데이터 삽입 작업을 시작합니다.');
-    try {
-        await insertData();
-        console.log('데이터 삽입 작업이 완료되었습니다.');
-    } catch (error) {
-        console.error('데이터 삽입 작업 중 오류 발생:', error);
-    }
-});
+// SHA2 해시 함수
+function hashPassword(password) {
+    return crypto.createHash('sha256').update(password).digest('hex');
+}
 
 // 회원가입
 app.post('/register', async (req, res) => {
-    const { user_id, user_pw, user_name, user_nick, user_birthdate, user_email, user_phone, passport_yn } = req.body;
-    const hashedPassword = bcrypt.hashSync(user_pw, 8);
+    const { user_id, user_pw, user_nick, user_email } = req.body;
+    const hashedPassword = hashPassword(user_pw);
 
     try {
-        const sql = 'INSERT INTO tb_user (user_id, user_pw, user_name, user_nick, user_birthdate, user_email, user_phone, joined_at, passport_yn) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?)';
-        await pool.query(sql, [user_id, hashedPassword, user_name, user_nick, user_birthdate, user_email, user_phone, passport_yn]);
+        const sql = 'INSERT INTO tb_user (user_id, user_pw, user_nick, user_email, joined_at) VALUES (?, ?, ?, ?, NOW())';
+        await pool.query(sql, [user_id, hashedPassword, user_nick, user_email]);
         res.status(201).send('회원가입 성공');
     } catch (err) {
+        console.error('회원가입 중 오류:', err.message);
         res.status(500).send('서버 오류');
     }
 });
-
 // 로그인
 app.post('/login', async (req, res) => {
     const { user_id, user_pw } = req.body;
-    
+    const hashedPassword = hashPassword(user_pw);
+
     try {
-        const sql = 'SELECT * FROM tb_user WHERE user_id = ?';
-        const [results] = await pool.query(sql, [user_id]);
+        const sql = 'SELECT * FROM tb_user WHERE user_id = ? AND user_pw = ?';
+        const [results] = await pool.query(sql, [user_id, hashedPassword]);
 
-        if (results.length === 0) return res.status(404).send('사용자를 찾을 수 없습니다');
+        if (results.length === 0) {
+            return res.status(404).json({ message: '사용자 ID 또는 비밀번호가 잘못되었습니다' });
+        }
 
-        const user = results[0];
-        const passwordIsValid = bcrypt.compareSync(user_pw, user.user_pw);
-        if (!passwordIsValid) return res.status(401).send('비밀번호가 잘못되었습니다');
-
-        const token = jwt.sign({ id: user.user_id }, 'yourSecretKey', { expiresIn: '1h' });
-        res.status(200).send({ auth: true, token, message: '로그인 성공' });
+        // 로그인 성공
+        res.status(200).json({ message: '로그인 성공' });
     } catch (err) {
-        res.status(500).send('서버 오류');
+        console.error('로그인 중 오류:', err.message);
+        res.status(500).json({ message: '서버 오류' });
     }
 });
 
