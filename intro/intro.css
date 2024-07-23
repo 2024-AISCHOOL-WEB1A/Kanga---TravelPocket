@@ -32,7 +32,8 @@ body::before {
 
   background-size: var(--bg-size);
   background-repeat: repeat;
-  animation: var(--pattern-animation, pattern 20s linear infinite);
+  /* animation 나오는 초 */
+  animation: var(--pattern-animation, pattern 1s linear infinite);
 }
 
 h1 {
@@ -65,8 +66,8 @@ button {
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
-  color: blue;
-  background: white;
+  color: white;
+  background: blue;
   border: 1px solid transparent;
   border-radius: 360px;
   box-shadow: 0 6px 6px -3px hsla(0 0% 0% / 0.1);
@@ -80,13 +81,10 @@ button {
 
 .initial-message {
   display: none;
-  font-size: calc(1rem + 2vmin);
+  font-size: calc(1rem + 1vmin);
   color: white;
   text-align: center;
-  font-size: 200px;
-  color: blue;
-  text-align: center;
-  font-size: 150px;
+  font-size: 130px;
 }
 
 

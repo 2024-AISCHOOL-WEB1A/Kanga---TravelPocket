@@ -1,27 +1,45 @@
-// intro.js
-
 let btn = document.querySelector("button");
 let heading = document.querySelector("h1.main-animation");
-let initialMessage = document.querySelector("h1.initial-message");
+let initialMessages = document.querySelectorAll(".initial-message");
 let infoMessage = document.querySelector("h1.info-message");
 let words = heading.querySelectorAll(".word");
 let hash = heading.querySelector(".hash");
 let reducedMotion = window.matchMedia("(prefers-reduced-motion)").matches;
 
+let scrollToMainButton = document.getElementById("scrollToMain");
+
+scrollToMainButton.addEventListener("click", () => {
+  // 해당 버튼을 클릭하면 메인 페이지로 스크롤
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+
 if (!reducedMotion) {
-  function showInitialMessage() {
-    gsap.set(initialMessage, { display: 'block', opacity: 0 });
-    gsap.to(initialMessage, {
-      opacity: 1,
-      duration: 2,
-      onComplete: () => {
-        gsap.to(initialMessage, {
-          opacity: 0,
-          duration: 1,
-          delay: 2,
-          onComplete: showInfoMessage
-        });
-      }
+  function showInitialMessages() {
+    let tl = gsap.timeline();
+
+    initialMessages.forEach((message, index) => {
+      tl.to(message, {
+        display: 'block',
+        opacity: 1,
+        duration: 1,
+        delay: index === 0 ? 0 : 1, // 첫 번째 문구는 바로 나타나고, 그 이후 문구는 1초 후에 나타남
+        onComplete: () => {
+          gsap.to(message, {
+            opacity: 0,
+            duration: 0,
+            delay: 0,
+            onComplete: () => {
+              document.body.classList.add('black-bg');
+              // 여기서 검은색 배경을 얼마 동안 표시할지 조정할 수 있습니다.
+              // 예를 들어, 0.5초 동안만 표시하고 싶다면 아래와 같이 설정할 수 있습니다.
+              setTimeout(() => {
+                document.body.classList.remove('black-bg');
+                gsap.to(heading, { display: 'flex', duration: 0, onComplete: startMainAnimation });
+              }, 2000); // 2초 (2000밀리초) 초 수정시  문구 중첩 됨 // 마지막 문구일 때만 showInfoMessage 호출
+          }});
+        }
+      });
     });
   }
 
@@ -33,8 +51,8 @@ if (!reducedMotion) {
       onComplete: () => {
         gsap.to(infoMessage, {
           opacity: 0,
-          duration: 1,
-          delay: 2,
+          duration: 0,
+          delay: 0,
           onComplete: () => {
             document.body.classList.add('black-bg');
             gsap.to(heading, { display: 'flex', duration: 0, onComplete: startMainAnimation });
@@ -215,14 +233,14 @@ if (!reducedMotion) {
       );
   }
 
-  btn.addEventListener("click", () => {
-    gsap.set([initialMessage, infoMessage], { display: "none" });
-    document.body.classList.remove("black-bg");
-    heading.style.display = "none";
-    gsap.set(btn, { display: "none" });
-    showInitialMessage();
-  });
+  // btn.addEventListener("click", () => {
+  //   gsap.set([initialMessages, infoMessage], { display: "none" });
+  //   document.body.classList.remove("black-bg");
+  //   heading.style.display = "none";
+  //   gsap.set(btn, { display: "none" });
+  //   showInitialMessages(); // 수정: 다시 초기 메시지 표시 함수 호출
+  // });
 
   // Start the initial animation
-  showInitialMessage();
+  showInitialMessages(); // 수정: 초기 메시지 표시 함수 호출
 }
