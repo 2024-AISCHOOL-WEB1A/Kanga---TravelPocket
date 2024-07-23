@@ -1,14 +1,18 @@
 const fs = require('fs');
 const csv = require('csv-parser');
+const path = require('path');
 const pool = require('../config/db'); // db.js 파일에서 MySQL 연결 설정 가져오기
 
 async function insertData() {
     const connection = await pool.getConnection();
     try {
         const results = [];
+        
+        // results.csv 파일의 절대 경로 설정
+        const filePath = path.join(__dirname, 'results.csv');
 
         // CSV 파일을 읽어서 데이터 배열에 저장
-        fs.createReadStream('results.csv')
+        fs.createReadStream(filePath)
             .pipe(csv({ separator: ',', skipEmptyLines: true }))
             .on('data', (row) => {
                 const countryIdx = parseInt(row.country_idx, 10);
