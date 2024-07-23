@@ -6,7 +6,15 @@ const file_path = path.join(__dirname, "../../Kanga---TravelPocket")
 
 
 
+
+
+// --------------------------main-----------------------
+
 router.get('/', (req, res)=>{
+    console.log('main router')
+    res.sendFile(file_path+'/main/templates/main.html')
+})
+router.get('/main', (req, res)=>{
     console.log('main router')
     res.sendFile(file_path+'/main/templates/main.html')
 })
@@ -21,14 +29,29 @@ router.get('/country', (req, res)=>{
 router.get('/date', (req, res)=>{
     res.sendFile(file_path+'/main/templates/user_date.html')
 })
-
 router.get('/companion', (req, res)=>{
     res.sendFile(file_path+'/main/templates/user_people.html')
 })
 
+// --------------------- account---------------------
+
+
+router.get('/login', (req, res)=>{
+    res.sendFile(file_path+'/accounts/templates/login.html')
+})
+
+
+router.get('/mypage', (req, res)=>{
+    res.sendFile(file_path+'/accounts/templates/mypage.html')
+})
+
+
+
+// ---------------------------checklist------------------------
 router.get('/checklist', (req, res)=>{
     res.sendFile(file_path+'/checklist/templates/user_doc.html')
 })
+
 
 
 
@@ -40,9 +63,7 @@ router.get('/header', (req, res)=>{
 router.get('/footer', (req, res)=>{
     res.sendFile(file_path+'/public/static/templates/footer.html')
 })
-router.get('/index', (req, res)=>{
-    res.sendFile(file_path+'/public/static/templates/index.html')
-})
+
 
 
 
