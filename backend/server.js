@@ -13,6 +13,9 @@ const insertData = require('./insert'); // 데이터 삽입 모듈
 
 const app = express();
 const port = 3000;
+const mainRouter = require('../routes/mainRouter')
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -81,3 +84,24 @@ app.post('/login', async (req, res) => {
 app.listen(port, () => {
     console.log(`서버가 포트 ${port}에서 실행 중입니다`);
 });
+
+
+
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------
+
+// app.use(express.static(file_path));
+app.use(express.static('../Kanga---TravelPocket')); // 'public' 디렉토리에서 정적 파일을 제공하는 예
+app.use(express.static('../Kanga---TravelPocket/main'));
+app.use(express.static('../Kanga---TravelPocket/accounts'));
+app.use(express.static('../Kanga---TravelPocket/checklist'));
+app.use(express.static('../Kanga---TravelPocket/static'));
+
+// app.use('/', express.static(file_path + '/'));
+
+app.use('/', mainRouter)
+
