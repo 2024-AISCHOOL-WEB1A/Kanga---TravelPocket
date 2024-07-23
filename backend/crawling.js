@@ -56,7 +56,7 @@ const countryMap = {
   '호주': 50
 };
 
-(async () => {
+async function crawlData() {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto('https://www.0404.go.kr/dev/newest_list.mofa');
@@ -131,4 +131,6 @@ const countryMap = {
   console.log('크롤링 결과가 results.csv 파일에 저장되었습니다.');
 
   await browser.close();
-})();
+}
+
+module.exports = crawlData;
