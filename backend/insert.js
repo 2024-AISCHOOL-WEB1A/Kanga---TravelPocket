@@ -1,108 +1,60 @@
 const fs = require('fs');
-const path = require('path');
 const csv = require('csv-parser');
-const db = require('../config/db');  // db 모듈 경로 수정
-const puppeteer = require('puppeteer');
+const mysql = require('mysql2/promise');
+const path = require('path');
 
-// CSV 파일에서 데이터를 읽어오는 함수
-function readCSVFile(filePath) {
-    return new Promise((resolve, reject) => {
+// 데이터베이스 연결 설정
+const pool = mysql.createPool({
+    host: 'project-db-stu3.smhrd.com',
+    port: 3307,
+    database: 'Insa5_JSA_hacksim_1',
+    user: 'Insa5_JSA_hacksim_1',
+    password: 'aischool1',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
+
+async function insertData() {
+    const connection = await pool.getConnection();
+    try {
         const results = [];
-        fs.createReadStream(filePath)
+        
+        // CSV 파일을 읽어서 데이터 배열에 저장
+        fs.createReadStream(path.join(__dirname, 'results.csv'))
             .pipe(csv({ separator: ',', skipEmptyLines: true }))
-            .on('data', (data) => results.push(data))
-            .on('end', () => resolve(results))
-            .on('error', (error) => reject(error));
-    });
-}
+            .on('data', (row) => {
+                // 데이터를 읽어오는 과정에서 NaN이나 잘못된 값을 처리합니다.
+                const countryIdx = parseInt(row.country_idx, 10);
+                const title = row.safety_title ? row.safety_title.replace(/'/g, "''") : '';
+                const url = row.safety_url ? row.safety_url.replace(/'/g, "''") : '';
+                const createdAt = row.created_at ? row.created_at.split('.').join('-') : '0000-00-00'; // 기본값 설정
 
-// CSV 데이터베이스에 삽입
-async function insertCSVData(results, urls) {
-    const connection = await db;
-    try {
-        for (let i = 0; i < results.length; i++) {
-            const { Country, Title, Date } = results[i];
-            const url = urls[i].url;
-
-            try {
-                // 국가 식별자 조회
-                const [countryResult] = await connection.query(
-                    'SELECT country_idx FROM tb_country WHERE country_name = ?',
-                    [Country]
-                );
-
-                console.log(`국가 조회 결과: ${JSON.stringify(countryResult)}`);
-
-                if (countryResult.length > 0) {
-                    const countryIdx = countryResult[0].country_idx;
-
-                    // 데이터 삽입
-                    const [insertResult] = await connection.query(
-                        'INSERT INTO tb_safety (country_idx, safety_title, safety_content, safety_url, created_at) VALUES (?, ?, ?, ?, ?)',
-                        [countryIdx, Title, '', url, Date]
-                    );
-
-                    console.log(`삽입 성공: ${Title}`);
-                } else {
-                    console.error(`국가 식별자를 찾을 수 없음: ${Country}`);
+                // 검증 및 기본값 처리
+                if (isNaN(countryIdx)) {
+                    console.error(`잘못된 country_idx 값: ${row.country_idx}`);
+                    return; // 잘못된 데이터는 무시
                 }
-            } catch (error) {
-                console.error(`삽입 실패: ${Title} - ${error.message}`);
-            }
-        }
-    } finally {
-        // 연결 종료는 마지막에 한 번만 호출합니다.
-        await connection.end();
-    }
-}
 
-// URL의 내용을 스크래핑하여 데이터베이스를 업데이트하는 함수
-async function updateContent() {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-
-    const connection = await db;
-    const [rows] = await connection.query('SELECT safety_idx, safety_url FROM tb_safety WHERE safety_content = ""');
-    console.log(`업데이트 대상 행: ${JSON.stringify(rows)}`);
-
-    for (const row of rows) {
-        const { safety_idx, safety_url } = row;
-        try {
-            await page.goto(safety_url, { waitUntil: 'networkidle2' });
-            const content = await page.evaluate(() => {
-                const element = document.querySelector('.b_content b');
-                return element ? element.innerText : '';
+                results.push([countryIdx, title, url, createdAt]);
+            })
+            .on('end', async () => {
+                // 쿼리문 생성
+                const sql = `INSERT INTO tb_safety (country_idx, safety_title, safety_url, created_at) VALUES ?`;
+                
+                // 데이터베이스에 삽입
+                try {
+                    await connection.query(sql, [results]);
+                    console.log('데이터가 tb_safety 테이블에 성공적으로 삽입되었습니다.');
+                } catch (error) {
+                    console.error(`데이터베이스 삽입 중 오류 발생: ${error.message}`);
+                }
             });
-
-            await connection.query(
-                'UPDATE tb_safety SET safety_content = ? WHERE safety_idx = ?',
-                [content, safety_idx]
-            );
-
-            console.log(`업데이트 성공: ${safety_url}`);
-        } catch (error) {
-            console.error(`업데이트 실패: ${safety_url} - ${error.message}`);
-        }
+    } catch (error) {
+        console.error(`데이터 삽입 중 오류 발생: ${error.message}`);
+    } finally {
+        connection.release();
     }
-
-    await browser.close();
 }
 
-// 메인 실행 함수
-(async () => {
-    try {
-        const results = await readCSVFile(path.join(__dirname, 'results.csv'));
-        console.log(`CSV 파일 데이터`);
-
-        const urls = await readCSVFile(path.join(__dirname, 'href_results.csv'));
-        console.log(`URL CSV 파일 데이터`);
-
-        await insertCSVData(results, urls);
-        await updateContent();
-    } catch (error) {
-        console.error(`메인 함수 실행 중 오류: ${error.message}`);
-    } finally {
-        // 커넥션 풀 종료
-        db.end();  // 모든 쿼리 완료 후 연결 종료
-    }
-})();
+insertData();
