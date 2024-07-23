@@ -5,30 +5,105 @@
     <link href="../css/login_style.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- 회원가입 관련  -->
+    <script>
+        async function handleRegister(event) {
+            event.preventDefault();
+
+            const userId = document.getElementById('register_user_id').value;
+            const userPw = document.getElementById('register_user_pw').value;
+            const userNick = document.getElementById('register_user_nick').value;
+            const userEmail = document.getElementById('register_user_email').value;
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ user_id: userId, user_pw: userPw, user_nick: userNick, user_email: userEmail }),
+                });
+
+                const result = await response.text();
+                
+                if (!response.ok) {
+                    console.error('회원가입 중 오류:', result);
+                    alert('회원가입 중 오류 발생: ' + result);
+                    return;
+                }
+
+                // 회원가입 성공
+                alert('회원가입 성공');
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('회원가입 중 오류:', error);
+                alert('회원가입 중 오류 발생');
+            }
+        }
+    </script>
+
+    <!-- 로그인 관련 script -->
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault(); // 폼 제출 방지
+
+            const userId = document.getElementById('login_user_id').value;
+            const userPw = document.getElementById('login_user_pw').value;
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ user_id: userId, user_pw: userPw })
+                });
+
+                const data = await response.json(); // JSON 형식으로 응답 받음
+
+                if (!response.ok) {
+                    console.error('로그인 중 오류:', data.message);
+                    alert('로그인 중 오류 발생: ' + data.message);
+                    return;
+                }
+
+                console.log('로그인 성공:', data.message);
+                alert('로그인 성공');
+                // 로그인 성공 후 리다이렉트 등 처리
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('로그인 중 오류:', error.message);
+                alert('서버와의 연결 중 오류 발생');
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="main">  
         <input type="checkbox" id="chk" aria-hidden="true">
 
         <div class="signup">
-            <form id="signupForm">
+            <form onsubmit="handleRegister(event)">
                 <label for="chk" aria-hidden="true">TravelPocket</label>
-                <input type="text" id="signupUsername" name="txt" placeholder="User name" required="">
-                <input type="email" id="signupEmail" name="email" placeholder="Email" required="">
-                <input type="password" id="signupPassword" name="pswd" placeholder="Password" required="">
+                <input type="text" id="register_user_id" name="register_user_id" placeholder="User ID" required>
+                <input type="password" id="register_user_pw" name="register_user_pw" placeholder="Password" required>
+                <input type="text" id="register_user_nick" name="register_user_nick" placeholder="Nickname" required>
+                <input type="email" id="register_user_email" name="register_user_email" placeholder="Email" required>
                 <button type="submit">계정 생성하기</button>
             </form>
         </div>
 
         <div class="login">
-            <form id="loginForm">
+            <form onsubmit="handleLogin(event)">
                 <label for="chk" aria-hidden="true">Login</label>
-                <input type="email" id="loginEmail" name="email" placeholder="Email" required="">
-                <input type="password" id="loginPassword" name="pswd" placeholder="Password" required="">
+                <input type="text" id="login_user_id" name="login_user_id" placeholder="ID" required>
+                <input type="password" id="login_user_pw" name="login_user_pw" placeholder="Password" required>
                 <button type="submit">로그인하기</button>
             </form>
         </div>
     </div>
+
 
     <script src="../login.js"></script>
 </body>
