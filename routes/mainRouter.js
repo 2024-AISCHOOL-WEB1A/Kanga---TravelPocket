@@ -58,10 +58,16 @@ router.get('/checklist', (req, res)=>{
 // ------------------------------------- static --------------------------------------
 
 router.get('/header', (req, res)=>{
-    res.sendFile(file_path+'/public/static/templates/header.html')
+    res.sendFile(file_path+'/static/templates/header.html')
 })
 router.get('/footer', (req, res)=>{
-    res.sendFile(file_path+'/public/static/templates/footer.html')
+    res.sendFile(file_path+'/static/templates/footer.html')
+})
+
+
+//---------------------------------- frontend---------------------
+router.get('/signin', (req, res)=>{
+    res.sendFile(file_path+'/frontend/register.html')
 })
 
 
