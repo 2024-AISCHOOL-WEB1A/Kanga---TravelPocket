@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <script>
+        async function updateUser() {
+            const user_id = document.getElementById('user_id').value;
+            const user_pw = document.getElementById('user_pw').value;
+            const new_nick = document.getElementById('new_nick').value;
+            const new_email = document.getElementById('new_email').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/user/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ user_id, user_pw, new_nick, new_email }),
+                });
+
+                // Check if the response is JSON
+                const contentType = response.headers.get('Content-Type');
+                let result;
+                if (contentType && contentType.includes('application/json')) {
+                    result = await response.json();
+                } else {
+                    result = await response.text();
+                }
+
+                if (response.ok) {
+                    alert(result.message || result);
+                } else {
+                    alert('사용자 정보 수정 중 오류: ' + (result.message || result));
+                }
+            } catch (error) {
+                console.error('사용자 정보 수정 중 오류:', error);
+                alert('사용자 정보 수정 중 오류: ' + error.message);
+            }
+        }
+
+        async function deleteUser() {
+            const user_id = document.getElementById('user_id').value;
+            const user_pw = document.getElementById('user_pw').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/user/delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ user_id, user_pw }),
+                });
+
+                // Check if the response is JSON
+                const contentType = response.headers.get('Content-Type');
+                let result;
+                if (contentType && contentType.includes('application/json')) {
+                    result = await response.json();
+                } else {
+                    result = await response.text();
+                }
+
+                if (response.ok) {
+                    alert(result.message || result);
+                } else {
+                    alert('회원 탈퇴 중 오류: ' + (result.message || result));
+                }
+            } catch (error) {
+                console.error('회원 탈퇴 중 오류:', error);
+                alert('회원 탈퇴 중 오류: ' + error.message);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>My Page</h1>
+    <div>
+        <label for="user_id">User ID:</label>
+        <input type="text" id="user_id">
+    </div>
+    <div>
+        <label for="user_pw">Password:</label>
+        <input type="password" id="user_pw">
+    </div>
+    <div>
+        <label for="new_nick">New Nickname:</label>
+        <input type="text" id="new_nick">
+    </div>
+    <div>
+        <label for="new_email">New Email:</label>
+        <input type="text" id="new_email">
+    </div>
+    <button onclick="updateUser()">Update User</button>
+    <button onclick="deleteUser()">Delete User</button>
+</body>
+</html>
