@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <title>My Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
     <script>
         async function updateUser() {
             const user_id = document.getElementById('user_id').value;
@@ -10,7 +12,7 @@
             const new_email = document.getElementById('new_email').value;
 
             try {
-                const response = await fetch('http://localhost:3000/user/update', {
+                const response = await fetch('/user/update', { // 상대 경로로 수정
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -18,23 +20,16 @@
                     body: JSON.stringify({ user_id, user_pw, new_nick, new_email }),
                 });
 
-                // Check if the response is JSON
-                const contentType = response.headers.get('Content-Type');
-                let result;
-                if (contentType && contentType.includes('application/json')) {
-                    result = await response.json();
-                } else {
-                    result = await response.text();
-                }
-
+                const result = await response.json();
+                
                 if (response.ok) {
-                    alert(result.message || result);
+                    alert(result.message || '유저 정보 수정 성공');
                 } else {
-                    alert('사용자 정보 수정 중 오류: ' + (result.message || result));
+                    alert('유저 정보 수정 중 오류: ' + (result.message || result));
                 }
             } catch (error) {
-                console.error('사용자 정보 수정 중 오류:', error);
-                alert('사용자 정보 수정 중 오류: ' + error.message);
+                console.error('유저 정보 수정 중 오류:', error);
+                alert('유저 정보 수정 중 오류: ' + error.message);
             }
         }
 
@@ -43,7 +38,7 @@
             const user_pw = document.getElementById('user_pw').value;
 
             try {
-                const response = await fetch('http://localhost:3000/user/delete', {
+                const response = await fetch('/user/delete', { // 상대 경로로 수정
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -51,17 +46,10 @@
                     body: JSON.stringify({ user_id, user_pw }),
                 });
 
-                // Check if the response is JSON
-                const contentType = response.headers.get('Content-Type');
-                let result;
-                if (contentType && contentType.includes('application/json')) {
-                    result = await response.json();
-                } else {
-                    result = await response.text();
-                }
-
+                const result = await response.json();
+                
                 if (response.ok) {
-                    alert(result.message || result);
+                    alert(result.message || '회원 탈퇴 성공');
                 } else {
                     alert('회원 탈퇴 중 오류: ' + (result.message || result));
                 }

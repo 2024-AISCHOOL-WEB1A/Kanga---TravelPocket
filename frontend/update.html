@@ -24,12 +24,12 @@
                     }),
                 });
 
-                const result = await response.text();
+                const result = await response.json(); // JSON 형식의 응답 처리
                 
                 if (response.ok) {
-                    alert('유저 정보 수정 성공');
+                    alert(result.message || '유저 정보 수정 성공');
                 } else {
-                    alert(result);
+                    alert(result.message || '유저 정보 수정 중 오류');
                 }
             } catch (error) {
                 console.error('유저 정보 수정 중 오류:', error);

@@ -14,7 +14,7 @@
             const userEmail = document.getElementById('register_user_email').value;
 
             try {
-                const response = await fetch('/register', {
+                const response = await fetch('/user/register', { // 상대 경로로 수정
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -22,11 +22,11 @@
                     body: JSON.stringify({ user_id: userId, user_pw: userPw, user_nick: userNick, user_email: userEmail }),
                 });
 
-                const result = await response.text();
+                const result = await response.json(); // JSON 형식의 응답 처리
                 
                 if (!response.ok) {
-                    console.error('회원가입 중 오류:', result);
-                    alert('회원가입 중 오류 발생: ' + result);
+                    console.error('회원가입 중 오류:', result.message);
+                    alert('회원가입 중 오류 발생: ' + result.message);
                     return;
                 }
 
@@ -43,7 +43,6 @@
 <body>
     <h2>회원가입</h2>
     <form onsubmit="handleRegister(event)">
-        <!-- 입력 필드들 -->
         <label for="register_user_id">아이디:</label>
         <input type="text" id="register_user_id" name="register_user_id" required><br>
         <label for="register_user_pw">비밀번호:</label>

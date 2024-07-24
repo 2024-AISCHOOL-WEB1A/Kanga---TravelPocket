@@ -20,6 +20,7 @@
     "puppeteer": "^22.13.1"
   },
   "scripts": {
-    "start": "nodemon backend/server.js"
+    "start": "nodemon backend/server.js",
+    "schedule": "nodemon backend/scheduler.js"
   }
 }
