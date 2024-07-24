@@ -6,6 +6,8 @@ const crypto = require('crypto');
 const pool = require('../config/db'); // 데이터베이스 연결 모듈
 const crawlData = require('./crawling'); // 크롤링 모듈
 const insertData = require('./insert'); // 데이터 삽입 모듈
+const bodyParser = require('body-parser');
+
 
 const app = express();
 const port = 3000;
@@ -37,7 +39,7 @@ const job = schedule.scheduleJob('0 0 * * *', async () => {
 // 사용자 관련 라우터 설정
 app.use('/user', userRouter);
 
-// 메인 라우터 설정
+
 app.use('/', mainRouter);
 
 // 서버 시작

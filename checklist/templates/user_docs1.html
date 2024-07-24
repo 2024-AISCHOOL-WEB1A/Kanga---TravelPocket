@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../main/templates/main.css">
+  <link rel="stylesheet" href="../css/user_docs1.css">
+</head>
+
+<body class="hero-anime">
+  <div class="navigation-wrap bg-light start-header start-style">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" href="https://front.codes/" target="_blank"><img
+                src="https://assets.codepen.io/1462889/fcy.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto py-4 py-md-0">
+                <!-- 메뉴바 내용은 변경하지 않음 -->
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- menu 끝 -->
+
+  <div class="container1">
+    <h1>Travel Checklist</h1>
+    
+    <div class="checklist-container">
+        <div class="checklist" id="packingListContainer">
+            <h2>필수서류</h2>
+            <ul id="packingList">
+                <li class="ch1"><input type="checkbox" onclick="updateProgress('packingList')"> 여권</li>
+                <li class="ch1"><input type="checkbox" onclick="updateProgress('packingList')"> ESTAVISA</li>
+                <li class="ch1"><input type="checkbox" onclick="updateProgress('packingList')"> 왕복티켓</li>
+                <li class="ch1"><input type="checkbox" onclick="updateProgress('packingList')"> E-TICKET</li>
+            </ul>
+            <progress id="packingProgress" value="0" max="100"></progress>
+        </div>
+
+        <div class="checklist" id="preTripTasksContainer">
+            <h2>Test님의 Check List</h2>
+            <ul id="preTripTasks">
+                <!-- 동적으로 항목이 추가될 부분 -->
+            </ul>
+            <input type="text" id="newItem" placeholder="New task">
+            <button onclick="addItem()">Add Item</button>
+            <progress id="preTripProgress" value="0" max="100"></progress>
+        </div>
+    </div>
+</div>
+  <script src="../user_docs1.js"></script>
+</body>
+
+</html>
