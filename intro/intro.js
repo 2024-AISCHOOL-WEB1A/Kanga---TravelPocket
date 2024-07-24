@@ -1,3 +1,13 @@
+// 버튼과 메인 페이지 URL 설정
+let scrollToMainButton = document.getElementById("scrollToMain");
+let mainPageURL = "../main/templates/main1.html"; // 이동할 HTML 파일
+
+scrollToMainButton.addEventListener("click", () => {
+  // 해당 버튼을 클릭하면 지정된 URL로 페이지 이동
+  window.location.href = mainPageURL;
+});
+
+// 나머지 코드
 let btn = document.querySelector("button");
 let heading = document.querySelector("h1.main-animation");
 let initialMessages = document.querySelectorAll(".initial-message");
@@ -5,14 +15,6 @@ let infoMessage = document.querySelector("h1.info-message");
 let words = heading.querySelectorAll(".word");
 let hash = heading.querySelector(".hash");
 let reducedMotion = window.matchMedia("(prefers-reduced-motion)").matches;
-
-let scrollToMainButton = document.getElementById("scrollToMain");
-
-scrollToMainButton.addEventListener("click", () => {
-  // 해당 버튼을 클릭하면 메인 페이지로 스크롤
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
 
 if (!reducedMotion) {
   function showInitialMessages() {
@@ -233,14 +235,6 @@ if (!reducedMotion) {
       );
   }
 
-  // btn.addEventListener("click", () => {
-  //   gsap.set([initialMessages, infoMessage], { display: "none" });
-  //   document.body.classList.remove("black-bg");
-  //   heading.style.display = "none";
-  //   gsap.set(btn, { display: "none" });
-  //   showInitialMessages(); // 수정: 다시 초기 메시지 표시 함수 호출
-  // });
-
   // Start the initial animation
-  showInitialMessages(); // 수정: 초기 메시지 표시 함수 호출
+  showInitialMessages(); // 초기 메시지 표시 함수 호출
 }
