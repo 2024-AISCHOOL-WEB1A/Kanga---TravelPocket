@@ -3,23 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인</title>
+    <title>Travel Pocket</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
-<body>
-    <div data-include-path="../../static/templates/header.html" class="header"></div>
-    <hr>
-    <div id="content" style="height: 600px;">
+<body class="hero-anime">
+    <div class="navigation-wrap bg-light start-header start-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="https://front.codes/" target="_blank"><img src="https://assets.codepen.io/1462889/fcy.png" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
 
-        <a href="menu"> <button> 메뉴바 여는 버튼</button></a>
-        <br>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="country">CheckList</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="#">NewsLetter</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
 
-        <a href="country"> <button> 유저 컨트리 </button></a>
-        <a href="date"> <button>여행 일정</button></a>
-        <br>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="login">Login / Join</a>
+                                </li>
+                                
+                               
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
-    <hr>
-    <div  data-include-path="../../static/templates/footer.html" class="footer"></div>
+    <main>
+        <ul class='slider'>
+            <li class='item' style="background-image: url('https://cdn.pixabay.com/photo/2017/03/03/16/28/statue-of-liberty-2114376_1280.jpg')">
+                <div class='content'>
+                    <h2 class='title'>트레블 포켓에서 </h2>
+                    <h2 class='title'>함께합니다 </h2>
+                    <br><br><br><br>
+                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
+                    <button class="blinking-text">Go Travel !</button>
+                </div>
+            </li>
+            <li class='item' style="background-image: url('https://cdn.pixabay.com/photo/2020/02/05/20/31/uk-4822338_1280.jpg')">
+                <div class='content'>
+                    <h2 class='title'> 당신의 여행지는 </h2>
+                    <h2 class='title'> 어딘가요 ? </h2>
+                    <!-- <p class='description'> 해외여행을 나갈 때마다 챙겨야 할 것들 </p> -->
+                     <br><br><br><br>
+                    <button class="blinking-text">Go Travel !</button>
+                </div>
+            </li>
+            <li class='item' style="background-image: url('https://cdn.pixabay.com/photo/2019/07/13/16/44/woman-4335235_1280.jpg')">
+                <div class='content'>
+                    <h2 class='title'>150 개국 어디든</h2>
+                    <br><br><br><br>
+                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
+                    <button class="blinking-text">Go Travel !</button>
+                </div>
+            </li>
+            <li class='item' style="background-image: url('https://cdn.pixabay.com/photo/2021/11/25/15/28/temple-6823939_1280.jpg')">
+                <div class='content'>
+                    <h2 class='title'>여행을 떠나보세요</h2>
+                    <br><br><br><br>
+                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
+                    <button class="blinking-text">Go Travel !</button>
+                </div>
+            </li>
+            <li class='item' style="background-image: url('https://cdn.pixabay.com/photo/2020/05/04/16/27/image-5129771_1280.jpg')">
+                <div class='content'>
+                    <h2 class='title'>이것저것 신경 쓸 </h2>
+                    <h2 class='title'>필요 없는 </h2>
+                    <br><br><br><br>
+                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
+                    <button class="blinking-text">Go Travel !</button>
+                </div>
+            </li>
+            <li class='item' style="background-image: url('https://cdn.pixabay.com/photo/2014/05/26/09/58/sydney-opera-house-354375_1280.jpg')">
+                <div class='content'>
+                    <h2 class='title'>편안한 여행</h2>
+                    <br><br><br><br>
+                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
+                    <button class="blinking-text">Go Travel !</button>
+                </div>
+            </li>
+        </ul>
+        <nav class='nav'>
+            <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+            <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+        </nav>
+    </main>
 
-    <script src="../../static/include.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- <script src="../main/js/jquery-3.7.1.min.js"></script> -->
+    <!-- <script src="../main.js"></script> -->
+    <script src="../jquery-3.7.1.min.js"></script>
+    <script src="../main.js"></script>
 </body>
-</html>;
+</html>
