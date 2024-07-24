@@ -1,29 +1,28 @@
 /* 전체적인 레이아웃 설정 */
 body {
-  font-family:'Jost', sans-serif ;
+  font-family: 'Jost', sans-serif;
   line-height: 1.6;
   color: #333;
-  /* margin: 0;
+  margin: 0;
   padding: 0;
+  background-color: #f4f4f4;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f4f4; */
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 #container {
-  width: 100%;
-  /* max-width: 600px; */
+  flex: 1;
   background: #fff;
   padding: 20px;
-  border-radius: 8px; 
+  border-radius: 8px;
 }
 
 header, footer {
   background: #f4f4f4;
   padding: 10px 0;
   width: 100%;
+  text-align: center;
 }
 
 h1, h3 {
@@ -79,7 +78,8 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="password"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -89,7 +89,8 @@ input[type="email"] {
 }
 
 input[type="text"]:focus,
-input[type="email"]:focus {
+input[type="email"]:focus,
+input[type="password"]:focus {
   border-color: #007bff;
   outline: none;
 }
@@ -125,23 +126,24 @@ input[type="email"]:focus {
   background: #0056b3;
 }
 
-button{
-	width: 60%;
-	height: 40px;
-	margin: 10px auto;
-	justify-content: center;
-	display: block;
-	color: #fff;
-	background: #050C9C;
-	font-size: 1em;
-	font-weight: bold;
-	margin-top: 30px;
-	outline: none;
-	border: none;
-	border-radius: 5px;
-	transition: .2s ease-in;
-	cursor: pointer;
+button {
+  width: 60%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: block;
+  color: #fff;
+  background: #050C9C;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 30px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s ease-in;
+  cursor: pointer;
 }
-button:hover{
-	background: #6d44b8;
+
+button:hover {
+  background: #6d44b8;
 }

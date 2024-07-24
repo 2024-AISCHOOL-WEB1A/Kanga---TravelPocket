@@ -17,6 +17,9 @@ const userRouter = require('./userRouter');
 
 // 정적 파일 제공 설정
 app.use(express.static(path.join(__dirname, '../Kanga---TravelPocket')));
+// app.use(express.static(path.join(__dirname, '../frontend')));
+// my page css 불러오기 위해서는 밑의 코드 주석 풀어야 함!!
+// app.use(express.static(path.join(__dirname, '../accounts')));
 
 // 미들웨어 설정
 app.use(express.json());

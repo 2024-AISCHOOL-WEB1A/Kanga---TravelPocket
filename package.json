@@ -1,9 +1,13 @@
 {
-  "name": "expressServer",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
-  "license": "MIT",
+  "scripts": {
+    "start": "nodemon backend/server.js",
+    "start-server": "nodemon backend/server.js",
+    "start-app": "nodemon app.js",
+    "dev": "concurrently \"npm run start-server\" \"npm run start-app\""
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
@@ -19,10 +23,5 @@
     "node-schedule": "^2.1.1",
     "nodemon": "^3.1.4",
     "puppeteer": "^22.13.1"
-  },
-  "scripts": {
-    "start-server": "nodemon backend/server.js",
-    "start-app": "nodemon app.js",
-    "dev": "concurrently \"npm run start-server\" \"npm run start-app\""
   }
 }
