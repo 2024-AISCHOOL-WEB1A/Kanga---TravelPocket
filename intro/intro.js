@@ -1,6 +1,6 @@
 // 버튼과 메인 페이지 URL 설정
 let scrollToMainButton = document.getElementById("scrollToMain");
-let mainPageURL = "../main/templates/main1.html"; // 이동할 HTML 파일
+let mainPageURL = "/main"; // 이동할 HTML 파일
 
 scrollToMainButton.addEventListener("click", () => {
   // 해당 버튼을 클릭하면 지정된 URL로 페이지 이동

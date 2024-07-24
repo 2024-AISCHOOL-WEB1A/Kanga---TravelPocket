@@ -96,7 +96,7 @@ app.use(express.static('../Kanga---TravelPocket/main'));
 app.use(express.static('../Kanga---TravelPocket/accounts'));
 app.use(express.static('../Kanga---TravelPocket/checklist'));
 app.use(express.static('../Kanga---TravelPocket/static'));
-
+app.use(express.static('../Kanga---TravelPocket/intro'));
 // app.use('/', express.static(file_path + '/'));
 
 app.use('/', mainRouter)
