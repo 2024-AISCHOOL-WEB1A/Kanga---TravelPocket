@@ -6,6 +6,7 @@ const crypto = require('crypto'); // SHA2 해싱에 사용
 const pool = require('../config/db'); // 데이터베이스 연결 모듈
 const crawlData = require('./crawling'); // 크롤링 모듈
 const insertData = require('./insert'); // 데이터 삽입 모듈
+const bodyParser = require('body-parser');
 
 
 
@@ -87,11 +88,6 @@ app.listen(port, () => {
 
 
 
-
-
-
-
-
 //---------------------------------------------------------------------------------------------------
 
 // app.use(express.static(file_path));
@@ -105,3 +101,20 @@ app.use(express.static('../Kanga---TravelPocket/static'));
 
 app.use('/', mainRouter)
 
+
+// ----------------------------- user_county에서 입력받은 국가 이름 전달 -----------------------------
+
+
+app.post('/save-country', (req, res) => {
+    const { country_idx, country_name } = req.body;
+
+    const query = 'INSERT INTO tb_travel_country (country_idx, country_name) VALUES (?)';
+    pool.query(query, [country_idx, country_name], (error, results) => {
+        if (error) {
+            console.error('데이터 삽입에 오류 발생 :', error.stack);
+            res.status(500).send('데이터베이스에 저장 실패');
+            return;
+        }
+        res.status(200).json({ message: '국가 정보 전달 성공' });
+    });
+});
