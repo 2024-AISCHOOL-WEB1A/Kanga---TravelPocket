@@ -24,3 +24,13 @@ div.right {
     padding-left: 15%;
 }
 
+.fc .fc-button-primary {
+    width: 100px;
+    height: ;
+    color: #fff;
+    color: var(--fc-button-text-color, #fff);
+    background-color: #2C3E50;
+    background-color: var(--fc-button-bg-color, #2C3E50);
+    border-color: #2C3E50;
+    border-color: var(--fc-button-border-color, #2C3E50);
+}
