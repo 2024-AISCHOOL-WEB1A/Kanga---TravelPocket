@@ -12,24 +12,37 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-const mainRouter = require('./mainRouter');
+const mainRouter = require('./mainR');
 const userRouter = require('./userRouter');
-const updateUserRouter = require('./updateUser');
-const deleteUserRouter = require('./deleteUser');
 
+// 정적 파일 제공 설정
+app.use(express.static(path.join(__dirname, '../Kanga---TravelPocket')));
+
+// 미들웨어 설정
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../frontend')));
+
+// 스케줄러 설정
+const job = schedule.scheduleJob('0 0 * * *', async () => {
+    console.log('크롤링 작업 시작');
+    try {
+        await crawlData();
+        console.log('크롤링 완료');
+        await insertData();
+        console.log('데이터베이스 삽입 완료');
+    } catch (error) {
+        console.error(`작업 중 오류 발생: ${error.message}`);
+    }
+});
 
 // 사용자 관련 라우터 설정
 app.use('/user', userRouter);
-app.use('/user/update', updateUserRouter);
-app.use('/user/delete', deleteUserRouter);
 
 
 app.use('/', mainRouter);
 
+// 서버 시작
 app.listen(port, () => {
     console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
 });

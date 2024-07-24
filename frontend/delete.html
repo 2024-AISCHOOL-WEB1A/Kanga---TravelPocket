@@ -1,47 +1,29 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>유저 정보 삭제</title>
-    <script>
-        async function handleDelete(event) {
-            event.preventDefault();
+<script>
+    async function handleDelete(event) {
+        event.preventDefault();
 
-            const user_id = document.getElementById('user_id').value;
-            const user_pw = document.getElementById('user_pw').value;
+        const user_id = document.getElementById('user_id').value;
+        const user_pw = document.getElementById('user_pw').value;
 
-            try {
-                const response = await fetch('/user/delete', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ user_id, user_pw }),
-                });
+        try {
+            const response = await fetch('/user/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user_id, user_pw }),
+            });
 
-                const result = await response.json(); // 응답을 JSON으로 파싱
+            const result = await response.json();
 
-                if (response.ok) {
-                    alert(result.message);
-                } else {
-                    alert(result.message);
-                }
-            } catch (error) {
-                console.error('유저 정보 삭제 중 오류:', error);
-                alert('유저 정보 삭제 중 오류 발생');
+            if (response.ok) {
+                alert(result.message);
+            } else {
+                alert(result.message);
             }
+        } catch (error) {
+            console.error('유저 정보 삭제 중 오류:', error);
+            alert('유저 정보 삭제 중 오류 발생');
         }
-    </script>
-</head>
-<body>
-    <h2>유저 정보 삭제</h2>
-    <form onsubmit="handleDelete(event)">
-        <label for="user_id">아이디:</label>
-        <input type="text" id="user_id" name="user_id" required><br>
-        <label for="user_pw">비밀번호:</label>
-        <input type="password" id="user_pw" name="user_pw" required><br>
-        <button type="submit">삭제</button>
-    </form>
-</body>
-</html>
+    }
+</script>
