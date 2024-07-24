@@ -24,13 +24,26 @@ div.right {
     padding-left: 15%;
 }
 
-.fc .fc-button-primary {
-    width: 100px;
-    height: ;
-    color: #fff;
-    color: var(--fc-button-text-color, #fff);
-    background-color: #2C3E50;
-    background-color: var(--fc-button-bg-color, #2C3E50);
-    border-color: #2C3E50;
-    border-color: var(--fc-button-border-color, #2C3E50);
+
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    padding: 10px;
+}
+.day {
+    border: 1px solid #ccc;
+    padding: 10px;
+    position: relative;
+}
+.day span {
+    display: block;
+}
+.event {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 2px 4px;
+    margin-top: 2px;
+    border-radius: 3px;
 }

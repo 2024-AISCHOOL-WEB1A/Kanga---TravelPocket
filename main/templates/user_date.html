@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="../css/user_date.css">
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,49 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여행 일정</title>
+    <link rel="stylesheet" href="../css/user_date.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 </head>
 
 <body>
-    <div data-include-path="../../static/templates/header.html" class="header"></div>
-    <hr>
-    
-    <div class="contents">
-        <div class="left">
-            <nav>
-                <li>
-                    <button type="button" onclick="location.href='../templates/user_date.html'">체류기간</button>
-                </li>
-                <li><button type="button" onclick="location.href='../templates/user_people.html'">인원</button></li>
-            </nav>
-        </div>
-        <div class="right" style="height: 600px;">
-    
-            <head>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <!-- bootstrap 4 -->
-                <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
-                <!-- fullcalendar -->
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css">
-                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
-    
-    
-                <script src="../user_date.js"></script>
-            </head>
-    
-            <body>
+    <div class="container">
+        <div  data-include-path="../../static/templates/header.html" class="header"></div>
+        <hr>
+        <div class="contents">
+            <div class="left">
+                <nav>
+                    <li><button type="button" onclick="location.href='date'">체류기간</button></li>
+                    <li><button type="button" onclick="location.href='companion'">인원</button></li>
+                </nav>
+            </div>
+            <div class="right" style="height: 600px;">
                 <div id="calendarBox">
                     <div id="calendar"></div>
                     <a href="companion"><button type="submit"> 다음</button></a>
                 </div>
-    
                 <!-- modal 추가 -->
-                <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -65,31 +41,33 @@
                                     <label for="taskId" class="col-form-label">일정 내용</label>
                                     <input type="text" class="form-control" id="calendar_content" name="calendar_content">
                                     <label for="taskId" class="col-form-label">시작 날짜</label>
-                                    <input type="date" class="form-control" id="calendar_start_date"
-                                        name="calendar_start_date">
+                                    <input type="date" class="form-control" id="calendar_start_date" name="calendar_start_date">
                                     <label for="taskId" class="col-form-label">종료 날짜</label>
                                     <input type="date" class="form-control" id="calendar_end_date" name="calendar_end_date">
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-warning" id="addCalendar">추가</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                    id="sprintSettingModalClose">취소</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sprintSettingModalClose">취소</button>
                             </div>
-    
                         </div>
                     </div>
                 </div>
-            </body>
+                <button type="button" class="btn btn-primary" id="addEventButton">일정 추가</button>
+            </div>
         </div>
+        <br><br><br><br><br><br><br><br><br><br>
+        <hr>
+        <div  data-include-path="../../static/templates/footer.html" class="footer"></div>
     </div>
-    
-    
-    <br><br><br><br><br><br><br><br><br><br>
-    <hr>
-    <div data-include-path="../../static/templates/footer.html" class="footer"></div>
-    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../../static/include.js"></script>
+    <script src="../user_date.js">
+    </script>
+
 </body>
 
 </html>
