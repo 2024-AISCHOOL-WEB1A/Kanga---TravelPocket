@@ -23,23 +23,23 @@ app.use(express.static(path.join(__dirname, '../frontend'))); // 프론트엔드
 app.use(cors());
 
 // 1000분 간격으로 crawlData와 insertData 함수를 실행
-// schedule.scheduleJob('*/1000 * * * *', async () => {
-//     console.log('크롤링 작업을 시작합니다.');
-//     try {
-//         await crawlData();
-//         console.log('크롤링 작업이 완료되었습니다.');
-//     } catch (error) {
-//         console.error('크롤링 작업 중 오류 발생:', error);
-//     }
+schedule.scheduleJob('*/1000 * * * *', async () => {
+    console.log('크롤링 작업을 시작합니다.');
+    try {
+        await crawlData();
+        console.log('크롤링 작업이 완료되었습니다.');
+    } catch (error) {
+        console.error('크롤링 작업 중 오류 발생:', error);
+    }
 
-//     console.log('데이터 삽입 작업을 시작합니다.');
-//     try {
-//         await insertData();
-//         console.log('데이터 삽입 작업이 완료되었습니다.');
-//     } catch (error) {
-//         console.error('데이터 삽입 작업 중 오류 발생:', error);
-//     }
-// });
+    console.log('데이터 삽입 작업을 시작합니다.');
+    try {
+        await insertData();
+        console.log('데이터 삽입 작업이 완료되었습니다.');
+    } catch (error) {
+        console.error('데이터 삽입 작업 중 오류 발생:', error);
+    }
+});
 
 // SHA2 해시 함수
 function hashPassword(password) {
