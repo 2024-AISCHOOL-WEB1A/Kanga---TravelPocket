@@ -73,6 +73,15 @@ router.get('/main/login', (req, res)=>{
 router.get('/main/mypage', (req, res)=>{
     res.sendFile(file_path+'/accounts/templates/mypage.html')
 })
+router.get('/login', (req, res)=>{
+    res.sendFile(file_path+'/accounts/templates/login.html')
+})
+
+
+router.get('/mypage', (req, res)=>{
+    res.sendFile(file_path+'/accounts/templates/mypage.html')
+})
+
 
 
 
