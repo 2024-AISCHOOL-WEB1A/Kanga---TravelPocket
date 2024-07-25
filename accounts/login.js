@@ -24,7 +24,7 @@ async function handleLogin(event) {
         console.log('로그인 성공:', data.message);
         alert('로그인 성공');
         // 로그인 성공 후 리다이렉트 등 처리
-        window.location.href = 'index.html';
+        window.location.href = '/main';
     } catch (error) {
         console.error('로그인 중 오류:', error.message);
         alert('서버와의 연결 중 오류 발생');

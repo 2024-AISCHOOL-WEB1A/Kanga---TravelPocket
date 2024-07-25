@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Corrected the CSS file path based on the directory structure -->
-    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet">
     <script>
         async function updateUser() {
             const user_id = document.getElementById('user_id').value;
@@ -37,30 +37,32 @@
         }
 
         async function deleteUser() {
-            const user_id = document.getElementById('user_id').value;
-            const user_pw = document.getElementById('user_pw').value;
+    const user_id = document.getElementById('user_id').value;
+    const user_pw = document.getElementById('user_pw').value;
 
-            try {
-                const response = await fetch('/user/delete', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ user_id, user_pw }),
-                });
+    try {
+        const response = await fetch('/user/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user_id, user_pw }),
+        });
 
-                const result = await response.json();
+        const result = await response.json();
 
-                if (response.ok) {
-                    alert(result.message || '회원 탈퇴 성공');
-                } else {
-                    alert('회원 탈퇴 중 오류: ' + (result.message || result));
-                }
-            } catch (error) {
-                console.error('회원 탈퇴 중 오류:', error);
-                alert('회원 탈퇴 중 오류: ' + error.message);
-            }
+        if (response.ok) {
+            alert(result.message || '회원 탈퇴 성공');
+            window.location.href = 'index123.html'; // 회원 탈퇴 성공 시 메인 페이지로 리디렉션
+        } else {
+            alert('회원 탈퇴 중 오류: ' + (result.message || result));
         }
+    } catch (error) {
+        console.error('회원 탈퇴 중 오류:', error);
+        alert('회원 탈퇴 중 오류: ' + error.message);
+    }
+}
+
     </script>
 </head>
 

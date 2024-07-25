@@ -87,11 +87,20 @@ router.get('/mypage', (req, res)=>{
 
 // ---------------------------checklist------------------------
 router.get('/main/checklist', (req, res)=>{
-    res.sendFile(file_path+'/checklist/templates/user_doc.html')
+    res.sendFile(file_path+'/checklist/templates/user_docs1.html')
 })
 
+router.get('/checklist', (req, res)=>{
+    res.sendFile(file_path+'/checklist/templates/user_docs1.html')
+})
+// ------------------------------------- newsletter --------------------------------------
 
-
+router.get('/main/newsletter', (req, res)=>{
+    res.sendFile(file_path+'/newsletter/templates/newsletter.html')
+})
+router.get('/newsletter', (req, res)=>{
+    res.sendFile(file_path+'/newsletter/templates/newsletter.html')
+})
 
 // ------------------------------------- static --------------------------------------
 
@@ -102,13 +111,14 @@ router.get('/main/footer', (req, res)=>{
     res.sendFile(file_path+'/static/templates/footer.html')
 })
 
+//----------------------------------chatbot-----------------------
 
-//---------------------------------- frontend---------------------
-router.get('/main/signin', (req, res)=>{
-    res.sendFile(file_path+'/frontend/register.html')
+router.get('/main/chatbot', (req, res)=>{
+    res.sendFile(file_path+'/chatbot/templates/chatbot.html')
 })
-
-
+router.get('/chatbot', (req, res)=>{
+    res.sendFile(file_path+'/chatbot/templates/chatbot.html')
+})
 
 
 

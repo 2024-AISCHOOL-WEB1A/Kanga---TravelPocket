@@ -80,7 +80,7 @@ async function crawlData() {
         const idMatch = href.match(/'([^']+)'/);
         if (idMatch) {
           const id = idMatch[1];
-          const url = `https://www.0404.go.kr/dev/newest_view.mofa?id=${id}&pagenum=1&mst_id=MST0000000000041&ctnm=&div_cd=&st=title&stext=`;
+          const url = `https://www.0404.go.kr/dev/newest_view.nmofa?id=${id}&pagenum=1&mst_id=MST0000000000041&ctnm=&div_cd=&st=title&stext=`;
           return { country, title, url, date };
         }
         return null;

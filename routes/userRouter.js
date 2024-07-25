@@ -21,7 +21,6 @@ router.post('/login', async (req, res) => {
         if (results.length === 0) {
             return res.status(401).json({ message: '잘못된 아이디 또는 비밀번호' });
         }
-
         req.session.user = {
             id: user_id,
             nick: results[0].user_nick
@@ -41,33 +40,14 @@ router.get('/session', (req, res) => {
         res.json({ loggedIn: false });
     }
 });
-// 로그아웃 처리
-router.post('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            return res.status(500).json({ message: '로그아웃 중 오류 발생' });
-        }
-        res.status(200).json({ message: '로그아웃 성공' });
-    });
-});
 // 사용자 등록
 router.post('/register', async (req, res) => {
     const { user_id, user_pw, user_nick, user_email } = req.body;
     const hashedPassword = hashPassword(user_pw);
 
     try {
-        // 아이디 중복 체크
-        const checkSql = 'SELECT * FROM tb_user WHERE user_id = ?';
-        const [checkResult] = await pool.query(checkSql, [user_id]);
-
-        if (checkResult.length > 0) {
-            return res.status(409).json({ message: '이미 존재하는 ID입니다' });
-        }
-
-        // 아이디가 중복되지 않으면 회원 가입 진행
-        const insertSql = 'INSERT INTO tb_user (user_id, user_pw, user_nick, user_email) VALUES (?, ?, ?, ?)';
-        await pool.query(insertSql, [user_id, hashedPassword, user_nick, user_email]);
-
+        const sql = 'INSERT INTO tb_user (user_id, user_pw, user_nick, user_email) VALUES (?, ?, ?, ?)';
+        const [result] = await pool.query(sql, [user_id, hashedPassword, user_nick, user_email]);
         res.status(201).json({ message: '회원가입 성공' });
     } catch (err) {
         console.error('회원가입 중 오류:', err.message);
@@ -96,6 +76,7 @@ router.post('/update', async (req, res) => {
         res.status(500).json({ message: '서버 오류' });
     }
 });
+
 // 사용자 정보 삭제
 router.post('/delete', async (req, res) => {
     const { user_id, user_pw } = req.body;
@@ -109,19 +90,23 @@ router.post('/delete', async (req, res) => {
             return res.status(404).json({ message: '사용자 ID 또는 비밀번호가 잘못되었습니다' });
         }
 
-        // 세션 삭제
-        req.session.destroy(err => {
-            if (err) {
-                return res.status(500).json({ message: '세션 삭제 중 오류 발생' });
-            }
-            res.status(200).json({ message: '회원 탈퇴 성공' });
-        });
+        res.status(200).json({ message: '회원 탈퇴 성공' });
     } catch (err) {
         console.error('회원 탈퇴 중 오류:', err.message);
         res.status(500).json({ message: '서버 오류' });
     }
 });
 
+// 로그아웃 처리
+router.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('로그아웃 중 오류:', err.message);
+            return res.status(500).json({ message: '서버 오류' });
+        }
+        res.redirect('/'); // 로그아웃 후 홈 페이지로 리다이렉트
+    });
+});
 
 
 module.exports = router;

@@ -3,11 +3,11 @@ const path = require('path');
 const cors = require('cors');
 const schedule = require('node-schedule');
 const crypto = require('crypto');
-const pool = require('../config/db'); // 데이터베이스 연결 모듈
-const crawlData = require('./crawling'); // 크롤링 모듈
-const insertData = require('./insert'); // 데이터 삽입 모듈
+const pool = require('../config/db');
+const crawlData = require('./crawling');
+const insertData = require('./insert');
 const bodyParser = require('body-parser');
-
+const session = require('express-session');
 
 const app = express();
 const port = 3000;
@@ -15,16 +15,29 @@ const port = 3000;
 const mainRouter = require('./mainR');
 const userRouter = require('./userRouter');
 
+// 세션 미들웨어 설정
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+app.use(cors());
+
+// 사용자 관련 라우터 설정
+app.use('/user', userRouter);
+
 // 정적 파일 제공 설정
-app.use(express.static(path.join(__dirname, '../Kanga---TravelPocket')));
-// app.use(express.static(path.join(__dirname, '../frontend')));
+// app.use(express.static(path.join(__dirname, '../Kanga---TravelPocket')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 // my page css 불러오기 위해서는 밑의 코드 주석 풀어야 함!!
 // app.use(express.static(path.join(__dirname, '../accounts')));
-
-// 미들웨어 설정
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 
 // 스케줄러 설정
 const job = schedule.scheduleJob('0 0 * * *', async () => {
@@ -39,13 +52,8 @@ const job = schedule.scheduleJob('0 0 * * *', async () => {
     }
 });
 
-// 사용자 관련 라우터 설정
-app.use('/user', userRouter);
-
-
 app.use('/', mainRouter);
 
-// 서버 시작
 app.listen(port, () => {
     console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
 });
