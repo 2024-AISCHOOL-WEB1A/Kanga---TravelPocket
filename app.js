@@ -14,14 +14,14 @@ const port = 3000;
 
 // const mainRouter = require('./mainRouter');
 const mainRouter = require('./routes/mainRouter.js'); // 이부분 백엔드가 아니라 routes에서 가져오는거니까 테스트할때 주석처리 위 아래 바꿔주세요
-
+const userRouter = require('./routes/userRouter')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.use('/', mainRouter);
-
+app.use('/',userRouter)
 app.listen(port, () => {
     console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
 });
@@ -42,9 +42,6 @@ app.use(express.static('../Kanga---TravelPocket/newsletter'));
 // app.use('/', express.static(file_path + '/'));
 
 
-// 메인 라우터 설정
-// const mainRouter = require('../routes/mainRouter.js');
-app.use('/', mainRouter)
 
 
 // ----------------------------- user_county에서 입력받은 국가 이름 전달 -----------------------------

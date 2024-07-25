@@ -1,3 +1,4 @@
+
 async function handleRegister(event) {
     event.preventDefault();
 
@@ -15,19 +16,19 @@ async function handleRegister(event) {
             body: JSON.stringify({ user_id: userId, user_pw: userPw, user_nick: userNick, user_email: userEmail }),
         });
 
-        const result = await response.text();
-        
+        const result = await response.json(); // JSON 형식으로 응답 받음
+
         if (!response.ok) {
-            console.error('회원가입 중 오류:', result);
-            alert('회원가입 중 오류 발생: ' + result);
+            console.error('회원가입 중 오류:', result.message);
+            alert('회원가입 중 오류 발생: ' + result.message);
             return;
         }
 
         // 회원가입 성공
         alert('회원가입 성공');
-        window.location.href = 'index.html';
+        window.location.href = '/main';
     } catch (error) {
-        console.error('회원가입 중 오류:', error);
+        console.error('회원가입 중 오류:', error.message);
         alert('회원가입 중 오류 발생');
     }
 }
