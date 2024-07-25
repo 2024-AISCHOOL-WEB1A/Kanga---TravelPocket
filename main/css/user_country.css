@@ -1,3 +1,36 @@
+/* 예시로 필요한 스타일만 포함 */
+
+.navigation-wrap {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.navbar-brand {
+    margin-right: auto; /* 로고를 왼쪽에 고정 */
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+    }
+}
 .country-item {
     display: flex;
     align-items: center;
