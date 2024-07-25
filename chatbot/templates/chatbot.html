@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+<body>
+    <input type="text" id="chatbotinput" placeholder="질문을 입력하세요...">
+    <button type="button" onclick="sendQuery()">확인</button>
+    <p id="response"></p>
+
+    <script>
+        async function sendQuery() {
+            const input = document.getElementById('chatbotinput').value;
+            const responseElement = document.getElementById('response');
+            
+            if (input.trim() === '') {
+                responseElement.innerText = '질문을 입력해주세요.';
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:3000/query', { // 서버 포트와 경로 확인
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query: input })
+                });
+
+                if (!response.ok) {
+                    throw new Error('서버 오류');
+                }
+
+                const result = await response.json();
+                responseElement.innerText = result.result || '서버에서 응답이 없습니다.';
+            } catch (error) {
+                responseElement.innerText = '오류 발생: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

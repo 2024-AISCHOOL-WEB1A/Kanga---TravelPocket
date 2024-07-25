@@ -21,6 +21,10 @@ router.post('/login', async (req, res) => {
         if (results.length === 0) {
             return res.status(401).json({ message: '잘못된 아이디 또는 비밀번호' });
         }
+        req.session.user = {
+            id: user_id,
+            nick: results[0].user_nick
+        };
 
         res.status(200).json({ message: '로그인 성공' });
     } catch (err) {
@@ -28,7 +32,14 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: '서버 오류' });
     }
 });
-
+// 세션 상태 확인
+router.get('/session', (req, res) => {
+    if (req.session.user) {
+        res.json({ loggedIn: true, user: req.session.user });
+    } else {
+        res.json({ loggedIn: false });
+    }
+});
 // 사용자 등록
 router.post('/register', async (req, res) => {
     const { user_id, user_pw, user_nick, user_email } = req.body;
@@ -85,5 +96,17 @@ router.post('/delete', async (req, res) => {
         res.status(500).json({ message: '서버 오류' });
     }
 });
+
+// 로그아웃 처리
+router.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('로그아웃 중 오류:', err.message);
+            return res.status(500).json({ message: '서버 오류' });
+        }
+        res.redirect('/'); // 로그아웃 후 홈 페이지로 리다이렉트
+    });
+});
+
 
 module.exports = router;

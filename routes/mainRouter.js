@@ -111,6 +111,14 @@ router.get('/main/footer', (req, res)=>{
     res.sendFile(file_path+'/static/templates/footer.html')
 })
 
+//----------------------------------chatbot-----------------------
+
+router.get('/main/chatbot', (req, res)=>{
+    res.sendFile(file_path+'/chatbot/templates/chatbot.html')
+})
+router.get('/chatbot', (req, res)=>{
+    res.sendFile(file_path+'/chatbot/templates/chatbot.html')
+})
 
 
 
