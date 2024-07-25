@@ -1,15 +1,15 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
+/* 외교부 안전 공지에 관련된 CSS */
 .notice-list {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
+
 .notice-item {
     position: relative;
     margin-bottom: 20px;
 }
+
 .notice-link {
     text-decoration: none;
     color: #007BFF;
@@ -20,9 +20,11 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
+
 .notice-link:hover {
     background-color: #e2e6ea;
 }
+
 .notice-card {
     display: none;
     position: absolute;
@@ -35,6 +37,7 @@ body {
     border-radius: 8px;
     z-index: 100;
 }
+
 .notice-item:hover .notice-card {
     display: block;
 }
