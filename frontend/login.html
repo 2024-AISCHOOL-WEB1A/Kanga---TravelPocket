@@ -12,7 +12,7 @@
             const userPw = document.getElementById('login_user_pw').value;
 
             try {
-                const response = await fetch('/user/login', { // 상대 경로로 수정
+                const response = await fetch('/user/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -20,7 +20,7 @@
                     body: JSON.stringify({ user_id: userId, user_pw: userPw }),
                 });
 
-                const result = await response.json(); // JSON 형식의 응답 처리
+                const result = await response.json();
                 
                 if (!response.ok) {
                     console.error('로그인 중 오류:', result.message);
@@ -28,7 +28,6 @@
                     return;
                 }
 
-                // 로그인 성공
                 alert('로그인 성공');
                 window.location.href = 'index123.html';
             } catch (error) {
