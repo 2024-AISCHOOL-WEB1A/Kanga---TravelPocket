@@ -120,6 +120,10 @@ router.get('/chatbot', (req, res)=>{
     res.sendFile(file_path+'/chatbot/templates/chatbot.html')
 })
 
+router.get('/test', (req, res)=>{
+    res.sendFile(file_path+'/my-newsletter/public/newsletter.html')
+})
+
 
 
 module.exports = router;

@@ -33,7 +33,7 @@ app.use(express.static('../Kanga---TravelPocket/frontend'));
 app.use(express.static('../Kanga---TravelPocket/backend'));
 app.use(express.static('../Kanga---TravelPocket/newsletter'));
 app.use(express.static('../Kanga---TravelPocket/chatbot'));
-
+app.use(express.static('../Kanga---TravelPocket/my-newsletter'));
 
 const mainRouter = require('./routes/mainRouter.js');
 const userRouter = require('./routes/userRouter');
