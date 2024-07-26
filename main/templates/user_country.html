@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여행할 국가 선택</title>
     <link rel="stylesheet" href="../css/user_country.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
@@ -28,6 +29,29 @@
 
     <script src="../../static/include.js"></script>
     <script src="../user_country.js"></script>
-    
+    <script src="../../static/sessioncheck.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/session',
+                method: 'GET',
+                success: function(response) {
+                    if (response.loggedIn) {
+                        $('#loginLink').addClass('d-none');
+                        $('#logoutLink').removeClass('d-none');
+                        $('#myPageLink').removeClass('d-none');
+                    } else {
+                        $('#loginLink').removeClass('d-none');
+                        $('#logoutLink').addClass('d-none');
+                        $('#myPageLink').addClass('d-none');
+                    }
+                },
+                error: function(error) {
+                    console.error('Error checking session:', error);
+                }
+            });
+        });
+        
+    </script>
 </body>
 </html>

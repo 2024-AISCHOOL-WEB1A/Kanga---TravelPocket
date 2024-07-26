@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body class="hero-anime">
+    
     <div class="navigation-wrap bg-light start-header start-style">
         <div class="container">
             <div class="row">
@@ -21,7 +22,6 @@
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/main" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
-
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="/checklist">CheckList</a>
@@ -31,20 +31,17 @@
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/chatbot" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
-
                                 </li>
-                                
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
                                     <a class="nav-link" href="/login">Login / Join</a>
                                 </li>
-
-                                 <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
-                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
+                                <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
                                     <a class="nav-link" href="/logout">Logout</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
                                     <a class="nav-link" href="/mypage">MyPage</a>
-                               
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -59,7 +56,6 @@
                     <h2 class='title'>트레블 포켓에서 </h2>
                     <h2 class='title'>함께합니다 </h2>
                     <br><br><br><br>
-                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
                     <button class="blinking-text">Go Travel !</button>
                 </div>
             </li>
@@ -67,16 +63,14 @@
                 <div class='content'>
                     <h2 class='title'> 당신의 여행지는 </h2>
                     <h2 class='title'> 어딘가요 ? </h2>
-                    <!-- <p class='description'> 해외여행을 나갈 때마다 챙겨야 할 것들 </p> -->
-                     <br><br><br><br>
-                     <a href="/country"><button class="blinking-text">Go Travel !</button></a>
+                    <br><br><br><br>
+                    <a href="/country"><button class="blinking-text">Go Travel !</button></a>
                 </div>
             </li>
             <li class='item' style="background-image: url('https://cdn.pixabay.com/photo/2019/07/13/16/44/woman-4335235_1280.jpg')">
                 <div class='content'>
                     <h2 class='title'>150 개국 어디든</h2>
                     <br><br><br><br>
-                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
                     <a href="/country"><button class="blinking-text">Go Travel !</button></a>
                 </div>
             </li>
@@ -84,7 +78,6 @@
                 <div class='content'>
                     <h2 class='title'>여행을 떠나보세요</h2>
                     <br><br><br><br>
-                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
                     <a href="/country"><button class="blinking-text">Go Travel !</button></a>
                 </div>
             </li>
@@ -93,7 +86,6 @@
                     <h2 class='title'>이것저것 신경 쓸 </h2>
                     <h2 class='title'>필요 없는 </h2>
                     <br><br><br><br>
-                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
                     <a href="/country"><button class="blinking-text">Go Travel !</button></a>
                 </div>
             </li>
@@ -101,7 +93,6 @@
                 <div class='content'>
                     <h2 class='title'>편안한 여행</h2>
                     <br><br><br><br>
-                    <!-- <p class='description'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim. </p> -->
                     <a href="/country"><button class="blinking-text">Go Travel !</button></a>
                 </div>
             </li>
@@ -114,9 +105,8 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <!-- <script src="../main/js/jquery-3.7.1.min.js"></script> -->
-    <!-- <script src="../main.js"></script> -->
     <script src="../jquery-3.7.1.min.js"></script>
     <script src="../main.js"></script>
+    <script src="../../static/sessioncheck.js"></script>
 </body>
 </html>
