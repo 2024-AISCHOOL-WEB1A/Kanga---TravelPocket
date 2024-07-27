@@ -4,10 +4,6 @@ const pool = require('../config/db');
 
 const router = express.Router();
 
-
-
-
-
 // SHA2 해시 함수
 function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('hex');
@@ -30,13 +26,13 @@ router.post('/login', async (req, res) => {
             nick: results[0].user_nick
         };
 
-      
         res.status(200).json({ message: '로그인 성공' });
     } catch (err) {
         console.error('로그인 중 오류:', err.message);
         res.status(500).json({ message: '서버 오류' });
     }
-}); 
+});
+
 // 세션 상태 확인
 router.get('/session', (req, res) => {
     if (req.session.user) {
@@ -45,6 +41,7 @@ router.get('/session', (req, res) => {
         res.json({ loggedIn: false });
     }
 });
+
 // 로그아웃 처리
 router.post('/logout', (req, res) => {
     req.session.destroy(err => {
@@ -54,6 +51,7 @@ router.post('/logout', (req, res) => {
         res.status(200).json({ message: '로그아웃 성공' });
     });
 });
+
 // 사용자 등록
 router.post('/register', async (req, res) => {
     const { user_id, user_pw, user_nick, user_email } = req.body;
@@ -100,6 +98,7 @@ router.post('/update', async (req, res) => {
         res.status(500).json({ message: '서버 오류' });
     }
 });
+
 // 사용자 정보 삭제
 router.post('/delete', async (req, res) => {
     const { user_id, user_pw } = req.body;
@@ -126,7 +125,4 @@ router.post('/delete', async (req, res) => {
     }
 });
 
-
-
 module.exports = router;
-

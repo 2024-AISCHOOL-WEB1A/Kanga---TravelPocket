@@ -6,7 +6,7 @@ const { OpenAI } = require('openai'); // OpenAI 패키지에서 OpenAI 클래스
 const pool = require('./config/db.js'); // 데이터베이스 연결 모듈
 const fs = require('fs');
 const session = require('express-session');
-
+const react = require('react')
 require('dotenv').config(); // 오픈 API 키 가져오는 코드 삭제 금지
 
 const app = express();
@@ -31,7 +31,14 @@ app.use(express.static('../Kanga---TravelPocket/frontend'));
 app.use(express.static('../Kanga---TravelPocket/backend'));
 app.use(express.static('../Kanga---TravelPocket/newsletter'));
 app.use(express.static('../Kanga---TravelPocket/chatbot'));
-app.use(express.static('../Kanga---TravelPocket/my-newsletter'));
+
+// 세션 미들웨어 설정
+app.use(session({
+    secret: process.env.SESSION_SECRET, // 비밀 키 설정
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // HTTPS를 사용하는 경우 true로 설정
+}));
 
 const mainRouter = require('./routes/mainRouter.js');
 const userRouter = require('./routes/userRouter');
