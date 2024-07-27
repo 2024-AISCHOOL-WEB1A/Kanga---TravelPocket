@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAP IT</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FFD700;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .apply-button {
+            background-color: #000;
+            color: #FFD700;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .hero img {
+            width: 100%;
+            height: auto;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FF0000;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1 class="logo">GRAP IT</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#brand">Brand</a></li>
+                    <li><a href="#event">Event</a></li>
+                    <li><a href="#sponsor">Sponsor</a></li>
+                </ul>
+            </nav>
+            <a href="#apply" class="apply-button">Apply Now</a>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <img src="https://cdn.pixabay.com/photo/2016/11/04/14/18/channel-1797893_1280.jpg" alt="GRAP IT Event">
+            <div class="hero-text">
+                <p>2024.02</p>
+                <p>17-19 (3DAY)</p>
+                <p>GRAP IT!</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
