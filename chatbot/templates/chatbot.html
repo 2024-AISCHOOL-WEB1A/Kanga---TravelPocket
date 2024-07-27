@@ -6,6 +6,7 @@
     <title>Chatbot</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/css/header.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../jquery-3.7.1.min.js"></script>
 </head>
 
@@ -52,42 +53,102 @@
     </div>
 
     <script src="../sessioncheck.js"></script>
-    <input type="text" id="chatbotinput" placeholder="질문을 입력하세요...">
-    <p id="response"></p>
-    <button type="button" onclick="sendQuery()">확인</button>
- 
 
+    <div class="chat-box">
+        <div class="header">
+            <div class="avatar-wrapper avatar-big">
+                <img src="../templates/img/AI_chat_main.jpg" alt="챗봇 프로필 사진">
+            </div>
+            <span class="name">쿼카 AI</span>
+        </div>
+        <div class="chat-room" id="chat">
+            <div class="message message-left">
+                <div class="avatar-wrapper avatar-small">
+                    <img src="../templates/img/AI_chat_img.jpg" alt="챗봇 프로필 사진">
+                </div>
+                <div class="bubble bubble-light">
+                    안녕하세요! 저는 AI 어시스턴트 쿼카입니다.😊 <!--챗봇이 먼저 말 걸도록-->
+                </div>
+            </div>
+        </div>
+        <div class="type-area">
+            <div class="input-wrapper">
+                <input type="text" id="chatbotinput" placeholder="해외 안전정보에 대해 물어보세요." />
+            </div>
+            <button type="button" class="button-send" onclick="sendQuery()">보내기</button>
+        </div>
+        <script src="../chatbot.js"></script>
+    </div>
+    
     <script>
-        async function sendQuery() {
-            const input = document.getElementById('chatbotinput').value;
-            const responseElement = document.getElementById('response');
-            
-            if (input.trim() === '') {
-                responseElement.innerText = '질문을 입력해주세요.';
-                return;
-            }
-            
-            try {
-                const response = await fetch('http://localhost:3000/query', { // 서버 포트와 경로 확인
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ query: input })
-                });
-
-                if (!response.ok) {
-                    throw new Error('서버 오류');
-                }
-
-                const result = await response.json();
-                responseElement.innerText = result.result || '서버에서 응답이 없습니다.';
-            } catch (error) {
-                responseElement.innerText = '오류 발생: ' + error.message;
-            }
+    async function sendQuery() {
+        const input = document.getElementById('chatbotinput').value;
+        const chat = document.getElementById('chat');
+        
+        if (input.trim() === '') {
+            alert('질문을 입력해주세요.');
+            return;
         }
+    
+        // 사용자의 메시지를 채팅에 추가
+        const userMessage = document.createElement('div');
+        userMessage.className = 'message message-right';
+        userMessage.innerHTML = `
+            <div class="avatar-wrapper avatar-small">
+                <img src="../templates/img/User_chat_img.png" alt="사용자 프로필 사진">
+            </div>
+            <div class="bubble bubble-dark">${input}</div>
+        `;
+        chat.appendChild(userMessage);
+    
+        // 입력 필드 초기화
+        document.getElementById('chatbotinput').value = '';
+        
+        try {
+            const response = await fetch('http://localhost:3000/query', { // 서버 포트와 경로 확인
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: input })
+            });
+    
+            if (!response.ok) {
+                throw new Error('서버 오류');
+            }
+    
+            const result = await response.json();
+            
+            // 서버 응답을 채팅에 추가
+            const botMessage = document.createElement('div');
+            botMessage.className = 'message message-left';
+            botMessage.innerHTML = `
+                <div class="avatar-wrapper avatar-small">
+                    <img src="../templates/img/AI_chat_img.jpg" alt="챗봇 프로필 사진">
+                </div>
+                <div class="bubble bubble-light">${result.result || '서버에서 응답이 없습니다.'}</div>
+            `;
+            chat.appendChild(botMessage);
+        } catch (error) {
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'message message-left';
+            errorMessage.innerHTML = `
+                <div class="avatar-wrapper avatar-small">
+                    <img src="../templates/img/AI_chat_img.jpg" alt="챗봇 프로필 사진">
+                </div>
+                <div class="bubble bubble-light">오류 발생: ${error.message}</div>
+            `;
+            chat.appendChild(errorMessage);
+        }
+    
+        // 최신 메시지로 스크롤
+        chat.scrollTop = chat.scrollHeight;
+
+        
+    }
     </script>
     <script src="../../static/sessioncheck.js"></script>
     <script src="../../static/include.js"></script>
-</body>
-</html>
+    
+    </body>
+    </html>
