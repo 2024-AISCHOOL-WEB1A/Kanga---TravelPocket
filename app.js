@@ -31,14 +31,7 @@ app.use(express.static('../Kanga---TravelPocket/frontend'));
 app.use(express.static('../Kanga---TravelPocket/backend'));
 app.use(express.static('../Kanga---TravelPocket/newsletter'));
 app.use(express.static('../Kanga---TravelPocket/chatbot'));
-
-// 세션 미들웨어 설정
-app.use(session({
-    secret: process.env.SESSION_SECRET, // 비밀 키 설정
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // HTTPS를 사용하는 경우 true로 설정
-}));
+app.use(express.static('../Kanga---TravelPocket/my-newsletter'));
 
 const mainRouter = require('./routes/mainRouter.js');
 const userRouter = require('./routes/userRouter');

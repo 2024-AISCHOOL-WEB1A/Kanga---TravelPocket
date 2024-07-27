@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Pocket</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../newsletter/css/newsletter1.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://use.fontawesome.com/f5ea91e308.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .card {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            cursor: pointer;
+            display: none;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-header img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .card-body {
+            margin-top: 10px;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .icon {
+            color: #007bff;
+        }
+        .text-primary {
+            color: #007bff;
+        }
+        .slider {
+            display: flex;
+            overflow: hidden;
+            scroll-behavior: smooth;
+        }
+        .slider-container {
+            position: relative;
+            margin-top: 50px;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .slider-button.left {
+            left: 10px;
+        }
+        .slider-button.right {
+            right: 10px;
+        }
+        .card-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .card-modal.show {
+            display: block;
+        }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="hero-anime">
+    <div class="navigation-wrap bg-light start-header start-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="" target="_blank">
+                            <img id="logo" src="/main/templates/TravelPocket_logo_new-removebg-preview.png" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/checklist">CheckList</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/newsletter">NewsLetter</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="login">Login / Join</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="title">NEWSLETTER</div>
+
+    <div class="slider-container">
+        <button class="slider-button left" onclick="slideLeft()">&#10094;</button>
+        <div class="slider">
+            <div class="card" data-group="1" onclick="showModal(this)">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>USA</div>
+                        <div class="text-secondary">모든 주</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(미국) 대마 성분 포함 불법 식품 유의 안내</p>
+                    <img src="/mnt/data/image.png" alt="Travel Image" class="img-fluid">
+                </div>
+                <div class="card-footer">
+                    <div>Date</div>
+                </div>
+            </div>
+            <div class="card" data-group="1" onclick="showModal(this)">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>France</div>
+                        <div class="text-secondary">파리</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(프랑스) 소매치기 유의 안내</p>
+                    <img src="/mnt/data/image.png" alt="Travel Image" class="img-fluid">
+                </div>
+                <div class="card-footer">
+                    <div>Date</div>
+                </div>
+            </div>
+            <div class="card" data-group="1" onclick="showModal(this)">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>Japan</div>
+                        <div class="text-secondary">도쿄</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(일본) 도쿄 여행 시 유의사항</p>
+                    <img src="/mnt/data/image.png" alt="Travel Image" class="img-fluid">
+                </div>
+                <div class="card-footer">
+                    <div>Date</div>
+                </div>
+            </div>
+            <div class="card" data-group="2" onclick="showModal(this)">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>Germany</div>
+                        <div class="text-secondary">베를린</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(독일) 여행 시 유의사항</p>
+                    <img src="/mnt/data/image.png" alt="Travel Image" class="img-fluid">
+                </div>
+                <div class="card-footer">
+                    <div>Date</div>
+                </div>
+            </div>
+            <div class="card" data-group="2" onclick="showModal(this)">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>Spain</div>
+                        <div class="text-secondary">마드리드</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(스페인) 여행 시 유의사항</p>
+                    <img src="/mnt/data/image.png" alt="Travel Image" class="img-fluid">
+                </div>
+                <div class="card-footer">
+                    <div>Date</div>
+                </div>
+            </div>
+            <div class="card" data-group="2" onclick="showModal(this)">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>Canada</div>
+                        <div class="text-secondary">토론토</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(캐나다) 여행 시 유의사항</p>
+                    <img src="/mnt/data/image.png" alt="Travel Image" class="img-fluid">
+                </div>
+                <div class="card-footer">
+                    <div>Date</div>
+                </div>
+            </div>
+        </div>
+        <button class="slider-button right" onclick="slideRight()">&#10095;</button>
+    </div>
+
+    <div class="card-modal" id="card-modal">
+        <button onclick="closeModal()">닫기</button>
+        <div class="modal-content"></div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const groups = document.querySelectorAll('.card[data-group="1"]');
+        const totalGroups = document.querySelectorAll('.card[data-group]').length / groups.length;
+
+        function updateCards() {
+            const allCards = document.querySelectorAll('.card[data-group]');
+            allCards.forEach(card => card.style.display = 'none');
+            document.querySelectorAll(`.card[data-group="${currentIndex + 1}"]`).forEach(card => card.style.display = 'block');
+        }
+
+        function slideLeft() {
+            currentIndex = (currentIndex - 1 + totalGroups) % totalGroups;
+            updateCards();
+        }
+
+        function slideRight() {
+            currentIndex = (currentIndex + 1) % totalGroups;
+            updateCards();
+        }
+
+        function showModal(card) {
+            const modal = document.getElementById('card-modal');
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.innerHTML = card.innerHTML;
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('card-modal').classList.remove('show');
+        }
+
+        updateCards();
+    </script>
+
+    <script src="../newsletter/newsletter1.js"></script>
+</body>
+</html>

@@ -16,129 +16,133 @@
 }
 
 /* Applying the Fonts */
+/* Importing Google Font and Custom Fonts */
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
+
+@font-face {
+    font-family: 'JSDongkang-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DungGeunMo';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Applying the Fonts */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-.navigation-wrap {
-    background-color: #f8f9fa;
-}
-
-.navbar {
-    font-family: 'DungGeunMo', cursive; /* Applying DungGeunMo font to navbar */
-}
-
-.navbar-brand {
-    font-family: 'JSDongkang-Regular', cursive; /* Applying JSDongkang-Regular font to brand */
-}
-
-.navbar-nav .nav-link {
-    font-family: 'Poppins', sans-serif; /* Applying Poppins font to nav links */
-}
-
-h1, h2 {
-    font-family: 'JSDongkang-Regular', cursive; /* Example for heading fonts */
-    color: #333;
-}
-
-.checklist-container {
+    font-family: Rubik, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    letter-spacing: .02em;
+    color: #f5f5f5;
+    background: #585afa;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .container1 {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .checklist-container {
+    display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
-    width: 1400px;
-}
-
-.checklist {
-    background-color: #e7e7e7;
+  }
+  
+  .checklist {
+    background: #fff;
     padding: 20px;
     border-radius: 10px;
-    width: 45%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
-    font-family: 'DungGeunMo', cursive; /* Example for checklist fonts */
-}
-
-.checklist h2 {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    width: 45%; /* 좌우로 나란히 배치하기 위해 너비를 45%로 설정 */
+    color: #333;
+  }
+  
+  .checklist h2 {
     font-size: 1.5em;
-    margin-bottom: 15px;
-}
-
-ul {
-    list-style-type: none;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #585afa;
+  }
+  
+  .checklist ul {
+    list-style: none;
     padding: 0;
-    margin: 0;
-}
-
-.ch1 {
-    margin: 10px 0;
+  }
+  
+  .checklist li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-li.completed {
-    text-decoration: line-through;
-    color: gray;
-    background-color: #f4f4f4;
-}
-
-progress {
+    margin: 10px 0;
+    position: relative;
+  }
+  
+  .checklist input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .checklist progress {
     width: 100%;
     height: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
+  }
+  
+  #newItem {
+    width: calc(100% - 80px);
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #585afa;
+    color: white;
+    cursor: pointer;
     border-radius: 5px;
-}
+  }
+  
+  button:hover {
+    background-color: #3333cc;
+  }
 
-progress {
-  width: 100%;
-  height: 20px;
-  border-radius: 5px;
-  background-color: #e7e7e7; 
-}
+  .details-btn {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    color: #585afa;
+    cursor: pointer;
+  }
 
-
-progress::-webkit-progress-bar {
-  background-color:gray ; 
-  border-radius: 5px;
-}
-
-progress::-webkit-progress-value {
-  background-color: #3572EF; 
-  border-radius: 5px;
-}
-
-/* For Firefox */
-progress::-moz-progress-bar {
-  background-color: #3572EF; 
-  border-radius: 5px;
-}
-
-/* For Edge */
-progress::-ms-fill {
-  background-color: #3572EF; 
-  border-radius: 5px;
-}
-
-button {
-  background-color: #3572EF;
-  color: white; /* Optional: Ensures text is readable */
-  border: white ; /* Optional: Removes any default border */
-  padding: 10px 20px; /* Optional: Adjusts padding for better appearance */
-  border-radius: 5px; /* Optional: Rounds the corners of the button */
-  cursor: pointer; /* Optional: Changes the cursor to a pointer on hover */
-}
-
-button:hover {
-  background-color: #2859C6; /* Optional: Darkens the button on hover */
-}
-
-/* ... 기존 CSS 코드 ... */
+  .details {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    color: #333;
+  }
