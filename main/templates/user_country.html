@@ -4,50 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여행할 국가 선택</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="../css/main.css">
-</head>
-<body>
-    <body class="hero-anime">
-        <div class="navigation-wrap bg-light start-header start-style">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav class="navbar navbar-expand-md navbar-light">
-                            <a class="navbar-brand" href="https://front.codes/" target="_blank"><img src="https://assets.codepen.io/1462889/fcy.png" alt=""></a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav ml-auto py-4 py-md-0">
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
-    
-                                    </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                        <a class="nav-link" href="country">CheckList</a>
-                                    </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                        <a class="nav-link" href="#">NewsLetter</a>
-                                    </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
-    
-                                    </li>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                        <a class="nav-link" href="login">Login / Join</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
     <link rel="stylesheet" href="../css/user_country.css">
-=======
-    <link rel="stylesheet" href="../css/user_country.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="../jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -55,7 +14,6 @@
         <hr>
     </div>
    
->>>>>>> 7ac9b6d1c58fe782871ea711529d2cf410885468
 
     <h1 style='display: flex;justify-content: center;align-items: center;'>여행할 국가</h1>
     <br>
@@ -69,9 +27,32 @@
     </div>
     <hr>
     <div  data-include-path="../../static/templates/footer.html" class="footer"></div>
-
+    <script src="../jquery-3.7.1.min.js"></script>
     <script src="../../static/include.js"></script>
     <script src="../user_country.js"></script>
-    
+    <script src="../../static/sessioncheck.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/session',
+                method: 'GET',
+                success: function(response) {
+                    if (response.loggedIn) {
+                        $('#loginLink').addClass('d-none');
+                        $('#logoutLink').removeClass('d-none');
+                        $('#myPageLink').removeClass('d-none');
+                    } else {
+                        $('#loginLink').removeClass('d-none');
+                        $('#logoutLink').addClass('d-none');
+                        $('#myPageLink').addClass('d-none');
+                    }
+                },
+                error: function(error) {
+                    console.error('Error checking session:', error);
+                }
+            });
+        });
+        
+    </script>
 </body>
 </html>

@@ -1,4 +1,14 @@
-<link rel="stylesheet" href="../css/header.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/header.css">
+</head>
+
+ 
+
 <body class="hero-anime">
     <div class="navigation-wrap bg-light start-header start-style">
         <div class="container">
@@ -13,7 +23,6 @@
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/main" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
-    
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="/checklist">CheckList</a>
@@ -23,14 +32,17 @@
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/chatbot" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
-    
                                 </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
                                     <a class="nav-link" href="/login">Login / Join</a>
                                 </li>
-    
-                                
-                               
+                                <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
+                                    <a class="nav-link" href="/mypage">MyPage</a>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -38,7 +50,7 @@
             </div>
         </div>
     </div>
-    
-    
-    
+    <script src="../../main/jquery-3.7.1.min.js"></script>
+    <script src="../sessioncheck.js"></script>
 </body>
+</html>

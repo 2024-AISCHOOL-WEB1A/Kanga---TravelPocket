@@ -7,12 +7,17 @@
     <title>Document</title>
     <!-- Corrected the CSS file path based on the directory structure -->
     <link rel="stylesheet" href="../css/mypage.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
     <script src="../mypage.js">
-   
+    
     </script>
 </head>
-
 <body>
+    
+    <div data-include-path="../../static/templates/header.html" class="header"></div>
+
+
     <div id="container">
         <hr>
         <div id="content">
@@ -50,14 +55,14 @@
             <div class="account-actions">
                 <a href="#" class="delete-account" onclick="deleteUser()">회원탈퇴</a>
             </div>
-            <a href="/" class="test-button">테스트</a>
+      
         </div>
-        <hr>
-        <div data-include-path="../../static/templates/footer.html" class="footer"></div>
+
     </div>
-    <!-- 
+    <script src="../../static/sessioncheck.js"></script>
     <script src="../../static/include.js"></script>
-    <script src="../mypage.js"></script> -->
+    <script src="../mypage.js"></script>
+
 </body>
 
 </html>

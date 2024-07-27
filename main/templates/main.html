@@ -6,9 +6,14 @@
     <title>Travel Pocket</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="../css/main1.css">
+=======
+    
+>>>>>>> 91ef3e9cfa9743b0132b16b9b82a34e6321e6ee4
 </head>
 <body class="hero-anime">
+    
     <div class="navigation-wrap bg-light start-header start-style">
         <div class="container">
             <div class="row">
@@ -21,7 +26,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/main" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="/checklist">CheckList</a>
@@ -30,10 +35,17 @@
                                     <a class="nav-link" href="/newsletter">NewsLetter</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/chatbot" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
                                 </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" href="login">Login / Join</a>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
+                                    <a class="nav-link" href="/login">Login / Join</a>
+                                </li>
+                                <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
+                                    <a class="nav-link" href="/mypage">MyPage</a>
                                 </li>
                             </ul>
                         </div>
@@ -45,11 +57,16 @@
 
     <div class="seperate-color">
     <main class="main-content">
+        
         <section class="content-wrapper section" id="section1">
             <h1 class="main-title">입출국 정보의 모든 것</h1>
             <h1 class="main-title1">Travel Pocket 에서 쉽고 간편하게</h1>
             <div class="content">
                 <div class="left">
+<<<<<<< HEAD
+=======
+                 
+>>>>>>> 91ef3e9cfa9743b0132b16b9b82a34e6321e6ee4
                     <img id="airplane" src="/main/templates/free-icon-airplane-3575525.png" alt="Icon 1">
                     <a id="travel-question">당신의 여행지는 어디인가요?</a>
                 </div>
@@ -124,8 +141,10 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../jquery-3.7.1.min.js"></script>
     <script src="../main.js"></script>
+    <script src="../../static/sessioncheck.js"></script>
     <script src="../animation.js"></script> <!-- 새로 추가된 JavaScript 파일 -->
     <script src="../scroll.js"></script> <!-- 스크롤 제어를 위한 JavaScript 파일 추가 -->
     <script src="../navigation.js"></script> <!-- 새로운 JavaScript 파일 추가 -->
+    
 </body>
 </html>

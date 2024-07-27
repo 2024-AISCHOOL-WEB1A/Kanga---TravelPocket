@@ -1,33 +1,58 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동반인 정보</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="../jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <div data-include-path="../../static/templates/header.html" class="header"></div>
     <hr>
     <div class="contents" style="height: 600px;">
         <p>인원</p>
-        <input type="text">
-        <input type="submit">
+        <input type="text" id="numCompanions">
+        <input type="submit" value="Submit">
         <br>
         <p>인원</p>
-        <input type="checkbox" name = "companion" value = "kid">아이
-        <input type="checkbox" name = "companion" value = "teenager">청소년
-        <input type="checkbox" name = "companion" value = "adult">성인
-        <input type="checkbox" name = "companion" value = "pet">반려동물
-        <input type="checkbox" name = "companion" value = "disabled">장애인
+        <input type="checkbox" name="companion" value="kid">아이
+        <input type="checkbox" name="companion" value="teenager">청소년
+        <input type="checkbox" name="companion" value="adult">성인
+        <input type="checkbox" name="companion" value="pet">반려동물
+        <input type="checkbox" name="companion" value="disabled">장애인
         <br>
-        <a href="/main"><button type="submit">다음</button></a>
+        <a id="nextButton" href="/main"><button type="submit">다음</button></a>
     </div>
     
     <hr>
-    <div  data-include-path="../../static/templates/footer.html" class="footer"></div>
+    <div data-include-path="../../static/templates/footer.html" class="footer"></div>
 
     <script src="../../static/include.js"></script>
+    <script src="../../static/sessioncheck.js"></script>
+    <script>
+        
+        async function checkLoginStatus() {
+            try {
+                const response = await fetch('/session');
+                const data = await response.json();
+
+                const nextButton = document.getElementById('nextButton');
+
+                if (data.loggedIn) {
+                    // 로그인 상태일 때만 다음 버튼 보이게
+                    nextButton.style.display = 'block';
+                } else {
+                    // 로그인 상태가 아닐 때 다음 버튼 숨기게
+                    nextButton.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('로그인 상태 확인 중 오류 발생:', error);
+            }
+        }
+
+        // 페이지 로드 시 로그인 상태 확인
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
+    </script>
 </body>
 </html>
