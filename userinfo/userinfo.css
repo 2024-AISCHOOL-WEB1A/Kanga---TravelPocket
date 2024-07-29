@@ -1,0 +1,448 @@
+@font-face {
+    font-family: 'JSDongkang-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    display: flex;
+    font-family: 'JSDongkang-Regular';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.left-side, .right-side {
+    width: 50%;
+    padding: 20px;
+}
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+}
+.right-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.btn {
+    display: inline-block !important;
+}
+.btn-primary {
+    position: absolute;
+    right: 181px;
+    top: 35px;
+    opacity: 0;
+}
+.fc-left h2 {
+    color: #3ABEF9;
+    text-align: center;
+}
+.fa {
+    display: inline-block !important;
+    margin-right: .5em;
+}
+.fc-content {
+    float: left;
+    margin-right: 51px;
+}
+.I_delete {
+    margin: 37px;
+}
+.I_edit,
+.I_delete {
+    cursor: pointer;
+}
+.site-header, .people-form {
+    margin: 1.4em auto;
+    position: relative;
+    top: 0;
+    width: 80%;
+}
+.input-wrapper {
+    background-color: #3ABEF9;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    height: 100px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    border-radius: 50px;
+}
+#search-input, #people-search-input {
+    text-align: center;
+    font-family: 'JSDongkang-Regular';
+    font-size: 25px;
+}
+.dropdown-item {
+    font-family: 'JSDongkang-Regular';
+    font-size: 20px;
+}
+::-webkit-input-placeholder {
+    color: #fff;
+}
+.search-field {
+    background-color: transparent;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIuMDEgNjEyLjAxIj48Zz48cGF0aCBkPSJNNjA2LjIxIDU3OC43MWwtMTg0LjItMTgzLjgyYzM3LjctNDUuNjEgNjAtMTA0LjM2IDYwLTE2OC4xNCAwLTExMi4wMy0xMTEuNDItMjIzLjQ1LTI1My40My0yMjMuNDVTLDAgMTE1LjQzOSAwIDI1My4zOTNzMTE1LjI4MiAyNTMuMzkzIDI1Ny40OTMgMjUzLjM5M2M2My43OCAwIDEyMi41Mi0yMi42OSAxNjguMTQtNjAuNGwxODMuODIgMTgzLjgyYzIuNjcgMi42NyA2LjE2IDQgOS42NSA0czYuOTgtMS4zMyA5LjY1LTRjNS4zNC01LjM0IDUuMzQtMTQgMC0xOS4zNHpNNTcuMDIgMjI2Ljc1QzU3LjAyIDExNi43NyAxNDcuNDEgMjYuMzUgMjU3LjM5IDI2LjM1UzQ1Ny43OCAxMTYuNzcgNDU3Ljc4IDIyNi43NSAzNjcuMzYgNDI3LjE1IDI1Ny4zOSA0MjcuMTUgNTcuMDIgMzM2Ljc0IDU3LjAyIDIyNi43NXoiLz48L2c+PC9zdmc+);
+    background-position: 20px 14px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    border: 0;
+    box-sizing: border-box;
+    color: #fff;
+    height: 100%;
+    letter-spacing: 2px;
+    outline: none;
+    padding: 0 10px 0 65px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+}
+#calendar {
+    
+    position: relative;
+    width: 95%;
+}
+.search-field:placeholder-shown {
+    color: #fff;
+}
+.search-field:focus {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIuMDEgNjEyLjAxIj48Zz48cGF0aCBkPSJNNjA2LjIxIDU3OC43MWwtMTg0LjItMTgzLjgyYzM3LjctNDUuNjEgNjAtMTA0LjM2IDYwLTE2OC4xNCAwLTExMi4wMy0xMTEuNDItMjIzLjQ1LTI1My40My0yMjMuNDVTLDAgMTE1LjQzOSAwIDI1My4zOTNzMTE1LjI4MiAyNTMuMzkzIDI1Ny40OTMgMjUzLjM5M2M2My43OCAwIDEyMi41Mi0yMi42OSAxNjguMTQtNjAuNGwxODMuODIgMTgzLjgyYzIuNjcgMi42NyA2LjE2IDQgOS42NSA0czYuOTgtMS4zMyA5LjY1LTRjNS4zNC01LjM0IDUuMzQtMTQgMC0xOS4zNHpNNTcuMDIgMjI2Ljc1QzU3LjAyIDExNi43NyAxNDcuNDEgMjYuMzUgMjU3LjM5IDI2LjM1UzQ1Ny43OCAxMTYuNzcgNDU3Ljc4IDIyNi43NSAzNjcuMzYgNDI3LjE1IDI1Ny4zOSA0MjcuMTUgNTcuMDIgMzM2Ljc0IDU3LjAyIDIyNi43NXoiLz48L2c+PC9zdmc+);
+    color: #000;
+}
+.focus-background {
+    background-color: #fff;
+    display: block;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 8;
+    width: 100%;
+    transition: transform 0.3s;
+    transform: scaleX(0);
+    transform-origin: right center;
+}
+.search-field:focus ~ .focus-background {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+#calendar-popup {
+    display: none;
+    position: absolute;
+    margin-bottom: 0;
+    padding: 0 1.33em;
+    z-index: 1000;
+    border: solid rgba(200, 200, 200, 0.75) 2px;
+    border-radius: 10px;
+    color: black;
+    background: #FFF;
+}
+.calander_popip_title {
+    border-bottom: 1px solid #484141;
+    text-align: center;
+    margin: 1em 1em;
+    padding: .5em;
+    font-size: 20px;
+    background: #eee;
+}
+#calendar-popup * {
+    display: block;
+}
+.fc-day-grid-event .fc-content {
+    margin-bottom: 10px;
+}
+#calendar-popup header {
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1.9em;
+    margin-bottom: 0.5em;
+    background: #a1a1ad;
+}
+#calendar-popup label,
+#calendar-popup input,
+#calendar-popup textarea {
+    font-size: 0.9em;
+    font-weight: normal;
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
+}
+#calendar-popup input {
+    margin-bottom: 0.5em;
+    padding: 0;
+}
+#calendar-popup .submit_btn {
+    width: 86%;
+    background-color: #eee;
+}
+#calendar-popup time {
+    font-style: italic;
+    line-height: 1em;
+    margin-top: 0;
+}
+#calendar-popup form,
+#calendar-popup div#event {
+    margin: 0.75em 0 0.75em 0;
+}
+#calendar-popup li {
+    margin-bottom: 0.33em;
+    margin-right: 42px;
+}
+#calendar-popup li:nth-child(odd) {
+    background: #eee;
+}
+#calendar-popup li:nth-child(even) {
+    background: #5555;
+}
+#calendar-popup li.location,
+#calendar-popup li.details {
+    font-size: 0.85em;
+    color: #333;
+}
+#calendar-popup div.prong {
+    position: relative;
+    float: right;
+    bottom: 0;
+    right: 15px;
+    height: 0;
+    width: 20px;
+}
+#calendar-popup div.prong div.bottom-prong-dk {
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 10px solid;
+    border-color: rgba(200, 200, 200, 0.75) transparent;
+    border-bottom: 0;
+}
+#calendar-popup div.prong div.bottom-prong-lt {
+    position: relative;
+    top: -10px;
+    left: 2px;
+    width: 0;
+    border: 8px solid;
+    border-color: white transparent;
+    border-bottom: 0;
+}
+#calendar-popup div.prong div.top-prong-dk {
+    position: relative;
+    top: 2px;
+    left: 0;
+    border: 10px solid;
+    border-color: rgba(200, 200, 200, 0.75) transparent;
+    border-top: 0;
+}
+#calendar-popup div.prong div.top-prong-lt {
+    position: relative;
+    top: -6px;
+    left: 2px;
+    width: 0;
+    border: 8px solid;
+    border-color: white transparent;
+    border-top: 0;
+}
+.modle {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    overflow: auto;
+}
+.modle-continer {
+    background-color: #f4f4f4;
+    margin: 5% auto;
+    width: 70%;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, .2), 0 7px 20px rgba(0, 0, 0, .2);
+    animation-name: modalopen;
+    animation-duration: 1s;
+}
+.modal-header {
+    background: #eee;
+    padding: 15px;
+    color: #000;
+}
+.modal-header h2 {
+    position: absolute;
+    right: 46%;
+}
+.close-btn {
+    color: #000;
+    float: right;
+    font-size: 30px;
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-body {
+    padding: 10px 20px;
+}
+.modal-footer {
+    background: #eee;
+    padding: 10px;
+    color: #000;
+    text-align: center;
+}
+.modal-footer h3 {
+    margin: 0;
+}
+@keyframes modalopen {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+#search_result {
+    position: absolute;
+    top: 62px;
+    left: 50%;
+    border: 1px solid #111;
+    padding: 1em 7.7em;
+    display: none;
+}
+.autocomplete {
+    background: #fff;
+    position: relative;
+}
+.autocomplete .close {
+    position: absolute;
+    font-size: 13px;
+    z-index: 10;
+    top: 17px;
+    left: calc(100% - 50px);
+    color: #000;
+    cursor: pointer;
+    display: none;
+}
+.autocomplete .close.visible {
+    display: block;
+}
+.dialog {
+    width: 100%;
+    display: none;
+    min-height: 40px;
+    max-height: 329px;
+    overflow: scroll;
+    border-top: 1px solid #f4f4f4;
+    z-index: 12 !important;
+    margin: 6px 0;
+    position: relative;
+}
+.dialog.open {
+    display: block;
+    background: #FFF;
+    z-index: 11 !important;
+    color: black;
+}
+.dialog div {
+    padding: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+.dialog div:hover {
+    background-color: #f4f4f4;
+}
+.people-form {
+    margin: 20px auto;
+    text-align: center;
+}
+.people-form label {
+    margin-right: 10px;
+}
+.people-form .checkboxes {
+    margin: 100px;
+    font-size: 25px;
+    font-family:  'JSDongkang-Regular';
+}
+.people-form .checkboxes label {
+    margin-right: 20px;
+}
+#selected-people {
+    display: inline;
+}
+.vertical-date {
+    list-style: none;
+    padding: 1em;
+    text-align: left;
+    border-bottom: 2px solid #000;
+}
+.list-daynumber {
+    line-height: .5em;
+    font-size: 46px;
+    font-weight: 800;
+    opacity: 0.9;
+}
+.list-monthname {
+    font-size: 32px;
+    opacity: 0.6;
+    border-bottom: 5px solid #FF4D55;
+    width: 59px;
+}
+.duration {
+    display: block;
+    color: #908383;
+    font-weight: 600;
+    margin-top: 0.8em;
+}
+.s_title {
+    color: #ed8392;
+    font-size: 1.3em;
+    margin: -13px 34px;
+    position: absolute;
+    font-weight: 900;
+}
+.s_des {
+    font-size: 16px;
+    font-style: italic;
+}
+
+.fixed-button {
+    position: fixed;
+    bottom: 20px; /* 화면 아래쪽에서의 여백 */
+    right: 715px; /* 화면 오른쪽에서의 여백 */
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none; /* 버튼 테두리 없음 */
+    padding: 10px 20px; /* 버튼 패딩 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 */
+    font-size: 16px; /* 버튼 텍스트 크기 */
+    cursor: pointer; /* 마우스 커서를 손 모양으로 변경 */
+    z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
+}
+
+.fixed-button:hover {
+    background-color: #0056b3; /* 버튼 호버 시 배경색 */
+}
+
+.fc-event {
+    border: none;
+    border-radius: 5px;
+    background-color: #3572EF;
+    color: #fff; /* 텍스트 색상 */
+    padding: 10px; /* 패딩을 추가하여 텍스트가 더 잘 보이도록 */
+    font-size: 20px; /* 이벤트 제목의 폰트 크기 */
+    font-weight: bold; /* 글씨 두께 조정 */
+    margin-bottom: 5px; /* 이벤트 간 간격을 추가 */
+    height: 20px;
+}
+
+.fc-event .fc-title {
+    white-space: normal; /* 텍스트가 여러 줄로 보이도록 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
