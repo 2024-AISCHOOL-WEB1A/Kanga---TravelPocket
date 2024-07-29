@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 정보</title>
+    <style>
+        #travel-info-list {
+            list-style-type: none;
+        }
+
+        #travel-info-list li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>여행 정보</h1>
+    <ul id="travel-info-list"></ul>
+
+    <script>
+        async function fetchTravelInfo() {
+            try {
+                // 서버에 여행 정보 조회 요청 보내기
+                const response = await fetch('/user/travel-info');
+                const result = await response.json();
+
+                if (response.ok) {
+                    // 서버로부터 받은 여행 정보를 HTML에 표시
+                    const travelInfoList = document.getElementById('travel-info-list');
+                    travelInfoList.innerHTML = '';
+
+                    result.forEach(info => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <p><strong>시작 날짜:</strong> ${info.start_date}</p>
+                            <p><strong>종료 날짜:</strong> ${info.end_date}</p>
+                            <p><strong>이벤트 이름:</strong> ${info.event_name || 'N/A'}</p>
+                            <p><strong>설명:</strong> ${info.description || 'N/A'}</p>
+                            <p><strong>동반자 수:</strong> ${info.companion_num}</p>
+                            <p><strong>아이 동반 여부:</strong> ${info.companion_kid_YN ? '예' : '아니오'}</p>
+                            <p><strong>청소년 동반 여부:</strong> ${info.companion_teenager_YN ? '예' : '아니오'}</p>
+                            <p><strong>성인 동반 여부:</strong> ${info.companion_adult_YN ? '예' : '아니오'}</p>
+                            <p><strong>반려동물 동반 여부:</strong> ${info.companion_pet_YN ? '예' : '아니오'}</p>
+                            <p><strong>장애인 동반 여부:</strong> ${info.companion_disabled_YN ? '예' : '아니오'}</p>
+                        `;
+                        travelInfoList.appendChild(listItem);
+                    });
+                } else {
+                    console.error('여행 정보 조회 실패:', result.message);
+                    document.getElementById('travel-info-list').innerText = '여행 정보를 가져오는데 실패했습니다.';
+                }
+            } catch (error) {
+                console.error('여행 정보를 가져오는 중 오류 발생:', error);
+                document.getElementById('travel-info-list').innerText = '여행 정보를 가져오는 중 오류 발생';
+            }
+        }
+
+        // 페이지 로드 시 여행 정보를 가져옴
+        window.onload = fetchTravelInfo;
+    </script>
+</body>
+</html>
