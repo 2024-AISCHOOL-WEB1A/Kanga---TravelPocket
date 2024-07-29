@@ -135,3 +135,40 @@ function activate(e) {
 }
 
 document.addEventListener('click',activate,false);
+
+// top버튼, 메뉴바
+// 스크롤할 때 호출되는 함수
+window.onscroll = function() {
+	scrollFunction();
+	toggleNavbar();
+};
+
+// 스크롤 버튼 보이기/숨기기
+function scrollFunction() {
+	const scrollToTopBtn = document.getElementById("scrollToTop");
+	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			scrollToTopBtn.style.display = "block";
+	} else {
+			scrollToTopBtn.style.display = "none";
+	}
+}
+
+// 스크롤 버튼 클릭 시 페이지 맨 위로 이동
+function topFunction() {
+	document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+}
+
+// 메뉴바 토글 함수
+function toggleNavbar() {
+	const navbar = document.querySelector('.navigation-wrap');
+	if (window.scrollY > 50) {
+			navbar.classList.add('navbar-hide');
+	} else {
+			navbar.classList.remove('navbar-hide');
+	}
+}
+
+// 메뉴바 마우스 오버 시 나타나기
+
+
