@@ -10,49 +10,7 @@
     <script src="../jquery-3.7.1.min.js"></script>
 </head>
 
-<body class="hero-anime">
-    <div class="navigation-wrap bg-light start-header start-style">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="navbar navbar-expand-md navbar-light">
-                        <a class="navbar-brand" href="https://front.codes/" target="_blank"><img src="https://assets.codepen.io/1462889/fcy.png" alt=""></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ml-auto py-4 py-md-0">
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/main" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
-                                </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" href="/checklist">CheckList</a>
-                                </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" href="/newsletter">NewsLetter</a>
-                                </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/chatbot" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
-                                </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
-                                    <a class="nav-link" href="/login">Login / Join</a>
-                                </li>
-                                <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
-                                    <a class="nav-link" href="/logout">Logout</a>
-                                </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
-                                    <a class="nav-link" href="/mypage">MyPage</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="../sessioncheck.js"></script>
+<div data-include-path="../../static/templates/header.html" class="header"></div>
 
     <div class="chat-box">
         <div class="header">
@@ -150,5 +108,4 @@
     <script src="../../static/sessioncheck.js"></script>
     <script src="../../static/include.js"></script>
     
-    </body>
     </html>

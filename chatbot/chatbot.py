@@ -17,7 +17,7 @@ warnings.filterwarnings("ignore")
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 # Load documents and initialize vector store
-loader = TextLoader('vault.txt', encoding='utf-8')
+loader = TextLoader('./vault.txt', encoding='utf-8')
 documents = loader.load()
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 texts = text_splitter.split_documents(documents)

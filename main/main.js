@@ -135,3 +135,27 @@ function activate(e) {
 }
 
 document.addEventListener('click',activate,false);
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const includeElements = document.querySelectorAll('[data-include-path]');
+    
+    includeElements.forEach(el => {
+        const includePath = el.getAttribute('data-include-path');
+        
+        fetch(includePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                el.innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error including path:', error);
+                el.innerHTML = '<p>Error loading content. Please try again later.</p>';
+            });
+    });
+});
