@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="userinfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="left-side">
+        <div class="site-header autocomplete">
+            <div class="input-wrapper">
+                <input type="text" placeholder="떠날 국가를 선택해주세요 !" class="search-field" id="search-input">
+                <div class="focus-background"></div>
+            </div>
+            <div class="dialog" id="dropdown-menu">
+                <div class="dropdown-item" data-value="스위스">스위스</div>
+                <div class="dropdown-item" data-value="일본">일본</div>
+                <div class="dropdown-item" data-value="중국">중국</div>
+                <div class="dropdown-item" data-value="필리핀">필리핀</div>
+                <div class="dropdown-item" data-value="싱가포르">싱가포르</div>
+                <div class="dropdown-item" data-value="인도네시아">인도네시아</div>
+                <div class="dropdown-item" data-value="홍콩">홍콩</div>
+                <div class="dropdown-item" data-value="대만">대만</div>
+                <div class="dropdown-item" data-value="태국">태국</div>
+                <div class="dropdown-item" data-value="베트남">베트남</div>
+                <div class="dropdown-item" data-value="미국">미국</div>
+                <div class="dropdown-item" data-value="괌">괌</div>
+                <div class="dropdown-item" data-value="캐나다">캐나다</div>
+            </div>
+        </div>
+        <div id="people-ment">여행을 떠날 인원을 선택해주세요 !</div>
+        <div class="people-form">
+            <div class="checkboxes">
+                <label><input type="checkbox" name="companion_kid_YN" value="1"> 아이</label>
+                <label><input type="checkbox" name="companion_teenager_YN" value="1"> 청소년</label>
+                <label><input type="checkbox" name="companion_adult_YN" value="1"> 성인</label>
+                <label><input type="checkbox" name="companion_pet_YN" value="1"> 반려동물</label>
+                <label><input type="checkbox" name="companion_disabled_YN" value="1"> 장애인</label>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="right-side">
+        <div id="calendar"></div>
+    </div>
+
+    <div id="calendar-popup">
+        <form id="event-form">
+            <div class='calander_popip_title'><i class="fa fa-calendar" aria-hidden="true"></i> Add Event</div>
+            <ul>
+                <li>
+                    <label for="event-start"><i class="fa fa-bell-o" aria-hidden="true"></i> From</label>
+                    <input id="event-start" class='form-control' type="datetime-local" name="start"/>
+                </li>
+                <li>
+                    <label for="event-end"><i class="fa fa-bell-slash" aria-hidden="true"></i> To</label>
+                    <input id="event-end" class='form-control' type="datetime-local" name="end"/>
+                </li>
+                <li>
+                    <label for="event-title"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> Event Name</label>
+                    <input id="event-title" class='form-control' type="text" name="title"/>
+                </li>
+                <div class="button">
+                    <input type="submit" class='form-control submit_btn'/>
+                </div>
+            </ul>
+        </form>
+        <div class="prong">
+            <div class="bottom-prong-dk"></div>
+            <div class="bottom-prong-lt"></div>
+        </div>
+    </div>
+    <div class='modle' id='simplemodal'>
+        <div class='modle-continer'>
+            <form id="edit-form">
+                <div class='modal-header'>
+                    <span class='close-btn' id='close-btnid'>&times</span>
+                    <h2>Edit Event</h2>
+                </div>
+                <div class='modal-body'>
+                    <label for='eventname'>Event Name</label>
+                    <input type='text' name='eventname' id='eventname' class='form-control'>
+                    <label for='location'>Location</label>
+                    <input type='text' name='location' id='location' class='form-control'>
+                    <label for="event-start">From</label><input id="eventstart" type="datetime-local" name="start" class='form-control'/>
+                    <label for="event-end">To</label>
+                    <input id="eventend" type="datetime-local" name="end" class='form-control'/>
+                    <label for="event-details">Details</label>
+                    <textarea id="eventdetails" type='text' name="details" class='form-control'></textarea>
+                </div>
+                <div class='modal-footer'>
+                    <button type='submit' class='btn btn-info'>save</button>
+                    <button class='btn btn-dafault'>cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id='search_result'>result</div>
+    <button class="fixed-button">다음</button>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="userinfo.js"></script>
+
+</body>
+</html>
