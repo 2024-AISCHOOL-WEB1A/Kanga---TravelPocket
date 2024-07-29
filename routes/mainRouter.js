@@ -121,7 +121,7 @@ router.get('/chatbot', (req, res)=>{
 })
 
 router.get('/test', (req, res)=>{
-    res.sendFile(file_path+'/my-newsletter/public/newsletter.html')
+    res.sendFile(file_path+'/chatbot/templates/test.html')
 })
 
 

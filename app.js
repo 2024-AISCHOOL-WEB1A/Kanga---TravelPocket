@@ -7,6 +7,10 @@ const pool = require('./config/db.js'); // 데이터베이스 연결 모듈
 const fs = require('fs');
 const session = require('express-session');
 const react = require('react')
+const axios = require('axios');
+const { spawn } = require('child_process');
+const fetch = require('node-fetch');
+
 require('dotenv').config(); // 오픈 API 키 가져오는 코드 삭제 금지
 
 const app = express();
@@ -58,24 +62,102 @@ app.post('/save-country', (req, res) => {
     });
 });
 
-app.post('/query', async (req, res) => {
-    const queryText = req.body.query;
-    if (!queryText) {
-        return res.status(400).json({ result: '잘못된 요청입니다. query 파라미터를 확인해주세요.' });
-    }
+
+// Endpoint to handle user input
+app.post('/chatbot', async (req, res) => {
+    const userInput = req.body.userInput;
+    const systemMessage = req.body.systemMessage;
 
     try {
-        const response = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: queryText }],
+        // EEVE 서버에 요청을 보내기 위한 데이터 준비
+        const messages = [
+            { role: 'system', content: systemMessage },
+            { role: 'user', content: userInput }
+        ];
+
+        const response = await axios.post('http://localhost:11434/v1/chat/completions', {
+            model: 'ModelFile',
+            messages: messages
+        }, {
+            headers: { 'Authorization': 'Bearer EEVE-Korean-Instruct-10.8B' }
         });
-        res.json({ result: response.choices[0].message.content });
+
+        // EEVE 서버의 응답을 클라이언트에 전달
+        res.json({ response: response.data.choices[0].message.content });
     } catch (error) {
-        res.status(500).json({ result: '서버에서 오류가 발생했습니다.' });
+        console.error(error);
+        res.status(500).send('Error communicating with EEVE server');
     }
 });
 
-// 서버 시작
+// 챗봇 1(원래코드용 - test.py에 있음)
+// app.post('/query', async (req, res) => { 
+//     const queryText = req.body.query;
+//     if (!queryText) {
+//         return res.status(400).json({ result: '잘못된 요청입니다. query 파라미터를 확인해주세요.' });
+//     }
+
+//     try {
+//         const response = await openai.chat.completions.create({
+//             model: 'gpt-3.5-turbo',
+//             messages: [{ role: 'user', content: queryText }],
+//         });
+//         res.json({ result: response.choices[0].message.content });
+//     } catch (error) {
+//         res.status(500).json({ result: '서버에서 오류가 발생했습니다.' });
+//     }
+// });
+
+// app.post('/query', (req, res) => {
+//     const userQuery = req.body.query;
+
+//     // Python 스크립트를 호출하고 사용자 쿼리를 인수로 전달
+//     const pythonProcess = spawn('python', ['./chatbot/chatbot.py', userQuery]);
+
+//     pythonProcess.stdout.on('data', (data) => {
+//         res.json({ result: data.toString() });
+//     });
+
+//     pythonProcess.stderr.on('data', (data) => {
+//         console.error(`stderr: ${data}`);
+//     });
+
+//     pythonProcess.on('close', (code) => {
+//         console.log(`Python script finished with code ${code}`);
+//     });
+// });
+// 
+// //됐다가 안되는 코드
+
+app.post('/query', async (req, res) => {
+    const userQuery = req.body.query;
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/query', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query: userQuery })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`Error: ${response.status} ${response.statusText}`);
+            console.error(`Response: ${errorText}`);
+            return res.status(response.status).json({ error: 'An error occurred while processing your request.' });
+        }
+
+        const data = await response.json();
+        res.json({ result: data.result });
+
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+        console.error(`Stack trace: ${error.stack}`);
+        res.status(500).json({ error: 'An error occurred while processing your request.' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
 });
