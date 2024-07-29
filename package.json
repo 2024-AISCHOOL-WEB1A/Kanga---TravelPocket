@@ -2,7 +2,6 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "server.js",
-
   "scripts": {
     "start": "nodemon backend/server.js",
     "start-server": "nodemon backend/server.js",
@@ -30,5 +29,4 @@
     "puppeteer": "^22.13.1",
     "react": "^18.3.1"
   }
-  
 }
