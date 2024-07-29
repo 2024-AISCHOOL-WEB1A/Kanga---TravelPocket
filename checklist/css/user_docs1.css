@@ -52,6 +52,11 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    
+  }
+  .checklist2{
+    overflow-y: auto;
+    max-height: 360px; 
   }
   
   h1 {
@@ -64,6 +69,7 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+
   }
   
   .checklist {
@@ -74,6 +80,7 @@ body {
     margin: 10px;
     width: 45%; /* 좌우로 나란히 배치하기 위해 너비를 45%로 설정 */
     color: #333;
+    
   }
   
   .checklist h2 {
