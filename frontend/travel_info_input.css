@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.search-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+.search-container div {
+    margin-bottom: 15px;
+}
+.search-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+.search-container input, .search-container select, .search-container button {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.search-container input:focus, .search-container select:focus, .search-container button:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+.search-container button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+.search-container button:hover {
+    background-color: #0056b3;
+}
+.date-group, .guest-group, .dropdown-group {
+    display: flex;
+    justify-content: space-between;
+}
+.date-group div, .guest-group div, .dropdown-group div {
+    flex: 1;
+    margin-right: 10px;
+}
+.date-group div:last-child, .guest-group div:last-child, .dropdown-group div:last-child {
+    margin-right: 0;
+}
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-group button {
+    margin-right: 10px;
+    flex: 1;
+}
+.btn-group button:last-child {
+    margin-right: 0;
+}
+.dropdown {
+    display: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
+    width: calc(100% - 22px);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+}
+.dropdown div {
+    padding: 10px;
+    cursor: pointer;
+}
+.dropdown div:hover {
+    background-color: #f0f0f0;
+}
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 가운데 정렬 */
+    margin-bottom: 10px;
+}
+
+.checkbox-group label input {
+    /* margin-right: 10px; */
+}
+
+/* 추가로, 만약 체크박스가 너무 크게 표시된다면, 체크박스의 크기를 조절할 수 있습니다. */
+.checkbox-group input[type="checkbox"] {
+    transform: scale(1.2); /* 체크박스 크기를 약간 키워줍니다 (필요에 따라 조정 가능) */
+}

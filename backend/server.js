@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const mainRouter = require('./mainR');
 const userRouter = require('./userRouter');
@@ -50,6 +50,11 @@ const job = schedule.scheduleJob('0 0 * * *', async () => {
     } catch (error) {
         console.error(`작업 중 오류 발생: ${error.message}`);
     }
+});
+app.post('/user/travel-input', (req, res) => {
+    travelData = req.body;
+    console.log('Received travel data:', travelData);
+    res.json({ success: true });
 });
 
 app.use('/', mainRouter);

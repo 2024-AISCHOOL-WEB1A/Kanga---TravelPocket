@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 검색 폼</title>
+    <link rel="stylesheet" href="travel_info_input.css">
+</head>
+<body>
+    <div class="search-container">
+
+        <div style="position: relative;">
+            <input type="text" placeholder="어디로 떠나시나요?" id="destination">
+            <div class="dropdown" id="dropdown">
+                <div>스위스</div>
+                <div>일본</div>
+                <div>중국</div>
+                <div>필리핀</div>
+                <div>싱가포르</div>
+                <div>인도네시아</div>
+                <div>홍콩</div>
+                <div>타이완</div>
+                <div>태국</div>
+                <div>베트남</div>
+                <div>미국</div>
+                <div>괌</div>
+                <div>캐나다</div>
+            </div>
+        </div>
+        <div class="date-group" id="dateGroup" style="display: none;">
+            <div>
+                <label for="checkin">출발 날짜</label>
+                <input type="date" id="checkin">
+            </div>
+            <div>
+                <label for="checkout">도착 날짜</label>
+                <input type="date" id="checkout">
+            </div>
+        </div>
+        <div class="guest-group" id="guestGroup" style="display: none;">
+            <div class="checkbox-group">
+                아이<input type="checkbox"> 
+                <input type="checkbox"> 청소년
+                <input type="checkbox"> 성인
+                <input type="checkbox"> 반려동물
+                <input type="checkbox"> 장애인
+            </div>
+        </div>
+
+        <div>
+            <button style="width: 100%;">출발하기</button>
+        </div>
+    </div>
+    <script src="backend/travel_info_input.js.js"></script>
+</body>
+</html>
