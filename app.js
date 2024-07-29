@@ -35,7 +35,7 @@ app.use(express.static('../Kanga---TravelPocket/frontend'));
 app.use(express.static('../Kanga---TravelPocket/backend'));
 app.use(express.static('../Kanga---TravelPocket/newsletter'));
 app.use(express.static('../Kanga---TravelPocket/chatbot'));
-
+app.use(express.static('../Kanga---TravelPocket/userinfo'));
 // 세션 미들웨어 설정
 app.use(session({
     secret: process.env.SESSION_SECRET, // 비밀 키 설정

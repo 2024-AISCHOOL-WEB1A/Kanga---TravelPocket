@@ -120,8 +120,11 @@ router.get('/chatbot', (req, res)=>{
     res.sendFile(file_path+'/chatbot/templates/chatbot.html')
 })
 
-router.get('/test', (req, res)=>{
-    res.sendFile(file_path+'/chatbot/templates/test.html')
+
+//----------------------------------userinfo------------------------
+
+router.get('/user-info', (req, res)=>{
+    res.sendFile(file_path+'/userinfo/templates/userinfo.html')
 })
 
 
