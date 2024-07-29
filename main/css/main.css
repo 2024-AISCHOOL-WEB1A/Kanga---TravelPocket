@@ -49,39 +49,37 @@ body {
 ================================================== */
 
 .start-header {
-	opacity: 1;
-	transform: translateY(0);
-	padding: 20px 0;
-	box-shadow: 0 10px 30px 0 rgba(138, 155, 165, 0.15);
-	-webkit-transition : all 0.3s ease-out;
-	transition : all 0.3s ease-out;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 20px 0;
+    box-shadow: 0 10px 30px 0 rgba(138, 155, 165, 0.15);
+    -webkit-transition : all 0.3s ease-out;
+    transition : all 0.3s ease-out;
 }
 .start-header.scroll-on {
-	box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
-	padding: 10px 0;
-	-webkit-transition : all 0.3s ease-out;
-	transition : all 0.3s ease-out;
+    box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
+    padding: 10px 0;
+    -webkit-transition : all 0.3s ease-out;
+    transition : all 0.3s ease-out;
 }
 .start-header.scroll-on .navbar-brand img{
-	height: 24px;
-	-webkit-transition : all 0.3s ease-out;
-	transition : all 0.3s ease-out;
+    height: 24px;
+    -webkit-transition : all 0.3s ease-out;
+    transition : all 0.3s ease-out;
 }
 .navigation-wrap{
-	position: fixed;
-	width: 100%;
-	top: 0;
-	left: 0;
-	z-index: 1000;
-	-webkit-transition : all 0.3s ease-out;
-	transition : all 0.3s ease-out;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    -webkit-transition : all 0.3s ease-out;
+    transition : all 0.3s ease-out;
     background-color: white;
 }
 .navbar{
-	padding: 0;
+    padding: 0;
     background-color: white;
-	
-    
 }
 .navbar-brand{
 	font-weight: 800;
