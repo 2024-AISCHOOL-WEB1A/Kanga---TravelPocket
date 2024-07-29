@@ -366,7 +366,7 @@ body {
     margin-right: 10px;
 }
 .people-form .checkboxes {
-    margin: 100px;
+    
     font-size: 25px;
     font-family:  'JSDongkang-Regular';
 }
@@ -445,4 +445,19 @@ body {
 .fc-event .fc-title {
     white-space: normal; /* 텍스트가 여러 줄로 보이도록 */
     text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.people-form .checkboxes label {
+    display: block;
+    
+    font-size: 20px;
+}
+
+.people-form .checkboxes input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#people-ment{
+    margin-top: 50px;
+    font-size: 20px;
 }

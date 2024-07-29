@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/header.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../jquery-3.7.1.min.js"></script>
+</head>
+
+<body class="hero-anime">
+    <div class="navigation-wrap bg-light start-header start-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="https://front.codes/" target="_blank">
+                            <img src="https://assets.codepen.io/1462889/fcy.png" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/main" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/checklist">CheckList</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/newsletter">NewsLetter</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/chatbot" role="button" aria-haspopup="true" aria-expanded="false">ChatBot</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
+                                    <a class="nav-link" href="/login">Login / Join</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
+                                    <a class="nav-link" href="/mypage">MyPage</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../static/sessioncheck.js"></script>
+
+    <div class="chat-box">
+        <div class="header">
+            <div class="avatar-wrapper avatar-big">
+                <img src="../templates/img/AI_chat_main.jpg" alt="챗봇 프로필 사진">
+            </div>
+            <span class="name">쿼카 AI</span>
+        </div>
+        <div class="chat-room" id="chat">
+            <div class="message message-left">
+                <div class="avatar-wrapper avatar-small">
+                    <img src="../templates/img/AI_chat_img.jpg" alt="챗봇 프로필 사진">
+                </div>
+                <div class="bubble bubble-light">
+                    안녕하세요! 저는 AI 어시스턴트 쿼카입니다.😊
+                </div>
+            </div>
+        </div>
+        <div class="type-area">
+            <div class="input-wrapper">
+                <input type="text" id="chatbotinput" placeholder="해외 안전정보에 대해 물어보세요." />
+            </div>
+            <button type="button" class="button-send" onclick="sendQuery()">보내기</button>
+        </div>
+    </div>
+
+    <script>
+    async function sendQuery() {
+        const input = document.getElementById('chatbotinput').value;
+        const chat = document.getElementById('chat');
+        
+        if (input.trim() === '') {
+            alert('질문을 입력해주세요.');
+            return;
+        }
+    
+        // 사용자의 메시지를 채팅에 추가
+        const userMessage = document.createElement('div');
+        userMessage.className = 'message message-right';
+        userMessage.innerHTML = `
+            <div class="avatar-wrapper avatar-small">
+                <img src="../templates/img/User_chat_img.png" alt="사용자 프로필 사진">
+            </div>
+            <div class="bubble bubble-dark">${input}</div>
+        `;
+        chat.appendChild(userMessage);
+    
+        // 입력 필드 초기화
+        document.getElementById('chatbotinput').value = '';
+        
+        try {
+            const response = await fetch('http://localhost:3000/query', { // 서버 포트와 경로 확인
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: input })
+            });
+    
+            if (!response.ok) {
+                throw new Error('서버 오류');
+            }
+    
+            const result = await response.json();
+            
+            // 서버 응답을 채팅에 추가
+            const botMessage = document.createElement('div');
+            botMessage.className = 'message message-left';
+            botMessage.innerHTML = `
+                <div class="avatar-wrapper avatar-small">
+                    <img src="../templates/img/AI_chat_img.jpg" alt="챗봇 프로필 사진">
+                </div>
+                <div class="bubble bubble-light">${result.result || '서버에서 응답이 없습니다.'}</div>
+            `;
+            chat.appendChild(botMessage);
+        } catch (error) {
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'message message-left';
+            errorMessage.innerHTML = `
+                <div class="avatar-wrapper avatar-small">
+                    <img src="../templates/img/AI_chat_img.jpg" alt="챗봇 프로필 사진">
+                </div>
+                <div class="bubble bubble-light">오류 발생: ${error.message}</div>
+            `;
+            chat.appendChild(errorMessage);
+        }
+    
+        // 최신 메시지로 스크롤
+        chat.scrollTop = chat.scrollHeight;
+    }
+    </script>
+    <script src="../../static/include.js"></script>
+</body>
+</html>

@@ -1,35 +1,143 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>외교부 안전 공지</title>
+    <title>Travel Pocket</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="../newsletter/css/newsletter1.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://use.fontawesome.com/f5ea91e308.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="../css/newsletter.css">
-    <script src="../jquery-3.7.1.min.js"></script>
-
 </head>
+<div data-include-path="../../static/templates/header.html" class="header"></div>
 
-<body>
-
-    <div data-include-path="../../static/templates/header.html" class="header"></div>
-
-    <main>
-
-        <h1>외교부 안전 공지</h1>
-        <ul class="notice-list" id="notice-list">
-            <!-- CSV 데이터로 채워질 부분 -->
-        </ul>
-    </main>
-
-
-    <script src="../newsletter.js">
-
-    </script>
-    <script src="../../static/sessioncheck.js"></script>
     <script src="../../static/include.js"></script>
-</body>
+    <!-- <div class="title">NEWSLETTER</div> -->
 
+    <div class="slider-container">
+        <button class="slider-button left" onclick="slideLeft()">&#10094;</button>
+        <div class="slider">
+            <div class="card" data-group="1" onclick="showModal(this, 'detailedContent1')">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>USA</div>
+                        <div class="text-secondary">모든 주</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(미국) 대마 성분 포함 불법 식품 유의 안내</p>
+                </div>
+                <div class="card-footer">
+                    <div>Date: 2024.07.20</div>
+                </div>
+            </div>
+            <div class="card" data-group="1" onclick="showModal(this, 'detailedContent2')">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>USA</div>
+                        <div class="text-secondary">모든 주</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(미국) 대마 및 대마 성분 제품의 위험성 경고</p>
+                </div>
+                <div class="card-footer">
+                    <div>Date: 2024.07.19</div>
+                </div>
+            </div>
+            <div class="card" data-group="1" onclick="showModal(this, 'detailedContent3')">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>USA</div>
+                        <div class="text-secondary">모든 주</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(미국) 중고물품 거래사기 유의 안전공지</p>
+                </div>
+                <div class="card-footer">
+                    <div>Date: 2024.07.15</div>
+                </div>
+            </div>
+            <div class="card" data-group="2" onclick="showModal(this, 'detailedContent4')">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>USA</div>
+                        <div class="text-secondary">모든 주</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(미국) 최근 정치 행사장 총격사건 관련 안전공지</p>
+                </div>
+                <div class="card-footer">
+                    <div>Date: 2024.07.15</div>
+                </div>
+            </div>
+            <div class="card" data-group="2" onclick="showModal(this, 'detailedContent5')">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>USA</div>
+                        <div class="text-secondary">모든 주</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(미국) 긴급 안전 공지 총격사건 관련</p>
+                </div>
+                <div class="card-footer">
+                    <div>Date: 2024.07.15</div>
+                </div>
+            </div>
+            <div class="card" data-group="2" onclick="showModal(this, 'detailedContent6')">
+                <div class="card-header">
+                    <div>
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <div>USA</div>
+                        <div class="text-secondary">모든 주</div>
+                    </div>
+                    <div class="text-secondary">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>(미국) Trader Joe's 시즈닝 반입 제한 안내</p>
+                </div>
+                <div class="card-footer">
+                    <div>Date: 2024.07.09</div>
+                </div>
+            </div>
+        </div>
+        <button class="slider-button right" onclick="slideRight()">&#10095;</button>
+    </div>
+
+    <div class="card-modal" id="card-modal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-content"></div>
+    </div>
+
+    <script src="../newsletter.js"></script>
+    <script src="../newsletter/newsletter1.js"></script>
+</body>
 </html>

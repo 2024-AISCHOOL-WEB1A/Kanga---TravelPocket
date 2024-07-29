@@ -15,11 +15,13 @@
                     document.getElementById('signup-btn').style.display = 'none';
                     document.getElementById('mypage-btn').style.display = 'block';
                     document.getElementById('logout-btn').style.display = 'block';
+                    document.getElementById('travel-info-btn').style.display = 'block';
                 } else {
                     document.getElementById('login-btn').style.display = 'block';
                     document.getElementById('signup-btn').style.display = 'block';
                     document.getElementById('mypage-btn').style.display = 'none';
                     document.getElementById('logout-btn').style.display = 'none';
+                    document.getElementById('travel-info-btn').style.display = 'none';
                 }
             } catch (error) {
                 console.error('세션 확인 중 오류:', error);
@@ -52,5 +54,6 @@
     <button id="signup-btn" style="display:none;" onclick="location.href='register.html'">회원가입</button>
     <button id="mypage-btn" style="display:none;" onclick="location.href='mypage.html'">마이페이지</button>
     <button id="logout-btn" style="display:none;" onclick="handleLogout()">로그아웃</button>
+    <button id="travel-info-btn" style="display:none;" onclick="location.href='travel_info.html'">여행 정보 보기</button>
 </body>
 </html>
