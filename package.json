@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon backend/server.js",
     "start-server": "nodemon backend/server.js",
-    "start-app" : "concurrently \"flask --app chatbot/chatbot.py run\" \"nodemon app.js\"",
+    "start-app": "concurrently \"flask --app chatbot/chatbot.py run\" \"nodemon app.js\"",
     "dev": "concurrently \"npm run start-server\" \"npm run start-app\""
   },
   "dependencies": {

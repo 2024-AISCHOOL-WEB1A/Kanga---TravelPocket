@@ -136,7 +136,6 @@ function activate(e) {
 
 document.addEventListener('click',activate,false);
 
-<<<<<<< HEAD
 // top버튼, 메뉴바
 // 스크롤할 때 호출되는 함수
 window.onscroll = function() {
@@ -173,28 +172,3 @@ function toggleNavbar() {
 // 메뉴바 마우스 오버 시 나타나기
 
 
-=======
-
-document.addEventListener("DOMContentLoaded", function() {
-    const includeElements = document.querySelectorAll('[data-include-path]');
-    
-    includeElements.forEach(el => {
-        const includePath = el.getAttribute('data-include-path');
-        
-        fetch(includePath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.text();
-            })
-            .then(data => {
-                el.innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error including path:', error);
-                el.innerHTML = '<p>Error loading content. Please try again later.</p>';
-            });
-    });
-});
->>>>>>> f22a59a6447ef33c19be34fc3efe5c506ae86b1d
