@@ -81,6 +81,8 @@
     .checklist ul {
       list-style: none;
       padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
     }
 
     .checklist li {
@@ -181,29 +183,29 @@
     }
 
     .add-item-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
 
-#newItem {
-  flex: 1;
-  padding: 10px;
-  margin-right: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
+    #newItem {
+      flex: 1;
+      padding: 10px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
 
-button {
-  padding: 10px 15px;
-  border: none;
-  background-color: #050C9C;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 14px;
-}
+    button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #050C9C;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
   </style>
 </head>
 
@@ -216,7 +218,7 @@ button {
     <div class="underline"></div>
     
     <div class="checklist-container">
-        <div class="checklist" id="packingListContainer">
+        <div class="checklist checklist2" id="packingListContainer">
             <h2>필수서류</h2>
             <div class="progress-bar-container">
               <div class="progress-bar" id="packingProgress"></div>
@@ -245,7 +247,7 @@ button {
             </ul>
         </div>
 
-        <div class="checklist" id="preTripTasksContainer">
+        <div class="checklist checklist2" id="preTripTasksContainer">
             <h2> Check List</h2>
             <div class="progress-bar-container">
               <div class="progress-bar" id="preTripProgress"></div>
