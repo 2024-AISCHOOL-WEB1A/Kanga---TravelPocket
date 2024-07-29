@@ -66,12 +66,6 @@
             display: none;
         }
         
-        /* 햄버거 버튼 스타일 추가 */
-        .custom-navbar-toggler {
-            display: none;
-            cursor: pointer;
-            font-size: 24px;
-        }
 
         @media (max-width: 768px) {
             .custom-navbar-toggler {
@@ -262,7 +256,7 @@
                     event.preventDefault();
                     $('html, body').stop().animate({
                         scrollTop: target.offset().top
-                    }, 1000);
+                    });
                 }
             });
         });
