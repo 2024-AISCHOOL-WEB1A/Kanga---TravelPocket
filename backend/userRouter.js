@@ -33,6 +33,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: '서버 오류' });
     }
 });
+
 // 세션 상태 확인
 router.get('/session', (req, res) => {
     if (req.session.user) {
@@ -41,6 +42,7 @@ router.get('/session', (req, res) => {
         res.json({ loggedIn: false });
     }
 });
+
 // 로그아웃 처리
 router.post('/logout', (req, res) => {
     req.session.destroy(err => {
@@ -50,6 +52,7 @@ router.post('/logout', (req, res) => {
         res.status(200).json({ message: '로그아웃 성공' });
     });
 });
+
 // 사용자 등록
 router.post('/register', async (req, res) => {
     const { user_id, user_pw, user_nick, user_email } = req.body;
@@ -96,6 +99,7 @@ router.post('/update', async (req, res) => {
         res.status(500).json({ message: '서버 오류' });
     }
 });
+
 // 사용자 정보 삭제
 router.post('/delete', async (req, res) => {
     const { user_id, user_pw } = req.body;
@@ -122,6 +126,38 @@ router.post('/delete', async (req, res) => {
     }
 });
 
+// 유저의 여행 정보 가져오기
+router.get('/travel-info', async (req, res) => {
+    // 세션에서 유저 정보 확인
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).json({ message: '로그인이 필요합니다' });
+    }
 
+    // 세션에서 유저 ID 가져오기
+    const userId = req.session.user.id;
+
+    try {
+        // tb_travel_info 테이블에서 유저 ID에 해당하는 여행 정보 조회
+        const sql = `
+            SELECT start_date, end_date, event_name, description, companion_num, 
+                companion_kid_YN, companion_teenager_YN, companion_adult_YN, 
+                companion_pet_YN, companion_disabled_YN 
+            FROM tb_travel_info 
+            WHERE user_id = ?
+        `;
+        const [results] = await pool.query(sql, [userId]);
+
+        // 조회된 결과가 없을 경우
+        if (results.length === 0) {
+            return res.status(404).json({ message: '여행 정보를 찾을 수 없습니다' });
+        }
+
+        // 조회된 여행 정보 반환
+        res.status(200).json(results);
+    } catch (err) {
+        console.error('여행 정보 조회 중 오류 발생:', err.message);
+        res.status(500).json({ message: '서버 오류' });
+    }
+});
 
 module.exports = router;
