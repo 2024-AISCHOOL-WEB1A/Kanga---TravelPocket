@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'UhBeeJJIBBABBA';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeJJIBBABBA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
 body {
 	margin: 0;
 	padding: 0;
@@ -20,6 +27,7 @@ body {
 }
 #chk {
 	display: none;
+	
 }
 .signup {
 	position: relative;
@@ -35,6 +43,7 @@ label {
 	font-weight: bold;
 	cursor: pointer;
 	transition: .5s ease-in-out;
+	font-family: 'UhBeeJJIBBABBA'
 }
 input {
 	width: 60%;

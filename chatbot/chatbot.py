@@ -48,7 +48,7 @@ def query():
     context_str = "\n".join(relevant_context) if relevant_context else ""
 
     messages = [
-        {"role": "system", "content": "You are a helpful assistant that is an expert at extracting the most useful information from a given text"},
+        {"role": "system", "content": "You are a helpful assistant that is an expert at extracting the most useful information from a given text. You must answer in Korean"},
         {"role": "user", "content": f"{context_str}\n\n{user_query}"}
     ]
 
