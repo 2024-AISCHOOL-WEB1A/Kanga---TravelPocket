@@ -39,10 +39,20 @@
     </div>
     
     <script>
+        const chatbotinput = document.getElementById('chatbotinput')
+        const chat = document.getElementById('chat');
+
+        chatbotinput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 폼 제출을 방지합니다. (필요에 따라 조정)
+            sendQuery();
+            chat.scrollTop = chat.scrollHeight;
+        }
+    });
         async function sendQuery() {
             const input = document.getElementById('chatbotinput').value;
-            const chat = document.getElementById('chat');
-        
+            // const chat = document.getElementById('chat');
+            
             if (input.trim() === '') {
                 alert('질문을 입력해주세요.');
                 return;
@@ -99,6 +109,7 @@
             chat.scrollTop = chat.scrollHeight;
         }
         
+
      
 
         

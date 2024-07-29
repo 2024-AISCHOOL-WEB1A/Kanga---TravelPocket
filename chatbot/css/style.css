@@ -139,11 +139,11 @@ img {
       display: inline-block;
     }
     .bubble-light {
-      background-color: #3ad84f; /* AI 챗봇 메시지 색깔*/
+      background-color: #b2e0b9; /* AI 챗봇 메시지 색깔*/
     }
     .bubble-dark {
       color: #fff;
-      background-color: rgb(130, 132, 238); /* 사용자 메시지 색깔 */
+      background-color: #3333cc; /* 사용자 메시지 색깔 */
     }
   }
   .type-area {
@@ -210,7 +210,7 @@ img {
       border-radius: 0 0 20px 0;
     }
     .button-send:hover {
-      background-color: rgb(56, 44, 167);
+      background-color: #3333cc;
       color: #fff;
     }
   }
