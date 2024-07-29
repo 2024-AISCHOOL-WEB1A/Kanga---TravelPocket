@@ -96,10 +96,10 @@ router.get('/checklist', (req, res)=>{
 // ------------------------------------- newsletter --------------------------------------
 
 router.get('/main/newsletter', (req, res)=>{
-    res.sendFile(file_path+'/newsletter/newsletter1.html')
+    res.sendFile(file_path+'/newsletter/templates/newsletter.html')
 })
 router.get('/newsletter', (req, res)=>{
-    res.sendFile(file_path+'/newsletter/newsletter1.html')
+    res.sendFile(file_path+'/newsletter/templates/newsletter.html')
 })
 
 // ------------------------------------- static --------------------------------------
