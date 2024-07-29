@@ -343,6 +343,110 @@ a{
     animation: movePouch 2s infinite;
 }
 
+.pocket {
+    width: 250px;
+    height: 200px;
+    background: #FDDE55;
+    position: relative;
+    margin: 150px auto 50px;
+    border-radius: 6px 6px 0 0;
+    box-shadow: inset 0 0 0 5px #FDDE55,
+                inset 125px 0 #FEEFAD;
+    -webkit-animation: pocketAnim 1s ease-out 0 1 normal both;
+    animation: pocketAnim 1s ease-out 0 1 normal both;
+}
+
+.pocket::before, .pocket::after {
+    content: "";
+    position: absolute;
+}
+
+.pocket::before {
+    top: 100%;
+    height: 50px;
+    border: 125px solid transparent;
+    border-top: 50px solid #FDDE55;
+    border-bottom: none;
+}
+
+.pocket::after {
+    top: 195px;
+    left: 5px;
+    border: 70px solid transparent;
+    border-width: 70px 0 0 125px;
+    border-top: 45px solid #FEEFAD;
+}
+
+
+@-webkit-keyframes cardAnim {
+    0% {
+        opacity: 0.5;
+        -webkit-transform: translateY(-120px);
+        transform: translateY(-120px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(-40px);
+        transform: translateY(-40px);
+    }
+}
+
+@keyframes cardAnim {
+    0% {
+        opacity: 0.5;
+        -webkit-transform: translateY(-120px);
+        transform: translateY(-120px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(-40px);
+        transform: translateY(-40px);
+    }
+}
+
+@-webkit-keyframes pocketAnim {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: -40px;
+    }
+}
+
+@keyframes pocketAnim {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: -40px;
+    }
+}
+
+/* 추가된 CSS */
+.title-top {
+    font-family: 'JSDongkang-Regular', sans-serif; /* JSDongkang-Regular 폰트를 적용 */
+    font-size: 100px; /* 크기를 줄임 */
+    font-weight: bold;
+    text-align: center; /* 가운데 정렬 */
+    color: #fff;
+    position: relative;
+    margin-top: 60px; /* 상단 여백을 60px로 변경 */
+    top: 80px; /* 텍스트를 40px 아래로 이동 */
+}
+
+.title-bottom {
+    font-family: 'JSDongkang-Regular', sans-serif; /* JSDongkang-Regular 폰트를 적용 */
+    font-size: 60px; /* 크기를 줄임 */
+    font-weight: bold;
+    text-align: center; /* 가운데 정렬 */
+    color: #fff;
+    position: relative; /* absolute에서 relative로 변경 */
+    margin-top: 20px; /* 하단 여백 추가 */
+    bottom: -20PX;
+}
+
+
+
 /* 1번페이지 css 끝*/
 
 
