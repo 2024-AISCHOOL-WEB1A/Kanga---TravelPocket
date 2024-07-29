@@ -61,7 +61,7 @@ main {
 
 .content-2 .description {
   line-height: 1.7;
-  margin: 1rem 0 1.5rem;
+  margin: 1rem 0 3rem; /* 아래 여백을 1.5rem에서 2rem으로 변경 */
   font-size: 20px;
   font-family: 'JSDongkang-Regular';
 }
@@ -150,12 +150,7 @@ main {
   height: 1px;
 }
 
-
-
 /* 페이지 선택 시 버튼 표시 */
 .page-selected .content-2 button {
   display: block;
 }
-
-
-

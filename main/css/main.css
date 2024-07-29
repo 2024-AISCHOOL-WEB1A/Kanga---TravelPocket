@@ -1,18 +1,19 @@
 /* Please ❤ this if you like it! */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
-/* @font-face {
+@font-face {
     font-family: 'JSDongkang-Regular';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-} */
+}
 @font-face {
-    font-family: 'DungGeunMo';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff');
+    font-family: 'ROEHOE-CHAN';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/ROEHOE-CHAN.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
+
 
 /* #Primary
 ================================================== */
@@ -213,7 +214,7 @@ body {
 }
 
 .main-title, .main-title1, h1 {
-    font-family: 'JSDongkang-Regular', sans-serif; /* JSDongkang-Regular 폰트를 적용 */
+    font-family: 'ROEHOE-CHAN', sans-serif; /* ROEHOE-CHAN 폰트를 적용 */
     font-size: 80px;
     font-weight: bold;
     margin-bottom: 40px;
@@ -348,7 +349,7 @@ a{
     height: 200px;
     background: #FDDE55;
     position: relative;
-    margin: 150px auto 50px;
+    margin: 90px auto 0px; /* 상단 마진을 110px로 변경하여 위로 40px 이동 */
     border-radius: 6px 6px 0 0;
     box-shadow: inset 0 0 0 5px #FDDE55,
                 inset 125px 0 #FEEFAD;
@@ -424,14 +425,14 @@ a{
 
 /* 추가된 CSS */
 .title-top {
-    font-family: 'JSDongkang-Regular', sans-serif; /* JSDongkang-Regular 폰트를 적용 */
+    font-family: 'ROEHOE-CHAN', sans-serif; /* ROEHOE-CHAN 폰트를 적용 */
     font-size: 100px; /* 크기를 줄임 */
     font-weight: bold;
     text-align: center; /* 가운데 정렬 */
     color: #fff;
     position: relative;
     margin-top: 60px; /* 상단 여백을 60px로 변경 */
-    top: 80px; /* 텍스트를 40px 아래로 이동 */
+    top: 70px; /* 텍스트를 40px 아래로 이동 */
 }
 
 .title-bottom {
@@ -442,9 +443,5 @@ a{
     color: #fff;
     position: relative; /* absolute에서 relative로 변경 */
     margin-top: 20px; /* 하단 여백 추가 */
-    bottom: -20PX;
+    bottom: 0PX;
 }
-
-
-
-/* 1번페이지 css 끝*/
