@@ -77,6 +77,11 @@ app.post('/save-country', async (req, res) => {
     }
 });
 
+app.post('/travel-info', (req, res) => {
+    travelData = req.body;
+    console.log('Received travel data:', travelData);
+    res.json({ success: true });
+});
 // 사용자 정보 조회
 app.get('/user-info', (req, res) => {
     const user_id = req.session.user_id;

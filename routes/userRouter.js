@@ -125,8 +125,62 @@ router.post('/delete', async (req, res) => {
     }
 });
 
+// 유저의 여행 정보 가져오기
+router.get('/travel-info', async (req, res) => {
+    // 세션에서 유저 정보 확인
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).json({ message: '로그인이 필요합니다' });
+    }
 
+    // 세션에서 유저 ID 가져오기
+    const userId = req.session.user.id;
 
+    try {
+        // tb_travel_info 테이블에서 유저 ID에 해당하는 여행 정보 조회
+        const sql = `
+            SELECT start_date, end_date,  
+                companion_kid_YN, companion_teenager_YN, companion_adult_YN, 
+                companion_pet_YN, companion_disabled_YN 
+            FROM tb_travel_info 
+            WHERE user_id = ?
+        `;
+        const [results] = await pool.query(sql, [userId]);
+
+        // 조회된 결과가 없을 경우
+        if (results.length === 0) {
+            return res.status(404).json({ message: '여행 정보를 찾을 수 없습니다' });
+        }
+
+        // 조회된 여행 정보 반환
+        res.status(200).json(results);
+    } catch (err) {
+        console.error('여행 정보 조회 중 오류 발생:', err.message);
+        res.status(500).json({ message: '서버 오류' });
+    }
+});
+
+// 여행 정보 저장
+router.post('/travel-info', async (req, res) => {
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).json({ message: '로그인이 필요합니다' });
+    }
+
+    const { country_idx, start_date, end_date, companion_kid_YN, companion_teenager_YN, companion_adult_YN, companion_pet_YN, companion_disabled_YN } = req.body;
+    const userId = req.session.user.id;
+
+    try {
+        const sql = `
+            INSERT INTO tb_travel_info (user_id, country_idx, start_date, end_date, companion_kid_YN, companion_teenager_YN, companion_adult_YN, companion_pet_YN, companion_disabled_YN) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        await pool.query(sql, [userId, country_idx, start_date, end_date, companion_kid_YN, companion_teenager_YN, companion_adult_YN, companion_pet_YN, companion_disabled_YN]);
+
+        res.status(201).json({ message: '여행 정보가 저장되었습니다.' });
+    } catch (err) {
+        console.error('여행 정보 저장 중 오류 발생:', err); // 로그를 통해 전체 오류 메시지를 확인
+        res.status(500).json({ message: '서버 오류' });
+    }
+});
 
 
 module.exports = router;
