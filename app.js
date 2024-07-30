@@ -91,6 +91,17 @@ app.get('/user-info', (req, res) => {
     res.status(200).json({ user_id });
 });
 
+// 문서 조회
+app.get('/document-info', (req, res) => {
+    // const countryIdx = parseInt(req.query.country_idx);
+    // const result = documents.filter(doc => doc.country_idx === countryIdx);
+    // res.json(result);
+
+    docData = req.body;
+    console.log('Received travel data:', docData);
+    res.json({ success: true });
+  });
+  
 
 
 // 국가 데이터 가져와서 컨트리 이름에 따른 인덱스 추가
@@ -163,6 +174,8 @@ app.post('/query', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while processing your request.' });
     }
 });
+
+
 
 
 app.listen(port, () => {

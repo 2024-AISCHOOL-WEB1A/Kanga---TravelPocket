@@ -41,17 +41,16 @@ router.get('/session', (req, res) => {
         res.json({ loggedIn: false });
     }
 });
-
-// 로그아웃 처리
 router.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
             return res.status(500).json({ message: '로그아웃 중 오류 발생' });
         }
+        res.clearCookie('connect.sid'); // 세션 쿠키 무효화
         res.status(200).json({ message: '로그아웃 성공' });
+        res.redirect('/'); 
     });
 });
-
 // 사용자 등록
 router.post('/register', async (req, res) => {
     const { user_id, user_pw, user_nick, user_email } = req.body;
@@ -138,7 +137,7 @@ router.get('/travel-info', async (req, res) => {
     try {
         // tb_travel_info 테이블에서 유저 ID에 해당하는 여행 정보 조회
         const sql = `
-            SELECT start_date, end_date,  
+            SELECT country_idx, start_date, end_date,  
                 companion_kid_YN, companion_teenager_YN, companion_adult_YN, 
                 companion_pet_YN, companion_disabled_YN 
             FROM tb_travel_info 
@@ -158,6 +157,82 @@ router.get('/travel-info', async (req, res) => {
         res.status(500).json({ message: '서버 오류' });
     }
 });
+// 유저의 여행 정보와 문서 정보 가져오기
+router.get('/document-info', async (req, res) => {
+    // 세션에서 유저 정보 확인
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).json({ message: '로그인이 필요합니다' });
+    }
+
+    // 세션에서 유저 ID 가져오기
+    const userId = req.session.user.id;
+
+    try {
+        // 여행 정보와 문서 정보를 조인하여 조회
+        const sql = `
+            SELECT 
+                t.country_idx, 
+                t.start_date, 
+                t.end_date,  
+                t.companion_kid_YN, 
+                t.companion_teenager_YN, 
+                t.companion_adult_YN, 
+                t.companion_pet_YN, 
+                t.companion_disabled_YN,
+                d.doc_name, 
+                d.doc_detail
+            FROM 
+                Insa5_JSA_hacksim_1.tb_travel_info t
+            LEFT JOIN 
+                Insa5_JSA_hacksim_1.tb_document d 
+            ON 
+                t.country_idx = d.country_idx
+            WHERE 
+                t.user_id = ?
+        `;
+        const [results] = await pool.query(sql, [userId]);
+
+        // 조회된 결과가 없을 경우
+        if (results.length === 0) {
+            return res.status(404).json({ message: '여행 정보를 찾을 수 없습니다' });
+        }
+
+        // 결과를 country_idx에 따라 그룹화
+        const groupedResults = results.reduce((acc, row) => {
+            const key = row.country_idx;
+            if (!acc[key]) {
+                acc[key] = {
+                    country_idx: row.country_idx,
+                    start_date: row.start_date,
+                    end_date: row.end_date,
+                    companion_kid_YN: row.companion_kid_YN,
+                    companion_teenager_YN: row.companion_teenager_YN,
+                    companion_adult_YN: row.companion_adult_YN,
+                    companion_pet_YN: row.companion_pet_YN,
+                    companion_disabled_YN: row.companion_disabled_YN,
+                    documents: []
+                };
+            }
+            if (row.doc_name) {
+                acc[key].documents.push({
+                    doc_name: row.doc_name,
+                    doc_detail: row.doc_detail
+                });
+            }
+            return acc;
+        }, {});
+
+        // 결과 배열로 변환
+        const finalResults = Object.values(groupedResults);
+
+        // 조회된 여행 정보와 문서 정보 반환
+        res.status(200).json(finalResults);
+    } catch (err) {
+        console.error('여행 정보 및 문서 정보 조회 중 오류 발생:', err.message);
+        res.status(500).json({ message: '서버 오류' });
+    }
+});
+
 
 // 여행 정보 저장
 router.post('/travel-info', async (req, res) => {
@@ -169,18 +244,71 @@ router.post('/travel-info', async (req, res) => {
     const userId = req.session.user.id;
 
     try {
-        const sql = `
-            INSERT INTO tb_travel_info (user_id, country_idx, start_date, end_date, companion_kid_YN, companion_teenager_YN, companion_adult_YN, companion_pet_YN, companion_disabled_YN) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `;
-        await pool.query(sql, [userId, country_idx, start_date, end_date, companion_kid_YN, companion_teenager_YN, companion_adult_YN, companion_pet_YN, companion_disabled_YN]);
+        // 사용자의 기존 여행 정보가 있는지 확인
+        const checkSql = 'SELECT * FROM tb_travel_info WHERE user_id = ?';
+        const [checkResults] = await pool.query(checkSql, [userId]);
 
-        res.status(201).json({ message: '여행 정보가 저장되었습니다.' });
+        if (checkResults.length > 0) {
+            // 기존 정보가 있는 경우 업데이트
+            const updateSql = `
+                UPDATE tb_travel_info
+                SET country_idx = ?, start_date = ?, end_date = ?, companion_kid_YN = ?, companion_teenager_YN = ?, companion_adult_YN = ?, companion_pet_YN = ?, companion_disabled_YN = ?
+                WHERE user_id = ?
+            `;
+            await pool.query(updateSql, [country_idx, start_date, end_date, companion_kid_YN, companion_teenager_YN, companion_adult_YN, companion_pet_YN, companion_disabled_YN, userId]);
+            res.status(200).json({ message: '여행 정보가 업데이트되었습니다.' });
+        } else {
+            // 기존 정보가 없는 경우 새로 삽입
+            const insertSql = `
+                INSERT INTO tb_travel_info (user_id, country_idx, start_date, end_date, companion_kid_YN, companion_teenager_YN, companion_adult_YN, companion_pet_YN, companion_disabled_YN) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            `;
+            await pool.query(insertSql, [userId, country_idx, start_date, end_date, companion_kid_YN, companion_teenager_YN, companion_adult_YN, companion_pet_YN, companion_disabled_YN]);
+            res.status(201).json({ message: '여행 정보가 저장되었습니다.' });
+        }
     } catch (err) {
-        console.error('여행 정보 저장 중 오류 발생:', err); // 로그를 통해 전체 오류 메시지를 확인
+        console.error('여행 정보 저장 중 오류 발생:', err.message); // 오류 메시지 로그
         res.status(500).json({ message: '서버 오류' });
     }
 });
+
+
+// To-Do 항목 추가
+router.post('/add-todo-item', async (req, res) => {
+    const { item } = req.body;
+    const userId = req.session.user.id;
+  
+    if (!item || !userId) {
+      return res.status(400).json({ message: '항목과 사용자 ID는 필수입니다.' });
+    }
+  
+    try {
+      const sql = `INSERT INTO tb_todo_items (user_id, item_text) VALUES (?, ?)`;
+      await pool.query(sql, [userId, item]);
+      res.status(200).json({ message: '항목이 성공적으로 추가되었습니다.' });
+    } catch (err) {
+      console.error('To-Do 항목 추가 중 오류 발생:', err.message);
+      res.status(500).json({ message: '서버 오류' });
+    }
+  });
+  
+  // To-Do 항목 가져오기
+  router.get('/get-todo-items', async (req, res) => {
+    const userId = req.session.user.id;
+  
+    if (!userId) {
+      return res.status(401).json({ message: '로그인이 필요합니다' });
+    }
+  
+    try {
+      const sql = `SELECT item_text FROM tb_todo_items WHERE user_id = ?`;
+      const [results] = await pool.query(sql, [userId]);
+      res.status(200).json(results.map(row => ({ text: row.item_text })));
+    } catch (err) {
+      console.error('To-Do 항목 조회 중 오류 발생:', err.message);
+      res.status(500).json({ message: '서버 오류' });
+    }
+  });
 
 
 module.exports = router;

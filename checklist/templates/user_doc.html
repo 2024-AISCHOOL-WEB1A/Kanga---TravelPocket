@@ -1,39 +1,275 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>해외여행 체크리스트</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Checklist</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../main/css/main.css">
+  <link rel="stylesheet" href="../css/user_docs1.css">
+  <style>
+    /* CSS를 여기에 추가 */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      letter-spacing: .02em;
+      color: #f5f5f5;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container1 {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .dday {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .underline {
+      height: 2px;
+      width: 100%;
+      background-color: #050C9C;
+      margin-bottom: 20px;
+    }
+
+    .checklist-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .checklist {
+      background: none;
+      padding: 20px;
+      margin: 10px;
+      width: 45%;
+      color: #333;
+    }
+
+    .checklist h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      text-align: left;
+      color: #050C9C;
+      position: relative;
+    }
+
+    .checklist h2::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+    }
+
+    .checklist ul {
+      list-style: none;
+      padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .checklist li::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .checklist input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 10px;
+      background-color: #e0e0e0;
+      margin-top: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: #050C9C;
+      width: 0;
+      transition: width 0.3s;
+    }
+
+    #newItem {
+      width: calc(100% - 90px);
+      padding: 5px;
+      margin-right: 10px;
+    }
+
+    .add-item-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 5px 10px;
+      border: none;
+      background-color: #050C9C;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #3333cc;
+    }
+
+    .details-btn {
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      color: #050C9C;
+      cursor: pointer;
+    }
+
+    .details {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+      color: #333;
+      z-index: 1; /* 세부사항을 상위에 배치 */
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      font-size: 1em;
+      color: red;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .add-item-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    #newItem {
+      flex: 1;
+      padding: 10px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #050C9C;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
-    <div data-include-path="../../static/templates/header.html" class="header"></div>
-    <hr>
-    <p>여긴 수정 많이 해야 </p>
-    <div class="content">
-    <!-- 필요한 내용 삽입  -->
+  <div data-include-path="../../static/templates/header.html" class="header"></div>
 
+  <div class="container1">
+    <h1 ID="checklist-title">Travel Checklist</h1>
+    <div class="dday" id="dday">D-Day 계산 중...</div>
+    <br>
+    <div class="underline"></div>
+    <br>
+    <div class="checklist-container">
+        <div class="checklist checklist2" id="packingListContainer">
+            <h2>필수서류</h2>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="packingProgress"></div>
+            </div>
+            <ul id="packingList">
+                <li class="ch1">
+                    <input type="checkbox" onclick="updateProgress('packingList', 'packingProgress')"> 여권
+                    <button class="details-btn" onclick="toggleDetails(this)">+</button>
+                    <div class="details">여권은 출국 시 반드시 필요합니다.</div>
+                </li>
+                <li class="ch1">
+                    <input type="checkbox" onclick="updateProgress('packingList', 'packingProgress')"> ESTAVISA
+                    <button class="details-btn" onclick="toggleDetails(this)">+</button>
+                    <div class="details">ESTA 비자는 미국 방문 시 필요합니다.</div>
+                </li>
+                <li class="ch1">
+                    <input type="checkbox" onclick="updateProgress('packingList', 'packingProgress')"> 왕복티켓
+                    <button class="details-btn" onclick="toggleDetails(this)">+</button>
+                    <div class="details">왕복 티켓을 준비하세요.</div>
+                </li>
+                <li class="ch1">
+                    <input type="checkbox" onclick="updateProgress('packingList', 'packingProgress')"> E-TICKET
+                    <button class="details-btn" onclick="toggleDetails(this)">+</button>
+                    <div class="details">전자 티켓을 인쇄하거나 모바일로 저장하세요.</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="checklist checklist2" id="preTripTasksContainer">
+            <h2> To-Do List</h2>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="preTripProgress"></div>
+            </div>
+            <ul id="preTripTasks">
+                <!-- 동적으로 항목이 추가될 부분 -->
+            </ul>
+            <div class="add-item-container">
+              <input type="text" id="newItem" placeholder="일정 입력">
+              <button onclick="addItem()">Add Item</button>
+            </div>
+        </div>
     </div>
+  </div>
 
-    <hr>
-    <div  data-include-path="../../static/templates/footer.html" class="footer"></div>
-
-    <script src="../../static/include.js"></script>
-
-    <script src="../user_doc.js"></script>
+  <script src="../user_doc.js"></script>
+  <script src="../../static/include.js"></script>
+  <script src="../load_data.js"></script>
+  <script>
+    
+  </script>
 </body>
+
 </html>

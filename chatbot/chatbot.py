@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)  # CORS 설정 추가
-
+## CHATBOT X RAG O  Retrieval argumented generator
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 model = SentenceTransformer("all-MiniLM-L6-v2")
