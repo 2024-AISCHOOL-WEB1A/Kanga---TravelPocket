@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +10,12 @@
   <link rel="stylesheet" href="../css/user_docs1.css">
   <script src="../../main/jquery-3.7.1.min.js"></script>
   <script src="../../static/sessioncheck.js"></script>
-  
-  </head>
-  
-  <body>
+
+</head>
+
+<body>
   <div data-include-path="../../static/templates/header.html" class="header"></div>
-  
+
   <div class="container1">
     <h1 ID="checklist-title">Travel Checklist</h1>
     <div class="dday" id="dday">D-Day 계산 중...</div>
@@ -25,37 +23,37 @@
     <div class="underline"></div>
     <br>
     <div class="checklist-container">
-        <div class="checklist checklist2" id="packingListContainer">
-            <h2>필수서류</h2>
-            <div class="progress-bar-container">
-              <div class="progress-bar" id="packingProgress"></div>
-            </div>
-            <ul id="packingList">
-                <!-- 여권 항목은 JavaScript에서 동적으로 추가됩니다. -->
-            </ul>
+      <div class="checklist checklist2" id="packingListContainer">
+        <h2>필수서류</h2>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="packingProgress"></div>
         </div>
+        <ul id="packingList">
+          <!-- 여권 항목은 JavaScript에서 동적으로 추가됩니다. -->
+        </ul>
+      </div>
 
-        <div class="checklist checklist2" id="preTripTasksContainer">
-            <h2> To-Do List</h2>
-            <div class="progress-bar-container">
-              <div class="progress-bar" id="preTripProgress"></div>
-            </div>
-            <ul id="preTripTasks">
-                <!-- 동적으로 항목이 추가될 부분 -->
-            </ul>
-            <div class="add-item-container">
-              <input type="text" id="newItem" placeholder="일정 입력">
-              <button onclick="addItem()">Add Item</button>
-            </div>
+      <div class="checklist checklist2" id="preTripTasksContainer">
+        <h2> To-Do List</h2>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="preTripProgress"></div>
         </div>
+        <ul id="preTripTasks">
+          <!-- 동적으로 항목이 추가될 부분 -->
+        </ul>
+        <div class="add-item-container">
+          <input type="text" id="newItem" placeholder="일정 입력">
+          <button onclick="addItem()">Add Item</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script src="../user_doc.js"></script>
   <script src="../../static/include.js"></script>
-  <script src="../load_data.js"></script>
+
   <script>
-   
+    
   </script>
 </body>
 

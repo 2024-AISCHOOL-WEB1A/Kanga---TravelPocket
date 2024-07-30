@@ -88,46 +88,38 @@ function updateProgress(listId, progressId) {
   const percent = (checkedItems.length / items.length) * 100;
   progress.style.width = percent + '%';
 }
+document.addEventListener('DOMContentLoaded', function () {
+  fetchTodoItems();
+});
 
-// 항목 추가 기능
-function addItem() {
-  const newItem = document.getElementById('newItem');
-  if (newItem.value.trim() !== '') {
-    const list = document.getElementById('preTripTasks');
-    const listItem = document.createElement('li');
-    listItem.className = 'ch1';
-    // 항목 추가 시 삭제 버튼 추가
-    listItem.innerHTML = `<input type="checkbox" onclick="updateProgress('preTripTasks', 'preTripProgress')"> ${newItem.value}
-      <button class="remove-btn" onclick="removeItem(this)">x</button>`;
-    list.appendChild(listItem);
-    newItem.value = '';
-    updateProgress('preTripTasks', 'preTripProgress');
+// To-Do 항목 가져오기
+async function fetchTodoItems() {
+  try {
+    const response = await fetch('/get-todo-items');
+    const items = await response.json();
+
+    const preTripTasks = document.getElementById('preTripTasks');
+    preTripTasks.innerHTML = ''; // 기존 항목 지우기
+
+    items.forEach(item => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+    <input type="checkbox" onclick="updateProgress('preTripTasks', 'preTripProgress')"> ${item.text}
+    <button class="remove-btn" data-item-text="${item.text}" onclick="removeItem(this)">X</button>
+  `;
+      preTripTasks.appendChild(listItem);
+    });
+  } catch (error) {
+    console.error('To-Do 항목 가져오는 중 오류 발생:', error);
   }
 }
 
-// 항목 삭제 기능
-function removeItem(button) {
-  const listItem = button.parentElement;
-  const list = listItem.parentElement;
-  list.removeChild(listItem);
-  updateProgress(list.id, list.parentElement.querySelector('.progress-bar').id);
-}
-
+// 항목 추가 기능
 async function addItem() {
   const newItemInput = document.getElementById('newItem');
   const newItemText = newItemInput.value.trim();
 
   if (newItemText !== "") {
-    const listItem = document.createElement('li');
-    listItem.innerHTML = `
-      <input type="checkbox" onclick="updateProgress('preTripTasks', 'preTripProgress')"> ${newItemText}
-      <button class="remove-btn" onclick="removeItem(this)">X</button>
-    `;
-
-    document.getElementById('preTripTasks').appendChild(listItem);
-    newItemInput.value = "";
-
-    // 서버로 항목 저장 요청 보내기
     try {
       const response = await fetch('/add-todo-item', {
         method: 'POST',
@@ -137,7 +129,17 @@ async function addItem() {
         body: JSON.stringify({ item: newItemText })
       });
 
-      if (!response.ok) {
+      if (response.ok) {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+      <input type="checkbox" onclick="updateProgress('preTripTasks', 'preTripProgress')"> ${newItemText}
+      <button class="remove-btn" data-item-text="${newItemText}" onclick="removeItem(this)">X</button>
+    `;
+
+        document.getElementById('preTripTasks').appendChild(listItem);
+        newItemInput.value = "";
+        updateProgress('preTripTasks', 'preTripProgress');
+      } else {
         console.error('항목 저장 실패:', response.statusText);
       }
     } catch (error) {
@@ -146,30 +148,28 @@ async function addItem() {
   }
 }
 
-function removeItem(button) {
-  const listItem = button.parentElement;
-  listItem.remove();
-  updateProgress('preTripTasks', 'preTripProgress');
-}
+// 항목 삭제 기능
+async function removeItem(button) {
+  const itemText = button.getAttribute('data-item-text');
 
-async function fetchTodoItems() {
   try {
-    const response = await fetch('/get-todo-items');
-    const items = await response.json();
-
-    const preTripTasks = document.getElementById('preTripTasks');
-    items.forEach(item => {
-      const listItem = document.createElement('li');
-      listItem.innerHTML = `
-        <input type="checkbox" onclick="updateProgress('preTripTasks', 'preTripProgress')"> ${item.text}
-        <button class="remove-btn" onclick="removeItem(this)">X</button>
-      `;
-      preTripTasks.appendChild(listItem);
+    const response = await fetch(`/delete-todo-item/${encodeURIComponent(itemText)}`, {
+      method: 'DELETE'
     });
+
+    if (response.ok) {
+      const listItem = button.parentElement;
+      listItem.remove();
+      updateProgress('preTripTasks', 'preTripProgress');
+    } else {
+      console.error('항목 삭제 실패:', response.statusText);
+    }
   } catch (error) {
-    console.error('To-Do 항목 가져오는 중 오류 발생:', error);
+    console.error('항목 삭제 중 오류 발생:', error);
   }
 }
+
+
 
 window.onload = () => {
   fetchTodoItems();

@@ -273,6 +273,7 @@ router.post('/travel-info', async (req, res) => {
 });
 
 
+
 // To-Do 항목 추가
 router.post('/add-todo-item', async (req, res) => {
     const { item } = req.body;
@@ -309,6 +310,32 @@ router.post('/add-todo-item', async (req, res) => {
       res.status(500).json({ message: '서버 오류' });
     }
   });
+
+  router.delete('/delete-todo-item/:itemText', async (req, res) => {
+    // URL 파라미터에서 itemText 추출 및 디코딩
+    const itemText = decodeURIComponent(req.params.itemText);
+    const userId = req.session.user.id;
+
+    if (!itemText || !userId) {
+        return res.status(400).json({ message: '항목과 사용자 ID는 필수입니다.' });
+    }
+
+    try {
+        // SQL 쿼리에서 안전하게 항목 삭제
+        const sql = `DELETE FROM tb_todo_items WHERE user_id = ? AND item_text = ?`;
+        const [result] = await pool.query(sql, [userId, itemText]);
+
+        // 삭제된 항목 수를 확인하여 성공 여부 판별
+        if (result.affectedRows > 0) {
+            res.status(200).json({ message: '항목이 성공적으로 삭제되었습니다.' });
+        } else {
+            res.status(404).json({ message: '항목을 찾을 수 없습니다.' });
+        }
+    } catch (err) {
+        console.error('To-Do 항목 삭제 중 오류 발생:', err.message);
+        res.status(500).json({ message: '서버 오류' });
+    }
+});
 
 
 module.exports = router;

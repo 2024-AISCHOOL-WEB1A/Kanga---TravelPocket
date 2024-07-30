@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,9 +18,51 @@
 
 </head>
 
-<div data-include-path="../../static/templates/header.html" class="header"></div>
 
+<body class="hero-anime">
 
+    <div class="navigation-wrap bg-light start-header start-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="/main">Travel Pocket</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/main">Home</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="checklistLink">
+                                    <a class="nav-link" href="/checklist">CheckList</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="newsletterLink">
+                                    <a class="nav-link" href="/newsletter">Newsletter</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="chatbotLink">
+                                    <a class="nav-link" href="/chatbot">ChatBot</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
+                                    <a class="nav-link" href="/login">Login / Join</a>
+                                </li>
+                                <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
+                                    <a class="nav-link" href="/mypage">MyPage</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="title">NEWS-LETTER</div>
     <div class="slider-container">
         <button class="slider-button left" onclick="slideLeft()">&#10094;</button>
@@ -27,7 +70,8 @@
             <div class="card" data-group="1" onclick="showModal(this, 'detailedContent1')">
                 <div class="card-header">
                     <div>
-                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s="
+                            alt="User Image">
                         <div>USA</div>
                         <div class="text-secondary">모든 주</div>
                     </div>
@@ -45,7 +89,8 @@
             <div class="card" data-group="1" onclick="showModal(this, 'detailedContent2')">
                 <div class="card-header">
                     <div>
-                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s="
+                            alt="User Image">
                         <div>USA</div>
                         <div class="text-secondary">모든 주</div>
                     </div>
@@ -63,7 +108,8 @@
             <div class="card" data-group="1" onclick="showModal(this, 'detailedContent3')">
                 <div class="card-header">
                     <div>
-                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s="
+                            alt="User Image">
                         <div>USA</div>
                         <div class="text-secondary">모든 주</div>
                     </div>
@@ -81,7 +127,8 @@
             <div class="card" data-group="2" onclick="showModal(this, 'detailedContent4')">
                 <div class="card-header">
                     <div>
-                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s="
+                            alt="User Image">
                         <div>USA</div>
                         <div class="text-secondary">모든 주</div>
                     </div>
@@ -99,7 +146,8 @@
             <div class="card" data-group="2" onclick="showModal(this, 'detailedContent5')">
                 <div class="card-header">
                     <div>
-                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s="
+                            alt="User Image">
                         <div>USA</div>
                         <div class="text-secondary">모든 주</div>
                     </div>
@@ -117,7 +165,8 @@
             <div class="card" data-group="2" onclick="showModal(this, 'detailedContent6')">
                 <div class="card-header">
                     <div>
-                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s=" alt="User Image">
+                        <img src="https://media.istockphoto.com/id/955320026/ko/%EB%B2%A1%ED%84%B0/%EB%AF%B8%EA%B5%AD%EC%9E%85%EB%8B%88%EA%B9%8C-%ED%94%8C%EB%9E%99-%EC%95%84%EC%9D%B4%EC%BD%98%ED%81%AC%EA%B8%B0.jpg?s=612x612&w=0&k=20&c=xjncAfC3izMPZDD9FViA9_p-JpTmoe8K5jpll6BHp6s="
+                            alt="User Image">
                         <div>USA</div>
                         <div class="text-secondary">모든 주</div>
                     </div>
@@ -146,4 +195,5 @@
     <script src="../../static/sessioncheck.js"></script>
     <script></script>
 </body>
+
 </html>

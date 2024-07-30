@@ -27,13 +27,13 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="/main">Home</a>
                                 </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="checklistLink">
                                     <a class="nav-link" href="/checklist">CheckList</a>
                                 </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="newsletterLink">
                                     <a class="nav-link" href="/newsletter">Newsletter</a>
                                 </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="chatbotLink">
                                     <a class="nav-link" href="/chatbot">ChatBot</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
@@ -64,10 +64,17 @@
                         $('#loginLink').addClass('d-none');
                         $('#logoutLink').removeClass('d-none');
                         $('#myPageLink').removeClass('d-none');
+                        $('#checklistLink').removeClass('d-none');
+                        $('#chatbotLink').removeClass('d-none');
+                        $('#newsletterLink').removeClass('d-none');
+
                     } else {
                         $('#loginLink').removeClass('d-none');
                         $('#logoutLink').addClass('d-none');
                         $('#myPageLink').addClass('d-none');
+                        $('#checklistLink').addClass('d-none');
+                        $('#chatbotLink').addClass('d-none');
+                        $('#newsletterLink').addClass('d-none');
                     }
                 },
                 error: function(error) {
