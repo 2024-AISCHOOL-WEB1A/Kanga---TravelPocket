@@ -139,7 +139,7 @@ router.get('/travel-info', async (req, res) => {
     try {
         // tb_travel_info 테이블에서 유저 ID에 해당하는 여행 정보 조회
         const sql = `
-            SELECT start_date, end_date, event_name, description, companion_num, 
+            SELECT start_date, end_date,  
                 companion_kid_YN, companion_teenager_YN, companion_adult_YN, 
                 companion_pet_YN, companion_disabled_YN 
             FROM tb_travel_info 
