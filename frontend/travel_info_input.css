@@ -14,6 +14,7 @@ body {
     padding: 20px;
     max-width: 600px;
     width: 100%;
+    position: relative; /* 상대적 위치 지정 */
 }
 .search-container div {
     margin-bottom: 15px;
@@ -73,6 +74,7 @@ body {
     max-height: 200px;
     overflow-y: auto;
     z-index: 1;
+    top: calc(100% + 5px); /* 상단에서 아래로 조금 떨어뜨림 */
 }
 .dropdown div {
     padding: 10px;

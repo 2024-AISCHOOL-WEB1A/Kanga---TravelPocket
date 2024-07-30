@@ -34,13 +34,13 @@
                     travelInfoList.innerHTML = '';
 
                     result.forEach(info => {
+                        const startDate = new Date(info.start_date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+                        const endDate = new Date(info.end_date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
                         const listItem = document.createElement('li');
                         listItem.innerHTML = `
-                            <p><strong>시작 날짜:</strong> ${info.start_date}</p>
-                            <p><strong>종료 날짜:</strong> ${info.end_date}</p>
-                            <p><strong>이벤트 이름:</strong> ${info.event_name || 'N/A'}</p>
-                            <p><strong>설명:</strong> ${info.description || 'N/A'}</p>
-                            <p><strong>동반자 수:</strong> ${info.companion_num}</p>
+                            <p><strong>여행 시작 날짜:</strong> ${startDate}</p>
+                            <p><strong>여행 종료 날짜:</strong> ${endDate}</p>
                             <p><strong>아이 동반 여부:</strong> ${info.companion_kid_YN ? '예' : '아니오'}</p>
                             <p><strong>청소년 동반 여부:</strong> ${info.companion_teenager_YN ? '예' : '아니오'}</p>
                             <p><strong>성인 동반 여부:</strong> ${info.companion_adult_YN ? '예' : '아니오'}</p>
