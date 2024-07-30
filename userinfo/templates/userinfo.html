@@ -1,110 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>여행 검색 폼</title>
     <link rel="stylesheet" href="../css/userinfo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <div class="left-side">
-        <div class="site-header autocomplete">
-            <div class="input-wrapper">
-                <input type="text" placeholder="떠날 국가를 선택해주세요 !" class="search-field" id="search-input">
-                <div class="focus-background"></div>
-            </div>
-            <div class="dialog" id="dropdown-menu">
-                <div class="dropdown-item" data-value="스위스">스위스</div>
-                <div class="dropdown-item" data-value="일본">일본</div>
-                <div class="dropdown-item" data-value="중국">중국</div>
-                <div class="dropdown-item" data-value="필리핀">필리핀</div>
-                <div class="dropdown-item" data-value="싱가포르">싱가포르</div>
-                <div class="dropdown-item" data-value="인도네시아">인도네시아</div>
-                <div class="dropdown-item" data-value="홍콩">홍콩</div>
-                <div class="dropdown-item" data-value="대만">대만</div>
-                <div class="dropdown-item" data-value="태국">태국</div>
-                <div class="dropdown-item" data-value="베트남">베트남</div>
-                <div class="dropdown-item" data-value="미국">미국</div>
-                <div class="dropdown-item" data-value="괌">괌</div>
-                <div class="dropdown-item" data-value="캐나다">캐나다</div>
-            </div>
-        </div>
-        <div id="people-ment">여행을 떠날 인원을 선택해주세요 !</div>
-        <div class="people-form">
-            <div class="checkboxes">
-                <label><input type="checkbox" name="companion_kid_YN" value="1"> 아이</label>
-                <label><input type="checkbox" name="companion_teenager_YN" value="1"> 청소년</label>
-                <label><input type="checkbox" name="companion_adult_YN" value="1"> 성인</label>
-                <label><input type="checkbox" name="companion_pet_YN" value="1"> 반려동물</label>
-                <label><input type="checkbox" name="companion_disabled_YN" value="1"> 장애인</label>
-            </div>
-        </div>
-        
-    </div>
-
-    <div class="right-side">
-        <div id="calendar"></div>
-    </div>
-
-    <div id="calendar-popup">
-        <form id="event-form">
-            <div class='calander_popip_title'><i class="fa fa-calendar" aria-hidden="true"></i> Add Event</div>
-            <ul>
-                <li>
-                    <label for="event-start"><i class="fa fa-bell-o" aria-hidden="true"></i> From</label>
-                    <input id="event-start" class='form-control' type="datetime-local" name="start"/>
-                </li>
-                <li>
-                    <label for="event-end"><i class="fa fa-bell-slash" aria-hidden="true"></i> To</label>
-                    <input id="event-end" class='form-control' type="datetime-local" name="end"/>
-                </li>
-                <li>
-                    <label for="event-title"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> Event Name</label>
-                    <input id="event-title" class='form-control' type="text" name="title"/>
-                </li>
-                <div class="button">
-                    <input type="submit" class='form-control submit_btn'/>
+    <div class="search-container">
+        <form id="travelForm">
+            <div style="position: relative;">
+                <input type="text" placeholder="어디로 떠나시나요?" id="destination">
+                <div class="dropdown" id="dropdown">
+                    <!-- 데이터가 포함된 div 요소들 -->
+                    <div data-country-name="일본">일본</div>
+                    <div data-country-name="중국">중국</div>
+                    <div data-country-name="필리핀">필리핀</div>
+                    <div data-country-name="싱가포르">싱가포르</div>
+                    <div data-country-name="인도네시아">인도네시아</div>
+                    <!-- <div data-country-name="타이완">타이완</div> -->
+                    <div data-country-name="태국">태국</div>
+                    <div data-country-name="베트남">베트남</div>
+                    <div data-country-name="미국">미국</div>
+                    <div data-country-name="괌">괌</div>
+                    <div data-country-name="캐나다">캐나다</div>
+                    <div data-country-name="호주">호주</div>
                 </div>
-            </ul>
+            </div>
+            <div class="date-group" id="dateGroup" style="display: none;">
+                <div>
+                    <label for="start_date">출발 날짜</label>
+                    <input type="date" id="checkin">
+                </div>
+                <div>
+                    <label for="end_date">도착 날짜</label>
+                    <input type="date" id="checkout">
+                </div>
+            </div>
+            <div class="guest-group" id="guestGroup" style="display: none;">
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="child"> 아이</label>
+                    <label><input type="checkbox" id="teen"> 청소년</label>
+                    <label><input type="checkbox" id="adult"> 성인</label>
+                    <label><input type="checkbox" id="pet"> 반려동물</label>
+                    <label><input type="checkbox" id="disabled"> 장애인</label>
+                </div>
+            </div>
+            <div>
+                <button id="submitBtn" type="submit" style="width: 100%;">출발하기</button>
+            </div>
         </form>
-        <div class="prong">
-            <div class="bottom-prong-dk"></div>
-            <div class="bottom-prong-lt"></div>
-        </div>
     </div>
-    <div class='modle' id='simplemodal'>
-        <div class='modle-continer'>
-            <form id="edit-form">
-                <div class='modal-header'>
-                    <span class='close-btn' id='close-btnid'>&times</span>
-                    <h2>Edit Event</h2>
-                </div>
-                <div class='modal-body'>
-                    <label for='eventname'>Event Name</label>
-                    <input type='text' name='eventname' id='eventname' class='form-control'>
-                    <label for='location'>Location</label>
-                    <input type='text' name='location' id='location' class='form-control'>
-                    <label for="event-start">From</label><input id="eventstart" type="datetime-local" name="start" class='form-control'/>
-                    <label for="event-end">To</label>
-                    <input id="eventend" type="datetime-local" name="end" class='form-control'/>
-                    <label for="event-details">Details</label>
-                    <textarea id="eventdetails" type='text' name="details" class='form-control'></textarea>
-                </div>
-                <div class='modal-footer'>
-                    <button type='submit' class='btn btn-info'>save</button>
-                    <button class='btn btn-dafault'>cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div id='search_result'>result</div>
-    <a href="/checklist"><button class="fixed-button" type="submit">다음</button></a>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script src="../userinfo.js"></script>
+    <script>
+        const destinationInput = document.getElementById('destination');
+        const dropdown = document.getElementById('dropdown');
+        const dateGroup = document.getElementById('dateGroup');
+        const guestGroup = document.getElementById('guestGroup');
+        const travelForm = document.getElementById('travelForm');
+        let userId;
 
+        async function fetchCountries() {
+            try {
+                const response = await fetch('/countries');
+                if (!response.ok) {
+                    throw new Error('국가 데이터를 가져오는 데 실패했습니다');
+                }
+                const countries = await response.json();
+                
+                dropdown.querySelectorAll('div').forEach((div) => {
+                    const countryName = div.dataset.countryName;
+                    const countryData = countries.find(country => country.country_name === countryName);
+                    if (countryData) {
+                        div.dataset.countryIdx = countryData.country_idx;
+                    } else {
+                        console.warn("국가 데이터가 없거나 잘못된 국가 이름: ${countryName}");
+                    }
+                });
+            } catch (error) {
+                console.error('국가 데이터를 가져오는 데 오류 발생:', error);
+            }
+        }
+
+   
+
+   
+
+        async function fetchUserInfo() {
+            try {
+                const response = await fetch('/session');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            
+                const data = await response.json();
+                if (data.loggedIn) {
+                    console.log('로그인 상태:', data.user);
+                    userId = data.user.id; // 전역 변수에 userId를 저장
+                    console.log('사용자 ID:', userId);
+                } else {
+                    console.log('로그인되지 않은 상태입니다.');
+                }
+            } catch (error) {
+                console.error('로그인 상태 확인 중 오류:', error);
+            }
+        }
+        fetchUserInfo();
+
+        destinationInput.addEventListener('focus', () => {
+            dropdown.style.display = 'block';
+        });
+
+        dropdown.addEventListener('click', (e) => {
+            if (e.target.tagName === 'DIV') {
+                destinationInput.value = e.target.textContent;
+                destinationInput.dataset.countryIdx = e.target.dataset.countryIdx;
+                dropdown.style.display = 'none';
+                dateGroup.style.display = 'flex';
+            }
+        });
+
+        document.getElementById('checkout').addEventListener('change', () => {
+            guestGroup.style.display = 'flex';
+        });
+
+        travelForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const country_idx = destinationInput.dataset.countryIdx;
+            const start_date = document.getElementById('checkin').value;
+            const end_date = document.getElementById('checkout').value;
+            const companion_kid_YN = document.getElementById('child').checked ? 1 : 0;
+            const companion_teenager_YN = document.getElementById('teen').checked ? 1 : 0;
+            const companion_adult_YN = document.getElementById('adult').checked ? 1 : 0;
+            const companion_pet_YN = document.getElementById('pet').checked ? 1 : 0;
+            const companion_disabled_YN = document.getElementById('disabled').checked ? 1 : 0;
+            
+            try {
+                const response = await fetch('/save-country', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ country_idx, userId, start_date, end_date,
+                                           companion_kid_YN, companion_teenager_YN, companion_adult_YN,
+                                           companion_pet_YN, companion_disabled_YN })
+                });
+            
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+            
+                const data = await response.json();
+                console.log(data.message);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+        
+
+        // 페이지 로드 시 사용자 정보와 국가 데이터를 가져옴
+        fetchUserInfo();
+        fetchCountries();
+    </script>
 </body>
+
 </html>

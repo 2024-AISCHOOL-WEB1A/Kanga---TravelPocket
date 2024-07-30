@@ -49,17 +49,55 @@ const userRouter = require('./routes/userRouter');
 app.use('/', mainRouter);
 app.use('/', userRouter);
 
-app.post('/save-country', (req, res) => {
-    const { country_idx, country_name } = req.body;
-    const query = 'INSERT INTO tb_travel_country (country_idx, country_name) VALUES (?, ?)';
-    pool.query(query, [country_idx, country_name], (error, results) => {
-        if (error) {
-            console.error('데이터 삽입에 오류 발생 :', error.stack);
-            res.status(500).send('데이터베이스에 저장 실패');
-            return;
-        }
-        res.status(200).json({ message: '국가 정보 전달 성공' });
-    });
+// 유저가 입력한 정보 전달용
+app.post('/save-country', async (req, res) => {
+    const { country_name, start_date, end_date,
+        companion_kid_YN, companion_teenager_YN,
+        companion_adult_YN, companion_pet_YN, companion_disabled_YN } = req.body;
+    const user_id = req.session.user_id; // 현재 로그인 중인 사용자 ID 가져오기
+
+    if (!user_id) {
+        return res.status(401).send('로그인이 필요합니다');
+    }
+
+    const query = `
+        INSERT INTO tb_travel_info (user_id, country_name, start_date, end_date,
+            companion_kid_YN, companion_teenager_YN,
+            companion_adult_YN, companion_pet_YN, companion_disabled_YN)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    try {
+        const [results] = await pool.query(query, [user_id, country_name, start_date, end_date,
+            companion_kid_YN, companion_teenager_YN,
+            companion_adult_YN, companion_pet_YN, companion_disabled_YN]);
+        res.status(200).json({ message: '국가 정보 전달 성공', results });
+    } catch (error) {
+        console.error('데이터 삽입에 오류 발생 :', error.stack);
+        res.status(500).send('데이터베이스에 저장 실패');
+    }
+});
+
+// 사용자 정보 조회
+app.get('/user-info', (req, res) => {
+    const user_id = req.session.user_id;
+    if (!user_id) {
+        return res.status(401).json({ message: '로그인이 필요합니다' });
+    }
+    res.status(200).json({ user_id });
+});
+
+
+
+// 국가 데이터 가져와서 컨트리 이름에 따른 인덱스 추가
+app.get('/countries', async (req, res) => {
+    const query = 'SELECT country_idx, country_name FROM tb_country';
+    try {
+        const [results] = await pool.query(query);
+        res.status(200).json(results);
+    } catch (error) {
+        console.error('데이터 조회에 오류 발생:', error.stack);
+        res.status(500).send('데이터베이스 조회 실패');
+    }
 });
 
 
@@ -90,44 +128,7 @@ app.post('/chatbot', async (req, res) => {
     }
 });
 
-// 챗봇 1(원래코드용 - test.py에 있음)
-// app.post('/query', async (req, res) => { 
-//     const queryText = req.body.query;
-//     if (!queryText) {
-//         return res.status(400).json({ result: '잘못된 요청입니다. query 파라미터를 확인해주세요.' });
-//     }
 
-//     try {
-//         const response = await openai.chat.completions.create({
-//             model: 'gpt-3.5-turbo',
-//             messages: [{ role: 'user', content: queryText }],
-//         });
-//         res.json({ result: response.choices[0].message.content });
-//     } catch (error) {
-//         res.status(500).json({ result: '서버에서 오류가 발생했습니다.' });
-//     }
-// });
-
-// app.post('/query', (req, res) => {
-//     const userQuery = req.body.query;
-
-//     // Python 스크립트를 호출하고 사용자 쿼리를 인수로 전달
-//     const pythonProcess = spawn('python', ['./chatbot/chatbot.py', userQuery]);
-
-//     pythonProcess.stdout.on('data', (data) => {
-//         res.json({ result: data.toString() });
-//     });
-
-//     pythonProcess.stderr.on('data', (data) => {
-//         console.error(`stderr: ${data}`);
-//     });
-
-//     pythonProcess.on('close', (code) => {
-//         console.log(`Python script finished with code ${code}`);
-//     });
-// });
-// 
-// //됐다가 안되는 코드
 
 app.post('/query', async (req, res) => {
     const userQuery = req.body.query;
@@ -157,6 +158,7 @@ app.post('/query', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while processing your request.' });
     }
 });
+
 
 app.listen(port, () => {
     console.log(`서버가 포트 ${port}에서 실행 중입니다.`);
