@@ -38,18 +38,17 @@
         </div>
         <div class="guest-group" id="guestGroup" style="display: none;">
             <div class="checkbox-group">
-                아이<input type="checkbox"> 
-                <input type="checkbox"> 청소년
-                <input type="checkbox"> 성인
-                <input type="checkbox"> 반려동물
-                <input type="checkbox"> 장애인
+                <label>아이<input type="checkbox" id="companion_kid"></label>
+                <label>청소년<input type="checkbox" id="companion_teenager"></label>
+                <label>성인<input type="checkbox" id="companion_adult"></label>
+                <label>반려동물<input type="checkbox" id="companion_pet"></label>
+                <label>장애인<input type="checkbox" id="companion_disabled"></label>
             </div>
         </div>
         <div>
-            <button style="width: 100%;">출발하기</button>
+            <button id="submitBtn" style="width: 100%;">출발하기</button>
         </div>
     </div>
-    <!-- 올바른 경로로 설정 -->
-    <script src="/travel_info_input.js"></script>
+    <script src="travel_info_input.js"></script>
 </body>
 </html>
