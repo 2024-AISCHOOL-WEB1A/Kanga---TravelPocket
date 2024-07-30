@@ -35,6 +35,7 @@ async function fetchDocInfo() {
         if (info.start_date) {
           calculateDDay(info.start_date);
         }
+
       });
 
     } else {
