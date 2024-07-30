@@ -32,7 +32,19 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+  font-family: 'UhBeeJJIBBABBA';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeJJIBBABBA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  }
 
+  @font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}  
 /* Applying the Fonts */
 body {
     font-family: Rubik, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -56,7 +68,9 @@ body {
   }
   .checklist2{
     overflow-y: auto;
-    max-height: 360px; 
+    max-height: 360px;
+    font-family: 'GmarketSansMedium';
+
   }
   
   h1 {
@@ -152,4 +166,9 @@ body {
     border-radius: 5px;
     margin-top: 5px;
     color: #333;
+  }
+
+  #checklist-title{
+    margin-top: 50px;
+    font-family: 'UhBeeJJIBBABBA'
   }
