@@ -10,82 +10,120 @@
 
 <body>
     <div class="search-container">
-        <form id="travelForm">
-            <div style="position: relative;">
-                <input type="text" placeholder="어디로 떠나시나요?" id="destination">
-                <div class="dropdown" id="dropdown">
-                    <!-- 데이터가 포함된 div 요소들 -->
-                    <div data-country-name="일본">일본</div>
-                    <div data-country-name="중국">중국</div>
-                    <div data-country-name="필리핀">필리핀</div>
-                    <div data-country-name="싱가포르">싱가포르</div>
-                    <div data-country-name="인도네시아">인도네시아</div>
-                    <!-- <div data-country-name="타이완">타이완</div> -->
-                    <div data-country-name="태국">태국</div>
-                    <div data-country-name="베트남">베트남</div>
-                    <div data-country-name="미국">미국</div>
-                    <div data-country-name="괌">괌</div>
-                    <div data-country-name="캐나다">캐나다</div>
-                    <div data-country-name="호주">호주</div>
-                </div>
+        <div style="position: relative;">
+            <input type="text" placeholder="어디로 떠나시나요?" id="destination">
+            <div class="dropdown" id="dropdown">
+                <div>스위스</div>
+                <div>일본</div>
+                <div>중국</div>
+                <div>필리핀</div>
+                <div>싱가포르</div>
+                <div>인도네시아</div>
+                <div>홍콩</div>
+                <div>타이완</div>
+                <div>태국</div>
+                <div>베트남</div>
+                <div>미국</div>
+                <div>괌</div>
+                <div>캐나다</div>
             </div>
-            <div class="date-group" id="dateGroup" style="display: none;">
-                <div>
-                    <label for="start_date">출발 날짜</label>
-                    <input type="date" id="checkin">
-                </div>
-                <div>
-                    <label for="end_date">도착 날짜</label>
-                    <input type="date" id="checkout">
-                </div>
-            </div>
-            <div class="guest-group" id="guestGroup" style="display: none;">
-                <div class="checkbox-group">
-                    <label><input type="checkbox" id="child"> 아이</label>
-                    <label><input type="checkbox" id="teen"> 청소년</label>
-                    <label><input type="checkbox" id="adult"> 성인</label>
-                    <label><input type="checkbox" id="pet"> 반려동물</label>
-                    <label><input type="checkbox" id="disabled"> 장애인</label>
-                </div>
+        </div>
+        <div class="date-group" id="dateGroup" style="display: none;">
+            <div>
+                <label for="checkin">출발 날짜</label>
+                <input type="date" id="checkin">
             </div>
             <div>
-                <button id="submitBtn" type="submit" style="width: 100%;">출발하기</button>
+                <label for="checkout">도착 날짜</label>
+                <input type="date" id="checkout">
             </div>
-        </form>
+        </div>
+        <div class="guest-group" id="guestGroup" style="display: none;">
+            <div class="checkbox-group">
+                <input type="checkbox" id="companion_kid">아이
+                <input type="checkbox" id="companion_teenager">청소년
+                <input type="checkbox" id="companion_adult">성인
+                <input type="checkbox" id="companion_pet">반려동물
+                <input type="checkbox" id="companion_disabled">장애인
+            </div>
+        </div>
+        <div>
+            <button style="width: 100%;">출발하기</button>
+        </div>
     </div>
+
+    <!-- <script src="../test.js"></script> -->
     <script>
         const destinationInput = document.getElementById('destination');
         const dropdown = document.getElementById('dropdown');
         const dateGroup = document.getElementById('dateGroup');
         const guestGroup = document.getElementById('guestGroup');
-        const travelForm = document.getElementById('travelForm');
-        let userId;
+        const submitBtn = document.querySelector('button');
 
-        async function fetchCountries() {
-            try {
-                const response = await fetch('/countries');
-                if (!response.ok) {
-                    throw new Error('국가 데이터를 가져오는 데 실패했습니다');
-                }
-                const countries = await response.json();
-                
-                dropdown.querySelectorAll('div').forEach((div) => {
-                    const countryName = div.dataset.countryName;
-                    const countryData = countries.find(country => country.country_name === countryName);
-                    if (countryData) {
-                        div.dataset.countryIdx = countryData.country_idx;
-                    } else {
-                        console.warn("국가 데이터가 없거나 잘못된 국가 이름: ${countryName}");
-                    }
-                });
-            } catch (error) {
-                console.error('국가 데이터를 가져오는 데 오류 발생:', error);
-            }
-        }
+        const countryMapping = {
+            '그리스': 1,
+            '남아프리카공화국': 2,
+            '네팔': 3,
+            '뉴질랜드': 4,
+            '니카라과': 5,
+            '타이완': 6,
+            '덴마크': 7,
+            '독일': 8,
+            '라오스': 9,
+            '러시아': 10,
+            '레바논': 11,
+            '멕시코': 12,
+            '모리셔스': 13,
+            '몽골': 14,
+            '미국': 15,
+            '미얀마': 16,
+            '방글라데시': 17,
+            '볼리비아': 18,
+            '세네갈': 19,
+            '수단': 20,
+            '스웨덴': 21,
+            '아랍에미리트': 22,
+            '아르헨티나': 23,
+            '아이슬란드': 24,
+            '에콰도르': 25,
+            '엘살바도르': 26,
+            '오만': 27,
+            '온두라스': 28,
+            '이라크': 29,
+            '이란': 30,
+            '이스라엘': 31,
+            '일본': 32,
+            '중국': 33,
+            '칠레': 34,
+            '캄보디아': 35,
+            '캐나다': 36,
+            '케냐': 37,
+            '콜롬비아': 38,
+            '쿠바': 39,
+            '태국': 40,
+            '튀니지': 41,
+            '튀르키예': 42,
+            '파라과이': 43,
+            '파키스탄': 44,
+            '파푸아뉴기니': 45,
+            '페루': 46,
+            '프랑스': 47,
+            '필리핀': 48,
+            '호주': 49,
+            '미지정': 184,
+            '베트남': 185,
+            '싱가포르': 186,
+            '인도네시아': 187,
+            '중국': 188,
+            '태국': 189,
+            '미국': 190,
+            '괌': 191,
+            '캐나다': 192,
+            '호주': 193,
+            '스위스': 194,
+            '홍콩': 195
+        };
 
-   
-
-   
 
         async function fetchUserInfo() {
             try {
@@ -93,7 +131,7 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-            
+
                 const data = await response.json();
                 if (data.loggedIn) {
                     console.log('로그인 상태:', data.user);
@@ -108,6 +146,7 @@
         }
         fetchUserInfo();
 
+
         destinationInput.addEventListener('focus', () => {
             dropdown.style.display = 'block';
         });
@@ -115,7 +154,6 @@
         dropdown.addEventListener('click', (e) => {
             if (e.target.tagName === 'DIV') {
                 destinationInput.value = e.target.textContent;
-                destinationInput.dataset.countryIdx = e.target.dataset.countryIdx;
                 dropdown.style.display = 'none';
                 dateGroup.style.display = 'flex';
             }
@@ -125,43 +163,41 @@
             guestGroup.style.display = 'flex';
         });
 
-        travelForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const country_idx = destinationInput.dataset.countryIdx;
-            const start_date = document.getElementById('checkin').value;
-            const end_date = document.getElementById('checkout').value;
-            const companion_kid_YN = document.getElementById('child').checked ? 1 : 0;
-            const companion_teenager_YN = document.getElementById('teen').checked ? 1 : 0;
-            const companion_adult_YN = document.getElementById('adult').checked ? 1 : 0;
-            const companion_pet_YN = document.getElementById('pet').checked ? 1 : 0;
-            const companion_disabled_YN = document.getElementById('disabled').checked ? 1 : 0;
-            
+        submitBtn.addEventListener('click', async () => {
+            const travelInfo = {
+                country_idx: countryMapping[destinationInput.value],
+                start_date: document.getElementById('checkin').value,
+                end_date: document.getElementById('checkout').value,
+                companion_kid_YN: document.getElementById('companion_kid').checked ? 1 : 0,
+                companion_teenager_YN: document.getElementById('companion_teenager').checked ? 1 : 0,
+                companion_adult_YN: document.getElementById('companion_adult').checked ? 1 : 0,
+                companion_pet_YN: document.getElementById('companion_pet').checked ? 1 : 0,
+                companion_disabled_YN: document.getElementById('companion_disabled').checked ? 1 : 0
+            };
+        
             try {
-                const response = await fetch('/save-country', {
+                console.log('Sending travel info:', travelInfo); // 전송 전 로그 출력
+                const response = await fetch('/travel-info', { // 경로가 맞는지 확인하세요
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ country_idx, userId, start_date, end_date,
-                                           companion_kid_YN, companion_teenager_YN, companion_adult_YN,
-                                           companion_pet_YN, companion_disabled_YN })
+                    body: JSON.stringify(travelInfo)
                 });
-            
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+        
+                if (response.ok) {
+                    alert('여행 정보가 저장되었습니다.');
+                } else {
+                    const result = await response.json();
+                    alert('저장 실패: ' + result.message);
                 }
-            
-                const data = await response.json();
-                console.log(data.message);
             } catch (error) {
-                console.error('Error:', error);
+                console.error('저장 중 오류:', error);
+                alert('저장 중 오류가 발생했습니다.');
             }
         });
         
 
-        // 페이지 로드 시 사용자 정보와 국가 데이터를 가져옴
-        fetchUserInfo();
-        fetchCountries();
     </script>
 </body>
 
