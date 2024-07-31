@@ -86,16 +86,17 @@ body {
     display: flex; /* 플렉스 박스 사용 */
     flex-wrap: wrap; /* 필요시 줄 바꿈 */
 }
+.checkbox-group {
+    display: flex; /* 플렉스 박스 사용 */
+    flex-wrap: wrap; /* 필요시 줄 바꿈 */
+}
 .checkbox-group label {
     display: inline-flex; /* 인라인 플렉스 박스 사용 */
     align-items: center;
-    justify-content: center; /* 가운데 정렬 */
-    margin-bottom: 10px;
-    margin-right: 10px; /* 레이블 간 간격 조절 */
+    margin-right: 30px; /* 레이블 간 간격 조절 */
+    white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
 }
 .checkbox-group input[type="checkbox"] {
-    transform: scale(1.2); /* 체크박스 크기를 키움 */
     margin-right: 5px; /* 체크박스와 텍스트 간 간격 조절 */
+    transform: scale(1.2); /* 체크박스 크기 조정 (선택 사항) */
 }
-
-
