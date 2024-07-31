@@ -45,8 +45,10 @@ body {
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 23px;
-    font-family: 'GmarketSansMedium'
+    font-size: 21px;
+    font-family: 'GmarketSansMedium';
+    color: #000;
+    
 }
 .card-footer {
     display: flex;
