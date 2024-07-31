@@ -2,17 +2,17 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
 
 @font-face {
-    font-family: 'JSDongkang-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'JSDongkang-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'DungGeunMo';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* Applying the Fonts */
@@ -20,354 +20,351 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
 
 @font-face {
-    font-family: 'JSDongkang-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'JSDongkang-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'DungGeunMo';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
+
 @font-face {
   font-family: 'UhBeeJJIBBABBA';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeJJIBBABBA.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-  }
+}
 
-  @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}  
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container1 {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+.checklist2 {
+  overflow-y: auto;
+  max-height: 360px;
+  font-family: 'GmarketSansMedium';
+
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  
+  margin-bottom: 20px;
+}
+div.container1{
+  margin-top: 150px;
+}
+.checklist-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+
+.checklist {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  width: 45%;
+  /* 좌우로 나란히 배치하기 위해 너비를 45%로 설정 */
+  color: #333;
+
+}
+
+.checklist h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #585afa;
+}
+
+.checklist ul {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  position: relative;
+}
+
+.checklist input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.checklist progress {
+  width: 100%;
+  height: 20px;
+  margin-top: 10px;
+}
+
+#newItem {
+  width: calc(100% - 80px);
+  padding: 5px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #585afa;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #3333cc;
+}
+
+.details-btn {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: #585afa;
+  cursor: pointer;
+}
+
+.details {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  color: #333;
+}
+
+#checklist-title {
+  margin-top: 50px;
+  font-family: 'UhBeeJJIBBABBA'
+}
+
+
 /* Applying the Fonts */
-body {
-    font-family: Rubik, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    letter-spacing: .02em;
-    color: #f5f5f5;
-    background: #585afa;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .container1 {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    
-  }
-  .checklist2{
-    overflow-y: auto;
-    max-height: 360px;
-    font-family: 'GmarketSansMedium';
+body.test {
+  font-family: Rubik, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  margin-top: 50;
+  letter-spacing: .02em;
+  color: #f5f5f5;
+  /* background: #585afa; */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  }
-  
-  h1 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-  }
-  
-  .checklist-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
 
-  }
-  
-  .checklist {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 10px;
-    width: 45%; /* 좌우로 나란히 배치하기 위해 너비를 45%로 설정 */
-    color: #333;
-    
-  }
-  
-  .checklist h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #585afa;
-  }
-  
-  .checklist ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .checklist li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
-    position: relative;
-  }
-  
-  .checklist input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  .checklist progress {
-    width: 100%;
-    height: 20px;
-    margin-top: 10px;
-  }
-  
-  #newItem {
-    width: calc(100% - 80px);
-    padding: 5px;
-    margin-right: 10px;
-  }
-  
-  button {
-    padding: 5px 10px;
-    border: none;
-    background-color: #585afa;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: #3333cc;
-  }
+.container1 {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
 
-  .details-btn {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    color: #585afa;
-    cursor: pointer;
-  }
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
 
-  .details {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    color: #333;
-  }
+.dday {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
 
-  #checklist-title{
-    margin-top: 50px;
-    font-family: 'UhBeeJJIBBABBA'
-  }
+.underline {
+  height: 2px;
+  width: 100%;
+  background-color: #050C9C;
+  margin-bottom: 20px;
+}
 
-    /* CSS를 여기에 추가 */
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-      letter-spacing: .02em;
-      color: #f5f5f5;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+.checklist-container {
+  display: flex;
+  justify-content: space-around;
+}
 
-    .container1 {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
-    }
+.checklist {
+  background: none;
+  padding: 20px;
+  margin: 10px;
+  width: 45%;
+  color: #333;
+}
 
-    h1 {
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
+.checklist h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: left;
+  color: #050C9C;
+  position: relative;
+}
 
-    .dday {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
+.checklist h2::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
 
-    .underline {
-      height: 2px;
-      width: 100%;
-      background-color: #050C9C;
-      margin-bottom: 20px;
-    }
+.checklist ul {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
 
-    .checklist-container {
-      display: flex;
-      justify-content: space-around;
-    }
+.checklist li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  position: relative;
+  padding-bottom: 10px;
+}
 
-    .checklist {
-      background: none;
-      padding: 20px;
-      margin: 10px;
-      width: 45%;
-      color: #333;
-    }
+.checklist li::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
-    .checklist h2 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      text-align: left;
-      color: #050C9C;
-      position: relative;
-    }
+.checklist input[type="checkbox"] {
+  margin-right: 10px;
+}
 
-    .checklist h2::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 2px;
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-    }
+.progress-bar-container {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  margin-top: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
 
-    .checklist ul {
-      list-style: none;
-      padding: 0;
-      max-height: 300px;
-      overflow-y: auto;
-    }
+.progress-bar {
+  height: 100%;
+  background-color: #050C9C;
+  width: 0;
+  transition: width 0.3s;
+}
 
-    .checklist li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 10px 0;
-      position: relative;
-      padding-bottom: 10px;
-    }
+#newItem {
+  width: calc(100% - 90px);
+  padding: 5px;
+  margin-right: 10px;
+}
 
-    .checklist li::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 2px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
+.add-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
 
-    .checklist input[type="checkbox"] {
-      margin-right: 10px;
-    }
+button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #050C9C;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
-    .progress-bar-container {
-      width: 100%;
-      height: 10px;
-      background-color: #e0e0e0;
-      margin-top: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-    }
+button:hover {
+  background-color: #3333cc;
+}
 
-    .progress-bar {
-      height: 100%;
-      background-color: #050C9C;
-      width: 0;
-      transition: width 0.3s;
-    }
+.details-btn {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: #050C9C;
+  cursor: pointer;
+}
 
-    #newItem {
-      width: calc(100% - 90px);
-      padding: 5px;
-      margin-right: 10px;
-    }
+.details {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  color: #333;
+  z-index: 1;
+  /* 세부사항을 상위에 배치 */
+}
 
-    .add-item-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10px;
-    }
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 1em;
+  color: red;
+  cursor: pointer;
+  margin-left: 10px;
+}
 
-    button {
-      padding: 5px 10px;
-      border: none;
-      background-color: #050C9C;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+.add-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
 
-    button:hover {
-      background-color: #3333cc;
-    }
+#newItem {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
-    .details-btn {
-      background: none;
-      border: none;
-      font-size: 1.2em;
-      color: #050C9C;
-      cursor: pointer;
-    }
-
-    .details {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      padding: 10px;
-      background: #f0f0f0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-top: 5px;
-      color: #333;
-      z-index: 1; /* 세부사항을 상위에 배치 */
-    }
-
-    .remove-btn {
-      background: none;
-      border: none;
-      font-size: 1em;
-      color: red;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    .add-item-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10px;
-    }
-
-    #newItem {
-      flex: 1;
-      padding: 10px;
-      margin-right: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      padding: 10px 15px;
-      border: none;
-      background-color: #050C9C;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #050C9C;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}

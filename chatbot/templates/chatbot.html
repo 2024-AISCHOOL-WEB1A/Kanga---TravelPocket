@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,57 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<div data-include-path="../../static/templates/header.html" class="header"></div>
+<body class="hero-anime">
+
+    <div class="navigation-wrap bg-light start-header start-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="/main">Travel Pocket</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="/main">Home</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="checklistLink">
+                                    <a class="nav-link" href="/checklist">CheckList</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="newsletterLink">
+                                    <a class="nav-link" href="/newsletter">Newsletter</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="chatbotLink">
+                                    <a class="nav-link" href="/chatbot">ChatBot</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
+                                    <a class="nav-link" href="/login">Login / Join</a>
+                                </li>
+                                <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
+                                    <a class="nav-link" id="logoutButton">Logout</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
+                                    <a class="nav-link" href="/mypage">MyPage</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
     <div class="chat-box">
         <div class="header">
             <div class="avatar-wrapper avatar-big">
                 <img src="../templates/img/AI_chat_main.jpg" alt="챗봇 프로필 사진">
             </div>
-            <span class="name">AI 어시스턴트 쿼카</span>
+            <span class="name">AI 여행 도우미 쿼카</span>
         </div>
         <div class="chat-room" id="chat">
             <div class="message message-left">
@@ -26,7 +70,7 @@
                     <img src="../templates/img/AI_chat_img.jpg" alt="챗봇 프로필 사진">
                 </div>
                 <div class="bubble bubble-light">
-                    안녕하세요! 저는 AI 어시스턴트 쿼카입니다.😊 <!--챗봇이 먼저 말 걸도록-->
+                    안녕하세요! 저는 AI 여행 도우미 쿼카입니다.😊 <!--챗봇이 먼저 말 걸도록-->
                 </div>
             </div>
         </div>
@@ -38,27 +82,27 @@
         </div>
         <script src="../chatbot.js"></script>
     </div>
-    
+
     <script>
         const chatbotinput = document.getElementById('chatbotinput')
         const chat = document.getElementById('chat');
 
-        chatbotinput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // 폼 제출을 방지합니다. (필요에 따라 조정)
-            sendQuery();
-            chat.scrollTop = chat.scrollHeight;
-        }
-    });
+        chatbotinput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // 폼 제출을 방지합니다. (필요에 따라 조정)
+                sendQuery();
+                chat.scrollTop = chat.scrollHeight;
+            }
+        });
         async function sendQuery() {
             const input = document.getElementById('chatbotinput').value;
             // const chat = document.getElementById('chat');
-            
+
             if (input.trim() === '') {
                 alert('질문을 입력해주세요.');
                 return;
             }
-        
+
             const userMessage = document.createElement('div');
             userMessage.className = 'message message-right';
             userMessage.innerHTML = `
@@ -68,9 +112,9 @@
                 <div class="bubble bubble-dark">${input}</div>
             `;
             chat.appendChild(userMessage);
-        
+
             document.getElementById('chatbotinput').value = '';
-        
+
             try {
                 const response = await fetch('http://localhost:5000/query', { // 서버 포트와 경로 수정
                     method: 'POST',
@@ -79,13 +123,13 @@
                     },
                     body: JSON.stringify({ query: input })
                 });
-        
+
                 if (!response.ok) {
                     throw new Error('서버 오류');
                 }
-        
+
                 const result = await response.json();
-        
+
                 const botMessage = document.createElement('div');
                 botMessage.className = 'message message-left';
                 botMessage.innerHTML = `
@@ -106,17 +150,54 @@
                 `;
                 chat.appendChild(errorMessage);
             }
-        
+
             chat.scrollTop = chat.scrollHeight;
         }
-        
 
-     
 
-        
-    
+
+        $(document).ready(function () {
+            $.ajax({
+                url: '/session',
+                method: 'GET',
+                success: function (response) {
+                    if (response.loggedIn) {
+                        // 로그인된 상태일 때 링크 활성화
+                        $('#travel-question').removeClass('disabled').attr('href', '#section2');
+                        $('#travel-pocket').removeClass('disabled').attr('href', '/user-info');
+                        $('#go1').removeClass('disabled').attr('href', '/user-info');
+                        $('#go2').removeClass('disabled').attr('href', '/user-info');
+                        $('#go3').removeClass('disabled').attr('href', '/checklist');
+                        $('#go4').removeClass('disabled').attr('href', '/newsletter');
+                        $('#go5').removeClass('disabled').attr('href', '/chatbot');
+                        $('#go6').removeClass('disabled').attr('href', '/user-info');
+
+                    } else {
+                        // 로그인되지 않은 상태일 때 링크 비활성화
+                        $('#travel-question').addClass('disabled').removeAttr('href');
+                        $('#travel-pocket').addClass('disabled').removeAttr('href');
+                        $('#go1').addClass('disabled').removeAttr('href', '/user-info');
+                        $('#go2').addClass('disabled').removeAttr('href', '/user-info');
+                        $('#go3').addClass('disabled').removeAttr('href', '/checklist');
+                        $('#go4').addClass('disabled').removeAttr('href', '/newsletter');
+                        $('#go5').addClass('disabled').removeAttr('href', '/chatbot');
+                        $('#go6').addClass('disabled').removeAttr('href', '/user-info');
+                    }
+                },
+                error: function (error) {
+                    console.error('Error checking session:', error);
+                }
+            });
+        });
+
+
+
+
+
     </script>
-    
+
     <script src="../../static/include.js"></script>
-    
-    </html>
+
+</body>
+
+</html>

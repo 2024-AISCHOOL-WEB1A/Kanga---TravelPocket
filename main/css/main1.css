@@ -154,3 +154,109 @@ main {
 .page-selected .content-2 button {
   display: block;
 }
+
+
+     /* main 추가된 CSS */
+     .title-top {
+      font-family: 'UhBeeJJIBBABBA';
+      font-size: 60px;
+      font-weight: bold;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      margin-top: 20px;
+  }
+
+  .title-bottom {
+      font-family: 'UhBeeJJIBBABBA';
+      font-size: 60px;
+      font-weight: bold;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      margin-top: 20px;
+  }
+
+  #scrollToTop {
+      display: none;
+      /* 기본적으로 버튼 숨김 */
+      position: fixed;
+      /* 버튼을 화면의 특정 위치에 고정 */
+      bottom: 20px;
+      /* 화면 하단에서 20px 위로 */
+      right: 30px;
+      /* 화면 오른쪽에서 30px 안쪽으로 */
+      z-index: 99;
+      /* 버튼이 다른 요소들 위에 오도록 설정 */
+      font-size: 18px;
+      /* 버튼 폰트 크기 */
+      border: none;
+      /* 버튼 테두리 없음 */
+      outline: none;
+      /* 버튼 외곽선 없음 */
+      background-color: #050C9C;
+      /* 버튼 배경색 */
+      color: white;
+      /* 버튼 텍스트 색상 */
+      cursor: pointer;
+      /* 마우스 커서를 포인터로 변경 */
+      padding: 15px;
+      /* 버튼 패딩 */
+      border-radius: 4px;
+      /* 버튼 테두리 둥글게 */
+  }
+
+  #scrollToTop:hover {
+    background-color: #555;
+      /* 버튼 호버 시 배경색 */
+  }
+
+  .navbar {
+      transition: top 0.3s;
+  }
+
+  .navbar-hide {
+      top: -80px;
+  }
+
+  .navbar-show {
+      top: 0;
+  }
+
+  /* 추가된 CSS */
+  .navbar-collapsed {
+      display: none;
+  }
+
+
+  @media (max-width: 768px) {
+      .custom-navbar-toggler {
+          display: block;
+      }
+  }
+
+  .navigation-wrap {
+      position: fixed;
+      top: -100px;
+      width: 100%;
+      transition: top 0.3s ease-in-out;
+      z-index: 1000;
+  }
+
+  .navigation-wrap.show-nav {
+      top: 0;
+  }
+
+  .pocket {
+      width: 250px;
+      height: 200px;
+      background: #FDDE55;
+      position: relative;
+      margin: 110px auto 50px;
+      /* 상단 마진을 110px로 변경하여 위로 40px 이동 */
+      border-radius: 6px 6px 0 0;
+      box-shadow: inset 0 0 0 5px #FDDE55,
+          inset 125px 0 #FEEFAD;
+      -webkit-animation: pocketAnim 1s ease-out 0 1 normal both;
+      animation: pocketAnim 1s ease-out 0 1 normal both;
+  }
