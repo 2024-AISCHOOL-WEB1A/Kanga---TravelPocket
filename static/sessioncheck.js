@@ -1,3 +1,5 @@
+$
+
 $(document).ready(function() {
     $.ajax({
         url: '/session',
