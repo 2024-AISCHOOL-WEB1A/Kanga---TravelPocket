@@ -249,6 +249,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'UhBeeJJIBBABBA';
+    font-size: 22px;
 }
 
 .left p, .right p {
