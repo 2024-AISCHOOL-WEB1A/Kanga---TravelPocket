@@ -243,4 +243,7 @@
         height: 24px;
     }
   }
-  
+
+  a{
+    text-decoration-line: none;
+  }

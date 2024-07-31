@@ -308,8 +308,24 @@ body {
     height: auto;
 }
 
-a{
-    color: white;
+a {
+    color: white; /* 기본 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/* 링크에 마우스를 올렸을 때 */
+a:hover {
+    color: white; /* 호버 상태에서 색상 유지 */
+}
+
+/* 방문한 링크 상태 */
+a:visited {
+    color: white; /* 방문한 링크 상태에서 색상 유지 */
+}
+
+/* 활성화된 링크 상태 */
+a:active {
+    color: white; /* 활성화된 상태에서 색상 유지 */
 }
 
 .right a {
