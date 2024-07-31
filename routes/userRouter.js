@@ -48,7 +48,6 @@ router.post('/logout', (req, res) => {
         }
         res.clearCookie('connect.sid'); // 세션 쿠키 무효화
         res.status(200).json({ message: '로그아웃 성공' });
-        res.redirect('/'); 
     });
 });
 // 사용자 등록
