@@ -25,12 +25,17 @@ async function insertData() {
                 }
             })
             .on('end', async () => {
-                const sql = `INSERT INTO tb_safety (country_idx, safety_title, safety_url, created_at) VALUES ?`;
                 try {
+                    // 테이블 초기화
+                    await connection.query('DELETE FROM tb_safety');
+                    console.log('tb_safety 테이블이 초기화되었습니다.');
+
+                    // 데이터 삽입
+                    const sql = `INSERT INTO tb_safety (country_idx, safety_title, safety_url, created_at) VALUES ?`;
                     await connection.query(sql, [results]);
                     console.log('데이터가 tb_safety 테이블에 성공적으로 삽입되었습니다.');
                 } catch (error) {
-                    console.error(`데이터베이스 삽입 중 오류 발생: ${error.message}`);
+                    console.error(`데이터베이스 처리 중 오류 발생: ${error.message}`);
                 } finally {
                     connection.release();
                 }
@@ -42,7 +47,3 @@ async function insertData() {
 }
 
 module.exports = insertData;
-
-
-
-
