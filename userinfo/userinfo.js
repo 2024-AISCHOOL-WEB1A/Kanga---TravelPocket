@@ -61,12 +61,6 @@ const countryMapping = {
     '베트남': 185,
     '싱가포르': 186,
     '인도네시아': 187,
-    '중국': 188,
-    '태국': 189,
-    '미국': 190,
-    '괌': 191,
-    '캐나다': 192,
-    '호주': 193,
     '스위스': 194,
     '홍콩': 195
 };
@@ -77,11 +71,11 @@ guestGroup.style.display = 'flex'; // 게스트 입력 필드 보이기
 function toggleSubmitButton() {
     const isCountrySelected = destinationInput.value in countryMapping;
     const isDateSelected = checkinInput.value && checkoutInput.value;
+    const isDateValid = new Date(checkinInput.value) <= new Date(checkoutInput.value);
     const isCheckboxChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
 
-    const isFormValid = isCountrySelected && isDateSelected && isCheckboxChecked;
+    const isFormValid = isCountrySelected && isDateSelected && isDateValid && isCheckboxChecked;
     submitBtn.disabled = !isFormValid;
-    
 }
 
 async function fetchUserInfo() {
@@ -94,8 +88,7 @@ async function fetchUserInfo() {
         const data = await response.json();
         if (data.loggedIn) {
             console.log('로그인 상태:', data.user);
-            userId = data.user.id; // 전역 변수에 userId를 저장
-            console.log('사용자 ID:', userId);
+            // userId를 전역 변수에 저장할 필요가 없다면 삭제
         } else {
             console.log('로그인되지 않은 상태입니다.');
         }
@@ -117,6 +110,7 @@ dropdown.addEventListener('click', (e) => {
     }
 });
 
+destinationInput.addEventListener('input', toggleSubmitButton); // 입력 필드 변경 시 버튼 상태 업데이트
 checkinInput.addEventListener('change', toggleSubmitButton);
 checkoutInput.addEventListener('change', toggleSubmitButton);
 checkboxes.forEach(checkbox => checkbox.addEventListener('change', toggleSubmitButton));
@@ -124,6 +118,7 @@ checkboxes.forEach(checkbox => checkbox.addEventListener('change', toggleSubmitB
 submitBtn.addEventListener('click', async () => {
     if (submitBtn.disabled) {
         alert('모든 항목을 올바르게 입력해주세요.');
+        event.preventDefault(); // 기본 동작(페이지 이동) 막기
         return;
     }
 
