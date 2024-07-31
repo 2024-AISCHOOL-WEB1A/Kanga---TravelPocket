@@ -76,7 +76,15 @@ checkboxes.forEach(checkbox => checkbox.addEventListener('change', toggleSubmitB
 
 submitBtn.addEventListener('click', async () => {
     if (submitBtn.disabled) {
-        alert('모든 항목을 올바르게 입력해주세요.');
+        Swal.fire({
+            title: '입력 오류 오류',
+            text: '모든 정보를 올바르게 입력하세요.',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'custom-confirm-button'
+            }
+        });
+        
         event.preventDefault(); // 기본 동작(페이지 이동) 막기
         return;
     }
