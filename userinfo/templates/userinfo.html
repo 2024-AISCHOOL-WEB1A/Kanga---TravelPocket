@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여행 검색 폼</title>
     <link rel="stylesheet" href="../css/userinfo.css">
-
-  
-    
 </head>
 
 <body>
@@ -16,6 +13,7 @@
         <div style="position: relative;">
             <input type="text" placeholder="어디로 떠나시나요?" id="destination">
             <div class="dropdown" id="dropdown">
+                <!-- Dropdown options -->
                 <div>스위스</div>
                 <div>일본</div>
                 <div>중국</div>
@@ -31,7 +29,7 @@
                 <div>캐나다</div>
             </div>
         </div>
-        <div class="date-group" id="dateGroup" style="display: none;">
+        <div class="date-group" id="dateGroup">
             <div>
                 <label for="checkin">출발 날짜</label>
                 <input type="date" id="checkin">
@@ -41,8 +39,11 @@
                 <input type="date" id="checkout">
             </div>
         </div>
-        <div class="guest-group" id="guestGroup" style="display: none;">
+        <p> 동행인</p>
+        <div class="guest-group" id="guestGroup" align="center">
+
             <div class="checkbox-group">
+
                 <label><input type="checkbox" id="companion_kid"> 만 12세 이하 어린이<br></label>
                 <label><input type="checkbox" id="companion_teenager"> 성인<br></label>
                 <label><input type="checkbox" id="companion_adult"> 노인<br></label>
@@ -50,15 +51,28 @@
                 <label><input type="checkbox" id="companion_disabled"> 장애인<br></label>
             </div>
         </div>
-        
-        <div>
-            <a href="/checklist"><button style="width: 100%;">출발하기</button></a>
+        <!-- <div class="container">
+            <h3>Checkbox-01</h3>
+            <input type="checkbox" id="cbtest1">
+            <label for="cbtest1" class="cb1"></label>
+            <h3>Checkbox-02</h3>
+            <input type="checkbox" id="cbtest2">
+            <label for="cbtest2" class="cb2"></label>
+        </div> -->
+        <br>
+        <br>
+
+        <div class="button" id="submitBtn" disabled>
+            <p class="btnText">READY?</p>
+            <div class="btnTwo">
+                <p class="btnText2">GO!</p>
+            </div>
         </div>
     </div>
 
-    <!-- <script src="../test.js"></script> -->
-    <script src="../userinfo.js">
-  
+    <script src="../userinfo.js"></script>
+    <script>
+
     </script>
 </body>
 

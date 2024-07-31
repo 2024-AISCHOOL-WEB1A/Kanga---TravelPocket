@@ -2,7 +2,10 @@ const destinationInput = document.getElementById('destination');
 const dropdown = document.getElementById('dropdown');
 const dateGroup = document.getElementById('dateGroup');
 const guestGroup = document.getElementById('guestGroup');
-const submitBtn = document.querySelector('button');
+const submitBtn = document.getElementById('submitBtn');
+const checkinInput = document.getElementById('checkin');
+const checkoutInput = document.getElementById('checkout');
+const checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
 
 const countryMapping = {
     '그리스': 1,
@@ -68,6 +71,18 @@ const countryMapping = {
     '홍콩': 195
 };
 
+dateGroup.style.display = 'flex'; // 날짜 입력 필드 보이기
+guestGroup.style.display = 'flex'; // 게스트 입력 필드 보이기
+
+function toggleSubmitButton() {
+    const isCountrySelected = destinationInput.value in countryMapping;
+    const isDateSelected = checkinInput.value && checkoutInput.value;
+    const isCheckboxChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    const isFormValid = isCountrySelected && isDateSelected && isCheckboxChecked;
+    submitBtn.disabled = !isFormValid;
+    
+}
 
 async function fetchUserInfo() {
     try {
@@ -90,7 +105,6 @@ async function fetchUserInfo() {
 }
 fetchUserInfo();
 
-
 destinationInput.addEventListener('focus', () => {
     dropdown.style.display = 'block';
 });
@@ -99,19 +113,24 @@ dropdown.addEventListener('click', (e) => {
     if (e.target.tagName === 'DIV') {
         destinationInput.value = e.target.textContent;
         dropdown.style.display = 'none';
-        dateGroup.style.display = 'flex';
+        toggleSubmitButton(); // 버튼 상태 초기화
     }
 });
 
-document.getElementById('checkout').addEventListener('change', () => {
-    guestGroup.style.display = 'flex';
-});
+checkinInput.addEventListener('change', toggleSubmitButton);
+checkoutInput.addEventListener('change', toggleSubmitButton);
+checkboxes.forEach(checkbox => checkbox.addEventListener('change', toggleSubmitButton));
 
 submitBtn.addEventListener('click', async () => {
+    if (submitBtn.disabled) {
+        alert('모든 항목을 올바르게 입력해주세요.');
+        return;
+    }
+
     const travelInfo = {
         country_idx: countryMapping[destinationInput.value],
-        start_date: document.getElementById('checkin').value,
-        end_date: document.getElementById('checkout').value,
+        start_date: checkinInput.value,
+        end_date: checkoutInput.value,
         companion_kid_YN: document.getElementById('companion_kid').checked ? 1 : 0,
         companion_teenager_YN: document.getElementById('companion_teenager').checked ? 1 : 0,
         companion_adult_YN: document.getElementById('companion_adult').checked ? 1 : 0,
@@ -120,8 +139,8 @@ submitBtn.addEventListener('click', async () => {
     };
 
     try {
-        console.log('Sending travel info:', travelInfo); // 전송 전 로그 출력
-        const response = await fetch('/travel-info', { // 경로가 맞는지 확인하세요
+        console.log('Sending travel info:', travelInfo);
+        const response = await fetch('/travel-info', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -141,3 +160,5 @@ submitBtn.addEventListener('click', async () => {
     }
 });
 
+// 초기 상태 체크
+toggleSubmitButton();

@@ -4,7 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 10vh;
     margin: 0;
 }
 .search-container {
@@ -12,7 +12,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 600px;
+    max-width: 800px;
+    margin-bottom: 75px;
+    height: 350px;
     width: 100%;
 }
 .search-container div {
@@ -20,7 +22,8 @@ body {
 }
 .search-container label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .search-container input, .search-container select, .search-container button {
     width: calc(100% - 22px);
@@ -85,18 +88,85 @@ body {
 .checkbox-group {
     display: flex; /* 플렉스 박스 사용 */
     flex-wrap: wrap; /* 필요시 줄 바꿈 */
+    align-items: center;
 }
-.checkbox-group {
-    display: flex; /* 플렉스 박스 사용 */
-    flex-wrap: wrap; /* 필요시 줄 바꿈 */
-}
+
 .checkbox-group label {
     display: inline-flex; /* 인라인 플렉스 박스 사용 */
     align-items: center;
-    margin-right: 30px; /* 레이블 간 간격 조절 */
+    margin-right: 72px; /* 레이블 간 간격 조절 */
     white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
 }
 .checkbox-group input[type="checkbox"] {
     margin-right: 5px; /* 체크박스와 텍스트 간 간격 조절 */
     transform: scale(1.2); /* 체크박스 크기 조정 (선택 사항) */
 }
+
+#destination{
+    height: 40px;
+}
+
+#checkin{
+    height: 40px;
+}
+
+
+#checkout{
+    height: 40px;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:700);
+html, body{ font-family : Roboto; height: 100%; width: 100%; margin: 0;}
+
+
+.button {
+  background: #3D4C53;
+  margin : 20px auto;
+  width : 200px;
+  height : 50px;
+  overflow: hidden;
+  text-align : center;
+  transition : .2s;
+  cursor : pointer;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+.btnTwo {
+  position : relative;
+  width : 200px;
+  height : 100px;
+  margin-top: -100px;
+  padding-top: 2px;
+  background : #26A69A;
+  left : -250px;
+  transition : .3s;
+}
+.btnText {
+  color : white;
+  transition : .3s;
+}
+.btnText2 {
+  margin-top : 63px;
+  margin-right : -130px;
+  color : #FFF;
+}
+.button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
+  left: -130px;
+}
+.button:hover .btnText{ /*When hovering over .button change .btnText*/
+  margin-left : 65px;
+}
+.button:active { /*Clicked and held*/
+  box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
+}
+
+
+
+
+
+
+
+
+
+
