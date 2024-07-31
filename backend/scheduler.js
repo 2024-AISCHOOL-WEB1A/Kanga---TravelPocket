@@ -9,7 +9,6 @@ async function executeTasks() {
         await crawlData();
         console.log('크롤링 완료');
         await insertData();
-        console.log('데이터베이스 삽입 완료');
     } catch (error) {
         console.error(`작업 중 오류 발생: ${error.message}`);
     }

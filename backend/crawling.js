@@ -120,7 +120,7 @@ async function crawlData() {
     }
 
     // 페이지 로딩을 기다립니다.
-    await new Promise(resolve => setTimeout(resolve, 2000)); // 잠시 대기 (2초)
+    await page.waitForNavigation({ waitUntil: 'networkidle0' });
     currentPage++;
   }
 
