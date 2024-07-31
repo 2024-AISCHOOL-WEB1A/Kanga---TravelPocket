@@ -13,7 +13,7 @@ CORS(app)  # CORS를 활성화하여 외부 도메인에서의 요청을 허용
 load_dotenv()  # .env 파일을 로드하여 환경 변수를 설정
 openai.api_key = os.getenv('OPENAI_API_KEY')  # 환경 변수에서 OpenAI API 키를 가져와 설정
 model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")  # SentenceTransformer 모델을 로드
-vault_file_path = os.path.join(os.path.dirname(__file__), '../chatbot/vault1.txt')  # vault1.txt 파일의 경로를 설정
+vault_file_path = os.path.join(os.path.dirname(__file__), '../chatbot/vault.txt')  # vault1.txt 파일의 경로를 설정
 
 def load_vault():
     if os.path.exists(vault_file_path):  # vault1.txt 파일이 존재하는지 확인
@@ -22,6 +22,7 @@ def load_vault():
     return []  # 파일이 존재하지 않으면 빈 리스트 반환
 
 vault_content = load_vault()  # vault_content에 vault1.txt 파일의 내용을 로드
+
 vault_embeddings = model.encode(vault_content) if vault_content else []  # 파일 내용이 있으면 임베딩 생성, 없으면 빈 리스트 반환
 
 @app.route('/query', methods=['POST'])  # '/query' 경로에 대해 POST 요청을 처리하는 엔드포인트 정의
