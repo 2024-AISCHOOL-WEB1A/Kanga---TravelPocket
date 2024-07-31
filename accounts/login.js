@@ -17,16 +17,41 @@ async function handleLogin(event) {
 
         if (!response.ok) {
             console.error('로그인 중 오류:', data.message);
-            alert('로그인 중 오류 발생: ' + data.message);
+            Swal.fire({
+                title: '로그인 오류',
+                text: `로그인 중 오류 발생: ${data.message}`,
+                icon: 'error',
+                customClass: {
+                    confirmButton: 'custom-confirm-button'
+                }
+            });
             return;
         }
 
         console.log('로그인 성공:', data.message);
-        alert('로그인 성공');
-        // 로그인 성공 후 리다이렉트 등 처리
-        window.location.href = '/main';
+        Swal.fire({
+            title: '로그인 성공',
+            text: '로그인에 성공했습니다.',
+            icon: 'success',
+            customClass: {
+                confirmButton: 'custom-confirm-button'
+            }
+        }).then(()=>{
+            // 로그인 성공 후 리다이렉트 등 처리
+            window.location.href = '/main';
+        });
+        
+        
     } catch (error) {
         console.error('로그인 중 오류:', error.message);
-        alert('서버와의 연결 중 오류 발생');
+        Swal.fire({
+            title: '서버 오류',
+            text: '서버와의 연결 중 오류 발생',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'custom-confirm-button'
+            }
+        });
     }
 }
+
