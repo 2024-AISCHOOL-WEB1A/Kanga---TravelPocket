@@ -14,7 +14,7 @@ CORS(app)  # CORS 설정 추가
 ## CHATBOT X RAG O  Retrieval argumented generator
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
 vault_file_path = os.path.join(os.path.dirname(__file__), '../chatbot/vault.txt')
 
 def load_vault():
