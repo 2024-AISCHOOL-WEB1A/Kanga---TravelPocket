@@ -20,15 +20,38 @@ async function handleRegister(event) {
 
         if (!response.ok) {
             console.error('회원가입 중 오류:', result.message);
-            alert('회원가입 중 오류 발생: ' + result.message);
+            Swal.fire({
+                title: '회원가입 오류',
+                text: `회원가입 중 오류 발생: ${result.message}`,
+                icon: 'error',
+                customClass: {
+                    confirmButton: 'custom-confirm-button'
+                }
+            });
             return;
         }
 
         // 회원가입 성공
-        alert('회원가입 성공');
-        window.location.href = '/main';
+        Swal.fire({
+            title: '회원가입 성공',
+            text: '회원가입에 성공했습니다.',
+            icon: 'success',
+            customClass: {
+                confirmButton: 'custom-confirm-button'
+            }
+        }).then(() => {
+            window.location.href = '/main';
+        });
+        
     } catch (error) {
         console.error('회원가입 중 오류:', error.message);
-        alert('회원가입 중 오류 발생');
+        Swal.fire({
+            title: '서버 오류',
+            text: '서버와의 연결 중 오류 발생',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'custom-confirm-button'
+            }
+        });
     }
 }
