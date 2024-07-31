@@ -13,9 +13,52 @@
 
 </head>
 
-<body>
-  <div data-include-path="../../static/templates/header.html" class="header"></div>
+<body class="hero-anime">
 
+  <div class="navigation-wrap  start-header start-style">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="navbar navbar-expand-md navbar-light">
+                      <a class="navbar-brand" href="/main">Travel Pocket</a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse"
+                          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                          aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="navbar-nav ml-auto py-4 py-md-0">
+                              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                  <a class="nav-link" href="/main">Home</a>
+                              </li>
+                              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="checklistLink">
+                                  <a class="nav-link" href="/checklist">CheckList</a>
+                              </li>
+                              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="newsletterLink">
+                                  <a class="nav-link" href="/newsletter">Newsletter</a>
+                              </li>
+                              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="chatbotLink">
+                                  <a class="nav-link" href="/chatbot">ChatBot</a>
+                              </li>
+                              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4" id="loginLink">
+                                  <a class="nav-link" href="/login">Login / Join</a>
+                              </li>
+                              <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
+                              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
+                                  <a class="nav-link" id="logoutButton">Logout</a>
+                              </li>
+                              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
+                                  <a class="nav-link" href="/mypage">MyPage</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </div>
+  </body>
+  <body class="test">
   <div class="container1">
     <h1 ID="checklist-title">Travel Checklist</h1>
     <div class="dday" id="dday">D-Day 계산 중...</div>
