@@ -51,7 +51,7 @@
                                 </li>
                                 <!-- 로그아웃 버튼 및 마이페이지 버튼 (초기에는 숨김) -->
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="logoutLink">
-                                    <a class="nav-link" href="/logout">Logout</a>
+                                    <a class="nav-link" id="logoutButton">Logout</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 d-none" id="myPageLink">
                                     <a class="nav-link" href="/mypage">MyPage</a>
@@ -193,7 +193,31 @@
     <script src="../newsletter1.js"></script>
     <script src="../newsletter.js"></script>
     <script src="../../static/sessioncheck.js"></script>
-    <script></script>
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+        
+                if (response.ok) {
+                    // 로그아웃 성공 시, 페이지를 리다이렉트하거나 사용자에게 알림
+                    window.location.href = '/main';
+                } else {
+                    // 로그아웃 실패 시, 사용자에게 알림
+                    const errorData = await response.json();
+                    alert('로그아웃 중 오류 발생: ' + errorData.message);
+                }
+            } catch (error) {
+                console.error('로그아웃 중 오류 발생:', error);
+                alert('로그아웃 중 오류 발생');
+            }
+        });
+       
+    </script>
 </body>
 
 </html>
