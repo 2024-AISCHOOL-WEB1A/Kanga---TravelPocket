@@ -103,6 +103,32 @@ document.addEventListener('DOMContentLoaded', () => {
         detailedContent[`detailedContent${index + 1}`] = safetyContent;
     };
 
+    function showModal(card, detailKey) {
+        const modal = document.getElementById('card-modal');
+        const modalContent = modal.querySelector('.modal-content');
+        const detailedContentHtml = `
+            <div class="card-header">
+                ${card.querySelector('.card-header').innerHTML}
+            </div>
+            <div class="card-body">
+                <p>${card.querySelector('.card-body p').innerHTML}</p>
+                <p>${detailedContent[detailKey]}</p>
+            </div>
+            <div class="card-footer">
+                ${card.querySelector('.card-footer').innerHTML}
+            </div>
+        `;
+        modalContent.innerHTML = detailedContentHtml;
+        modal.style.display = 'block'; // Ensure the modal is visible
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('card-modal');
+        if (modal) {
+            modal.style.display = 'none'; // Ensure the modal is hidden
+        }
+    }
+
     // JSON 파일 로드 및 데이터 처리
     fetch('./data/safety_notices.json')
         .then(response => {
@@ -121,9 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 카드 생성 완료 후 총 그룹 수 계산
             const totalGroups = Math.ceil(document.querySelectorAll('.card').length / 3);
-            
+
             let currentIndex = 1; // 현재 그룹 인덱스 (1부터 시작)
-            
+
             function updateCards() {
                 const allCards = document.querySelectorAll('.card');
                 allCards.forEach(card => card.style.display = 'none');
@@ -138,32 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
             function slideRight() {
                 currentIndex = (currentIndex + 1) > totalGroups ? 1 : (currentIndex + 1);
                 updateCards();
-            }
-
-            function showModal(card, detailKey) {
-                const modal = document.getElementById('card-modal');
-                const modalContent = modal.querySelector('.modal-content');
-                const detailedContentHtml = `
-                    <div class="card-header">
-                        ${card.querySelector('.card-header').innerHTML}
-                    </div>
-                    <div class="card-body">
-                        <p>${card.querySelector('.card-body p').innerHTML}</p>
-                        <p>${detailedContent[detailKey]}</p>
-                    </div>
-                    <div class="card-footer">
-                        ${card.querySelector('.card-footer').innerHTML}
-                    </div>
-                `;
-                modalContent.innerHTML = detailedContentHtml;
-                modal.classList.add('show');
-            }
-
-            function closeModal() {
-                const modal = document.getElementById('card-modal');
-                if (modal) {
-                    modal.classList.remove('show');
-                }
             }
 
             // 초기 카드 업데이트

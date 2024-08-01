@@ -28,7 +28,9 @@
                     <div class="col-12">
                         <nav class="navbar navbar-expand-md navbar-light">
                             <a class="navbar-brand" href="/main">Travel Pocket</a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -77,35 +79,15 @@
         <button class="modal-close" onclick="closeModal()">×</button>
         <div class="modal-content"></div>
     </div>
-
+    <script> </script>
     <script src="../../static/include.js"></script>
     <script src="../newsletter1.js"></script>
     <script src="../newsletter.js"></script>
     <script src="../../static/sessioncheck.js"></script>
-    
     <script>
-        document.getElementById('logoutButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('/logout', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    // 로그아웃 성공 시, 페이지를 리다이렉트하거나 사용자에게 알림
-                    window.location.href = '/main';
-                } else {
-                    // 로그아웃 실패 시, 사용자에게 알림
-                    const errorData = await response.json();
-                    alert('로그아웃 중 오류 발생: ' + errorData.message);
-                }
-            } catch (error) {
-                console.error('로그아웃 중 오류 발생:', error);
-                alert('로그아웃 중 오류 발생');
-            }
-        });
+        
     </script>
+
 </body>
+
 </html>
