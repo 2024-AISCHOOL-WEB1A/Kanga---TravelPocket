@@ -3,11 +3,57 @@ const router = express.Router()
 const app = express();
 const path = require('path') // 경로를 수정하는 모듈
 const file_path = path.join(__dirname, "../../Kanga---TravelPocket")
+const fs = require('fs');
+const Papa = require('papaparse');
 
-
-
-
-
+ /// const csvFilePath = path.join(file_path, '/newsletter/data/safety_content_extracted.csv');
+ /// const jsonFilePath = path.join(file_path, '/newsletter/data/safety_notices.json');
+ /// 
+ /// 
+ /// // CSV 파일 읽기
+ /// fs.readFile(csvFilePath, 'utf8', (err, data) => {
+ ///     if (err) {
+ ///         console.error('Error reading the file:', err);
+ ///         return;
+ ///     }
+ /// 
+ ///     // CSV 데이터 파싱
+ ///     Papa.parse(data, {
+ ///         header: true,
+ ///         complete: (results) => {
+ ///             const safetyNotices = {};
+ /// 
+ ///             results.data.forEach(row => {
+ ///                 const countryIdx = row['country_idx'] && row['country_idx'] !== '미지정' ? parseInt(row['country_idx']) : null;
+ ///                 const safetyTitle = row['safety_title'];
+ ///                 const safetyContent = row['safety_content'];
+ ///                 const createdAt = row['created_at'];
+ /// 
+ /// 
+ ///                 if (countryIdx !== null && safetyTitle && safetyContent) {
+ ///                     safetyNotices[countryIdx] = {
+ ///                         safety_title: safetyTitle,
+ ///                         safety_content: safetyContent,
+ ///                         created_at:createdAt
+ ///                     };
+ ///                 }
+ ///             });
+ /// 
+ ///             // JSON 파일로 저장
+ ///             fs.writeFile(jsonFilePath, JSON.stringify(safetyNotices, null, 2), (err) => {
+ ///                 if (err) {
+ ///                     console.error('Error writing the file:', err);
+ ///                     return;
+ ///                 }
+ ///                 console.log('Data successfully saved to', jsonFilePath);
+ ///             });
+ ///         }
+ ///     });
+ /// });
+/// 
+/// 
+/// 
+/// 
 // --------------------------main-----------------------
 
 router.get('/main', (req, res)=>{
@@ -102,6 +148,11 @@ router.get('/newsletter', (req, res)=>{
     res.sendFile(file_path+'/newsletter/templates/newsletter.html')
 })
 
+router.get('/newsletter', (req, res)=>{
+    res.sendFile(file_path+'/newsletter/templates/test.html')
+})
+
+
 // ------------------------------------- static --------------------------------------
 
 router.get('/main/header', (req, res)=>{
@@ -114,9 +165,6 @@ router.get('/main/footer', (req, res)=>{
 //----------------------------------chatbot-----------------------
 
 router.get('/main/chatbot', (req, res)=>{
-    res.sendFile(file_path+'/chatbot/templates/chatbot.html')
-})
-router.get('/chatbot', (req, res)=>{
     res.sendFile(file_path+'/chatbot/templates/chatbot.html')
 })
 

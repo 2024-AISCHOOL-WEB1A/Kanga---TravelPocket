@@ -11,6 +11,8 @@ const axios = require('axios');
 const { spawn } = require('child_process');
 const fetch = require('node-fetch');
 
+
+
 require('dotenv').config(); // 오픈 API 키 가져오는 코드 삭제 금지
 
 const app = express();
@@ -174,6 +176,7 @@ app.post('/query', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while processing your request.' });
     }
 });
+
 
 
 
