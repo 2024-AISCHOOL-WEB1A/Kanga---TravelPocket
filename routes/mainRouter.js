@@ -148,10 +148,6 @@ router.get('/newsletter', (req, res)=>{
     res.sendFile(file_path+'/newsletter/templates/newsletter.html')
 })
 
-router.get('/newsletter', (req, res)=>{
-    res.sendFile(file_path+'/newsletter/templates/test.html')
-})
-
 
 // ------------------------------------- static --------------------------------------
 
